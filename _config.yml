@@ -5,7 +5,7 @@ email: scsc1125@gmail.com
 description: For CV, Blog and Project
 show_downloads: false
 google_analytics: UA-216719934-1 #UA-108144808-1
-color-scheme: auto # auto/light/dark 
+color-scheme: light # auto/light/dark 
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
