@@ -1,10 +1,11 @@
-title: Minimalist theme
+title: bigbigpark's house
 logo: /assets/img/logo.png
-email: bogus at gmail dot com
-description: Minimalist is a theme powered by Jekyll. It is modified based on the Minimal theme.
+favicon: true
+email: scsc1125@gmail.com
+description: For CV, Blog and Project
 show_downloads: false
-google_analytics: UA-108144808-1
-color-scheme: auto
+google_analytics: UA-216719934-1 #UA-108144808-1
+color-scheme: auto # auto/light/dark 
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
