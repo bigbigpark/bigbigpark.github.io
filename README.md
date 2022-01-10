@@ -1,20 +1,33 @@
-# Hydejack Starter Kit
+---
+layout: page
+title: About
+permalink: /about/
+---
 
-A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
+## Theme Monos
+> Simple and lightweight theme for Jekyll
 
-## Quick Start
-### Running locally
-1. Clone repository (git users), or [download] and unzip.
-2. Open terminal, `cd` into root directory (where `_config.yml` is located)
-3. Run `bundle install` [^1]
-4. Run `bundle exec jekyll serve`
-5. Open <http://localhost:4000/hydejack-starter-kit/>
+### Features
+- Responsive.
+- Syntax Highlight
+- Most optimized theme for tech blog.
+- Lightweight with minimum stylesheet.
+- Easy to customize.
+- Offers category menu.
 
-## What's next?
-* Open files and read the comments
-* Read the [docs](https://hydejack.com/docs/)
-* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
+### _config.yml
+> Code block will look like this.
+```yml
+highlighter-theme: monokai //you can change your syntax color scheme.
+date_format: "%Y-%M-%D" //and date format.
+```
 
-[^1]: Requires Bundler. Install with `gem install bundler`.
-
-[download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip
+### Screenshots
+#### Page
+![alt text](/public/img/screenshot-1.png)
+#### Articles
+![alt text](/public/img/screenshot-2.png)
+#### Page - Mobile
+![alt text](/public/img/screenshot-m1.png)
+#### Page - Articles
+![alt text](/public/img/screenshot-m2.png)
