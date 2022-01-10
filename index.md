@@ -11,11 +11,11 @@ Let me introduce myself :)
 
 ## EDUCATION
 
-| Date               | Degree                       | School                         |
-| ------------------ | ---------------------------- | ------------------------------ |
-| 2015. 03 ~ 2021.02 | (B.S) Electronic Engineering | (KOR) Keimyung University      |
-| 2021.03 ~ 2022.02  | (M.S) Mechanical Engineering | (KOR) Keimyung University      |
-| 2022.03 ~2023.02   | (M.S) Smart Automobile       | (KOR) Soonchunhyang University |
+| Date              | Degree                       | School                   |
+| ------------------| ---------------------------- | -------------------------|
+| 2015.03 ~ 2021.02 | (B.S) Electronic Engineering | Keimyung University      |
+| 2021.03 ~ 2022.02 | (M.S) Mechanical Engineering | Keimyung University      |
+| 2022.03 ~ 2023.02 | (M.S) Smart Automobile       | Soonchunhyang University |
 
 <br/>
 
