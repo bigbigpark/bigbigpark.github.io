@@ -4,7 +4,7 @@ layout: default
 # ABOUT ME
 
 Welcome to bigbigpark's house!
-
+My name is Seong-Chang, Park from South Korea
 Let me introduce myself :)
 
 <br/>
@@ -67,6 +67,3 @@ Email: scsc1125@gmail.com
 Github: github.com/bigbigpark
 
 <br/>
-
-
-
