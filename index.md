@@ -1,123 +1,72 @@
 ---
 layout: default
 ---
+# ABOUT ME
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+Welcome to bigbigpark's house!
 
-[Link to another page](./another-page.html).
+Let me introduce myself :)
 
-There should be whitespace between paragraphs.
+<br/>
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+## EDUCATION
 
-# Header 1
+| Date               | Degree                       | School                         |
+| ------------------ | ---------------------------- | ------------------------------ |
+| 2015. 03 ~ 2021.02 | (B.S) Electronic Engineering | (KOR) Keimyung University      |
+| 2021.03 ~ 2022.02  | (M.S) Mechanical Engineering | (KOR) Keimyung University      |
+| 2022.03 ~2023.02   | (M.S) Smart Automobile       | (KOR) Soonchunhyang University |
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+<br/>
 
-## Header 2
+## INTERESTS
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+* Mobile robots
+* Autonomous vehicle
+* Multiple agents
+* SLAM
 
-### Header 3
+<br/>
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+## PROJECT
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+* CPS
+* UWB
 
-#### Header 4
+<br/>
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+## PAPER
 
-##### Header 5
+### Internation Journal
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+<br/>
 
-###### Header 6
+### International Conference
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+<br/>
 
-### There's a horizontal rule below this.
+### Domestic Journal
 
-* * *
+<br/>
 
-### Here is an unordered list:
+### Domestic Conference
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+<br/>
 
-### And an ordered list:
+## TECH STACKS
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+* C, C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN
+* Gazebo, CarMaker, Webots, CARLA
 
-### And a nested list:
+<br/>
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+## CONTACT
 
-### Small image
+Email: scsc1125@gmail.com
 
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+Github: github.com/bigbigpark
 
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+<br/>
 
 
-### Definition lists can be used with HTML syntax.
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
