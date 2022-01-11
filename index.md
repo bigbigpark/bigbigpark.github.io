@@ -4,9 +4,10 @@ layout: default
 # ABOUT ME
 
 Welcome to bigbigpark's house!
-My name is Seong-Chang, Park from South Korea
+<br/>
+My name is "Seong-Chang, Park" from South Korea
+<br/>
 Let me introduce myself :)
-
 <br/>
 
 ## EDUCATION
@@ -68,4 +69,4 @@ Github: github.com/bigbigpark
 
 <br/>
 
-![BlogTest](./posts/blog/2022-0111-02.md)
+[BlogTest](./posts/blog/2022-0111-02.md)
