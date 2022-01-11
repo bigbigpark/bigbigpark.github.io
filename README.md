@@ -14,7 +14,7 @@ To use the Minimalist theme:
 gem "jekyll-remote-theme"
 ```
 
-then run `bundle install` to install the plugin.
+then run `bundle install` to install the plugin
 
 2. Add the following to your site's `_config.yml` to activate the plugin:
 
