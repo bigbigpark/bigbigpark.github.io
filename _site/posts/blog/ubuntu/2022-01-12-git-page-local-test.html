@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>백준 0000번 입니당 | bigbigpark</title>
+<title>Git pages: local test using bundle | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="백준 0000번 입니당" />
+<meta property="og:title" content="Git pages: local test using bundle" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/code_test/2022-01-11-baekjoon_0000.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/code_test/2022-01-11-baekjoon_0000.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="백준 0000번 입니당" />
+<meta property="twitter:title" content="Git pages: local test using bundle" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","url":"http://localhost:4000/posts/blog/code_test/2022-01-11-baekjoon_0000.html","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@type":"WebPage","headline":"백준 0000번 입니당","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","url":"http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@type":"WebPage","headline":"Git pages: local test using bundle","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=9087ab98d5bf59f2e52fbb66912529a0bf939449">
@@ -109,7 +109,74 @@
       <section>
 
       
-<h1 id="백준-0000번-입니당">백준 0000번 입니당</h1>
+<h1 id="git-pages-local-test-using-bundle">Git pages: local test using bundle</h1>
+
+<p>tags: ruby, gem, bundle, git pages, local, test</p>
+
+<p>ref. https://jekyllrb.com/docs/</p>
+
+<p><br /></p>
+
+<p>로컬 저장소에서 commit, push를 하면 실제 사이트 반영까지 시간이 좀 걸린다</p>
+
+<p>하지만 우리는 블로그 세세한 내용을 수정하면서 실시간으로 보고 싶은데,</p>
+
+<p>위와 같은 방법은 정말 <strong>시간낭비</strong>!</p>
+
+<p>따라서 로컬에서 테스트하는 방법을 알아보자</p>
+
+<p><br /></p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>Ruby version 2.5.0 or higher</li>
+  <li>RubyGems</li>
+  <li>GCC and Make</li>
+</ul>
+
+<p>첫 번째 루비는 2.6 ~ 2.9 를 추천한다. 왜냐하면 Jekyll 3.X 버전과 Ruby 3.0 버전은 호환이 안된다</p>
+
+<p>-&gt; 이거를 몰라서 많이 고생했다</p>
+
+<p><br /></p>
+
+<p>설치는 다음 경로를 참고하자</p>
+
+<p>https://jekyllrb.com/docs/installation/#requirements</p>
+
+<p><br /></p>
+
+<h2 id="instructions">Instructions</h2>
+
+<h3 id="1-install-all-prerequisites">1. Install all prerequisites</h3>
+
+<p><br /></p>
+
+<h3 id="2-install-the-jekyll-and-bundler-gems">2. Install the jekyll and bundler gems</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="3-change-directory-at-your-repo">3. Change directory at your repo.</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOUR_LOCAL_REPOSITORY</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="4-build-the-site-and-make-it-available-on-a-local-server">4. Build the site and make it available on a local server</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="5-browse-to-http1270014000">5. Browse to http://127.0.0.1:4000</h3>
+
+<p><br /></p>
 
 
       </section>

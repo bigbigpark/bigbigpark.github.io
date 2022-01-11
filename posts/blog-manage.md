@@ -18,6 +18,7 @@ tags: ubuntu
 <br/>
 
 ## Ubuntu/Linux
+[Git pages: local test](/posts/blog/ubuntu/2022-01-12-git-page-local-test.html) <br/>
 [How to change repository on Ubuntu 20.04](/posts/blog/ubuntu/2022-01-11-change_repo.html) <br/>
 [Install OpenCV 3.4.5 on Ubuntu 20.04](/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html) <br/>
 [Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)](/posts/blog/ubuntu/2022-01-11-error_apt_update.html)
