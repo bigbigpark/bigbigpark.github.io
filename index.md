@@ -1,72 +1,17 @@
 ---
 layout: default
+title: "첫 포스트"
+excert: "부가설명"
+author: 박성창
+data: "2022-01-11 14:46:05 +0900"
+last_modified_at: "2022-01-11 14:46:05 +0900"
 ---
-# ABOUT ME
 
-Welcome to bigbigpark's house!
-<br/>
-My name is "Seong-Chang, Park" from South Korea
-<br/>
-Let me introduce myself :)
-<br/>
-
-## EDUCATION
-
-| Date              | Degree                       | School                   |
-| ------------------| ---------------------------- | -------------------------|
-| 2015.03 ~ 2021.02 | (B.S) Electronic Engineering | Keimyung University      |
-| 2021.03 ~ 2022.02 | (M.S) Mechanical Engineering | Keimyung University      |
-| 2022.03 ~ 2023.02 | (M.S) Smart Automobile       | Soonchunhyang University |
-
-<br/>
-
-## INTERESTS
-
-* Mobile robots
-* Autonomous vehicle
-* Multiple agents
-* SLAM
-
-<br/>
-
-## PROJECT
-
-* CPS
-* UWB
-
-<br/>
-
-## PAPER
-
-### Internation Journal
-
-<br/>
-
-### International Conference
-
-<br/>
-
-### Domestic Journal
-
-<br/>
-
-### Domestic Conference
-
-<br/>
-
-## TECH STACKS
-
-* C, C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN
-* Gazebo, CarMaker, Webots, CARLA
-
-<br/>
-
-## CONTACT
-
-Email: scsc1125@gmail.com
-
-Github: github.com/bigbigpark
-
-<br/>
-
-[BlogTest](./posts/blog/2022-0111-02.md)
+# blog Test1
+[test1](./index copy.md) <br/>
+[test2](./posts/blog/2022-01-11-blog.md) <br/>
+[test3](./test.md) <br/>
+[test4](./temp/testd.md) <br/>
+[test5](./posts/project/testd.md) <br/>
+[test6](./posts/blog/testd.md) <br/>
+[test7](./posts/blog-manage.md) <br/>
