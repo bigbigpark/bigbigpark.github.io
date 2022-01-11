@@ -13,9 +13,11 @@ tags: ubuntu
 <br/>
 
 ## ROS
-[How to install ROS noetic](/posts/blog/ros/2022-01-11-01_install_noetic.html)
+[How to install ROS noetic](/posts/blog/ros/2022-01-11-install_noetic.html)
 
 <br/>
 
 ## Ubuntu/Linux
-[How to install ROS noetic](/posts/blog/ubuntu/2022-01-11-01_error_apt_update.html)
+[How to change repository on Ubuntu 20.04](/posts/blog/ubuntu/2022-01-11-change_repo.html) <br/>
+[Install OpenCV 3.4.5 on Ubuntu 20.04](/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html) <br/>
+[Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)](/posts/blog/ubuntu/2022-01-11-error_apt_update.html)

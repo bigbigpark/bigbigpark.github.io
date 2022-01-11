@@ -8,23 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>How to install ROS noetic | bigbigpark’s house</title>
+<title>Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable) | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="How to install ROS noetic" />
+<meta property="og:title" content="Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ros/2022-01-11-01_install_noetic.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ros/2022-01-11-01_install_noetic.html" />
-<meta property="og:site_name" content="bigbigpark’s house" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-11-error_apt_update.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-11-error_apt_update.html" />
+<meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="How to install ROS noetic" />
+<meta property="twitter:title" content="Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/posts/blog/ros/2022-01-11-01_install_noetic.html","headline":"How to install ROS noetic","description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/posts/blog/ubuntu/2022-01-11-error_apt_update.html","headline":"Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)","description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/colors-light.css?v=741277fc95b5a465cc81724080fa6e4a6a7ace06">
-    <link rel="stylesheet" href="/assets/css/style.css?v=741277fc95b5a465cc81724080fa6e4a6a7ace06">
+    <link rel="stylesheet" href="/assets/css/colors-light.css?v=31a5071bf461f298b7cc141ec8ff7b3715b41647">
+    <link rel="stylesheet" href="/assets/css/style.css?v=31a5071bf461f298b7cc141ec8ff7b3715b41647">
 
     <link rel="preload" href="/assets/img/logo.png" as="image">
     <!--[if lt IE 9]>
@@ -61,7 +61,7 @@
           
 
           
-            <h1><a href="http://localhost:4000/">bigbigpark's house</a></h1>
+            <h1><a href="http://localhost:4000/">bigbigpark</a></h1>
           
 
           
@@ -104,16 +104,30 @@
     <a href="/posts/project-manage.html">[Project]</a>
 </div>
 
-        <div class="sidebar-footer"><p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p></div>
+        <div class="sidebar-footer"><!-- <p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p> --></div>
       </div>
       <section>
 
-      
-<h2 id="how-to-install-ros-noetic">How to install ROS noetic</h2>
+      <h1 id="could-not-get-lock-varlibdpkglock-frontend---open-11-resource-temporarily-unavailable">Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)</h1>
+
+<p><br /></p>
+
+<p><strong>Take it EAZY</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>killall apt apt-get
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo rm</span> /var/lib/apt/lists/lock
+<span class="nv">$ </span><span class="nb">sudo rm</span> /var/cache/apt/archives/lock
+<span class="nv">$ </span><span class="nb">sudo rm</span>/var/lib/dpkg/lock<span class="k">*</span>
+
+<span class="nv">$ </span><span class="nb">sudo </span>dpkg <span class="nt">--configure</span> <span class="nt">-a</span>
+</code></pre></div></div>
+
 
 
       </section>
-      <footer><p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p></footer>
+      <footer><!-- <p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p> --></footer>
     </div>
     <script src="/assets/js/scale.fix.js"></script>
   </body>

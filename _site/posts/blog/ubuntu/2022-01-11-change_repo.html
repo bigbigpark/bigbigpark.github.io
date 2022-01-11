@@ -8,23 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Error apt update | bigbigpark’s house</title>
+<title>How to change repository on Ubuntu 20.04 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Error apt update" />
+<meta property="og:title" content="How to change repository on Ubuntu 20.04" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-11-01_error_apt_update.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-11-01_error_apt_update.html" />
-<meta property="og:site_name" content="bigbigpark’s house" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-11-change_repo.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-11-change_repo.html" />
+<meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Error apt update" />
+<meta property="twitter:title" content="How to change repository on Ubuntu 20.04" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/posts/blog/ubuntu/2022-01-11-01_error_apt_update.html","headline":"Error apt update","description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/posts/blog/ubuntu/2022-01-11-change_repo.html","headline":"How to change repository on Ubuntu 20.04","description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/colors-light.css?v=741277fc95b5a465cc81724080fa6e4a6a7ace06">
-    <link rel="stylesheet" href="/assets/css/style.css?v=741277fc95b5a465cc81724080fa6e4a6a7ace06">
+    <link rel="stylesheet" href="/assets/css/colors-light.css?v=31a5071bf461f298b7cc141ec8ff7b3715b41647">
+    <link rel="stylesheet" href="/assets/css/style.css?v=31a5071bf461f298b7cc141ec8ff7b3715b41647">
 
     <link rel="preload" href="/assets/img/logo.png" as="image">
     <!--[if lt IE 9]>
@@ -61,7 +61,7 @@
           
 
           
-            <h1><a href="http://localhost:4000/">bigbigpark's house</a></h1>
+            <h1><a href="http://localhost:4000/">bigbigpark</a></h1>
           
 
           
@@ -104,16 +104,55 @@
     <a href="/posts/project-manage.html">[Project]</a>
 </div>
 
-        <div class="sidebar-footer"><p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p></div>
+        <div class="sidebar-footer"><!-- <p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p> --></div>
       </div>
       <section>
 
-      
-<h2 id="error-apt-update">Error apt update</h2>
+      <h1 id="how-to-change-repository-on-ubuntu-2004">How to change repository on Ubuntu 20.04</h1>
+
+<p><br /></p>
+
+<p>여기서 저장소란 우분투에서 바이너리 패키지를 받게 되는 저장소를 일컫는다</p>
+
+<p>따라서 한국과 가까운 서버일수록 당연히 빠르다</p>
+
+<p>그거를 변경해보자!</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>vim /etc/apt/sources.list
+
+<span class="c"># vim editor가 없다면</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>vim
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><img src="/assets/img/ubuntu/2022-01-11/01.png" alt="img01" /></p>
+
+<p>지금 보면 kr.archive.ubuntu.com 으로 설정되어 있는데 이 부분을 변경하자</p>
+
+<p><br /></p>
+
+<p>이 화면 그대로 아래 명령어를 입력해준다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/kr.archive.com/mirror.kakao.com/g
+
+<span class="c"># 명령어 설명</span>
+<span class="c"># :%s/변경할 대상/변경할 값/g</span>
+<span class="c"># 여기서 s는 substitute의 약자</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>아래 명령어로 편집기를 닫는다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:wq!
+</code></pre></div></div>
+
+<p><br /></p>
 
 
       </section>
-      <footer><p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p></footer>
+      <footer><!-- <p><small>Powered by <a href="https://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://www.bodunhu.com/">BDHU</a></small></p> --></footer>
     </div>
     <script src="/assets/js/scale.fix.js"></script>
   </body>

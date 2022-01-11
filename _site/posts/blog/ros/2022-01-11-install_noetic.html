@@ -8,20 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Blog Management | bigbigpark</title>
+<title>How to install ROS noetic on Ubuntu 20.04 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Blog Management" />
-<meta name="author" content="Park Seong Chang" />
+<meta property="og:title" content="How to install ROS noetic on Ubuntu 20.04" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog-manage.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog-manage.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ros/2022-01-11-install_noetic.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ros/2022-01-11-install_noetic.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Blog Management" />
+<meta property="twitter:title" content="How to install ROS noetic on Ubuntu 20.04" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/posts/blog-manage.html","headline":"Blog Management","author":{"@type":"Person","name":"Park Seong Chang"},"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"},"name":"Park Seong Chang"},"@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/posts/blog/ros/2022-01-11-install_noetic.html","headline":"How to install ROS noetic on Ubuntu 20.04","description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=31a5071bf461f298b7cc141ec8ff7b3715b41647">
@@ -109,31 +108,74 @@
       </div>
       <section>
 
-      <small></small>
-<h1>Blog Management</h1>
+      <h1 id="how-to-install-ros-noetic-on-ubuntu-2004">How to install ROS noetic on Ubuntu 20.04</h1>
 
-<p class="view">by Park Seong Chang</p>
-
-<p><br /></p>
-
-<h2 id="코딩테스트">코딩테스트</h2>
-<p><a href="/posts/blog/code_test/2022-01-11-baekjoon_0000.html">백준0000</a></p>
+<p>ref. http://wiki.ros.org/noetic/Installation</p>
 
 <p><br /></p>
 
-<h2 id="ros">ROS</h2>
-<p><a href="/posts/blog/ros/2022-01-11-install_noetic.html">How to install ROS noetic</a></p>
+<h2 id="1-installation">1. Installation</h2>
+
+<p>packages.ros.org로부터 software를 받도록 PC setup하는 과정</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>sh <span class="nt">-c</span> <span class="s1">'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span>
+</code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="ubuntulinux">Ubuntu/Linux</h2>
-<p><a href="/posts/blog/ubuntu/2022-01-11-change_repo.html">How to change repository on Ubuntu 20.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html">Install OpenCV 3.4.5 on Ubuntu 20.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-11-error_apt_update.html">Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)</a></p>
+<p>key 등록</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>curl <span class="c"># if you haven't already installed curl</span>
+<span class="nv">$ </span>curl <span class="nt">-s</span> https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | <span class="nb">sudo </span>apt-key add -
+</code></pre></div></div>
 
+<p><br /></p>
 
-  <small>Tags: <em>ubuntu</em></small>
+<p>Update package</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt update
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>설치</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>ros-noetic-desktop-full
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>환경변수 설정</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># 파일 제일 하단에 아래 문장 기입</span>
+<span class="nb">source</span> /opt/ros/noetic/setup.bash
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-dependencies-for-building-packages">2. Dependencies for building packages</h2>
+
+<p>ROS workspace를 구축하고 빌드하는데 있어서 dependencies를 설치해야 함</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>python3-rosdep
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3--initialize-rosdep">3.  Initialize rosdep</h2>
+
+<p>ROS tools를 사용하기 전, rosdep을 초기화를 해야 함</p>
+
+<p>rosdep은 사용자가 컴파일할 소스의 dependencies를 쉽게 설치 하게끔 함</p>
+
+<p>최초 1회만 하면 됨</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>rosdep init
+<span class="nv">$ </span>rosdep update
+</code></pre></div></div>
 
 
 

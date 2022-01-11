@@ -70,4 +70,4 @@ Github: github.com/bigbigpark
 
 <br/>
 
-[BlogTest](/blog/2022-01-11-blog.md)
+[Blog Test](index copy.html)
