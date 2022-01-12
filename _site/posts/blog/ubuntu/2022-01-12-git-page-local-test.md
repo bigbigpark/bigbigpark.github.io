@@ -38,6 +38,9 @@ https://jekyllrb.com/docs/installation/#requirements
 ## Instructions
 
 ### 1. Install all prerequisites
+1. ruby 설치
+2. rubygem 설치
+3. gcc g++ make 설치
 
 <br/>
 
@@ -54,6 +57,10 @@ $ gem install jekyll bundler
 ~~~bash
 $ cd ${YOUR_LOCAL_REPOSITORY}
 ~~~
+여기서 GemFile 안에 필요한 gem 파일을 설치 가능함 <br/>
+
+이 경로에서 **bundle install** 입력!
+
 
 <br/>
 
@@ -65,6 +72,6 @@ $ bundle exec jekyll serve
 
 <br/>
 
-### 5. Browse to http://127.0.0.1:4000
+### 5. Browse to http://127.0.0.1:4000 or localhost
 
 <br/>
