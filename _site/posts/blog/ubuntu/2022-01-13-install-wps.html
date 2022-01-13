@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>ABOUT ME | bigbigpark</title>
+<title>How to install WPS on Ubuntu 18.04 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="ABOUT ME" />
+<meta property="og:title" content="How to install WPS on Ubuntu 18.04" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ABOUT ME" />
+<meta property="twitter:title" content="How to install WPS on Ubuntu 18.04" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/","headline":"ABOUT ME","@type":"WebSite","description":"For CV, Blog and Project","name":"bigbigpark","@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html","headline":"How to install WPS on Ubuntu 18.04","@type":"WebPage","description":"For CV, Blog and Project","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=59b09b2891df07b4a62503bcb8492b28aba6d28d">
@@ -108,140 +108,35 @@
       </div>
       <section>
 
-      <h1 id="about-me">ABOUT ME</h1>
+      <h1 id="how-to-install-wps-on-ubuntu-1804">How to install WPS on Ubuntu 18.04</h1>
 
-<p>Welcome to bigbigpark’s house!
-<br />
-My name is <strong>Park Seong Chang</strong> from South Korea
-<br />
-Let me introduce myself :)
-<br />
-<br /></p>
+<p>tags: Linux, Office MS, Powerpoint, Word, Excel</p>
 
-<h2 id="education">EDUCATION</h2>
+<p>리눅스에서 파워포인트, 워드, 엑셀 작업이 된다 ㅎㅎ</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Degree</th>
-      <th>School</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2015.03 ~ 2021.02</td>
-      <td>(B.S) Electronic Engineering</td>
-      <td>Keimyung University</td>
-    </tr>
-    <tr>
-      <td>2021.03 ~ 2022.02</td>
-      <td>(M.S) Mechanical Engineering</td>
-      <td>Keimyung University</td>
-    </tr>
-    <tr>
-      <td>2022.03 ~ 2023.02</td>
-      <td>(M.S) Smart Automobile</td>
-      <td>Soonchunhyang University</td>
-    </tr>
-  </tbody>
-</table>
+<p>Office 전용 앱은 Release되지 않아서 없지만 WPS가 너무 좋은 성능을 내고 있다</p>
 
 <p><br /></p>
 
-<h2 id="interests">INTERESTS</h2>
+<h2 id="installation">Installation</h2>
 
-<ul>
-  <li>Mobile robots</li>
-  <li>Autonomous vehicle</li>
-  <li>Multiple agents</li>
-  <li>SLAM</li>
-</ul>
+<p>사이트에 들어가서 deb 파일을 받아준다</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.wps.com/download/
+</code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="project">PROJECT</h2>
+<p>설치 경로에 가서 아래와 같은 명령어로 설치</p>
 
-<ul>
-  <li>군집형 무인 CPS 특화연구실(측위기술 기반 군집 로봇 포메이션 제어 연구)
-    <ul>
-      <li>2019.11 ~ 2024.12, 국방과학연구소</li>
-    </ul>
-  </li>
-  <li>UWB를 이용한 전기자동차 무선충전 PAD 위치 측정
-    <ul>
-      <li>2019.9 ~ 2020.2, 현대NGV</li>
-    </ul>
-  </li>
-  <li>LiDAR-based curb, lane and object detection
-    <ul>
-      <li>2020.7 ~ 2021.11, 현대자동차그룹 자율주행 챌린지</li>
-    </ul>
-  </li>
-  <li>Traffic signal mapping of entire competition sites using V2X
-    <ul>
-      <li>2020.2 ~ 2020.10, 대학생 자율주행자동차 경진대회</li>
-    </ul>
-  </li>
-  <li>Traffic light detection using camera (YOLOv4)
-    <ul>
-      <li>2020.3 ~ 2020.9, 국제 대학생 창작자동차 경진대회(자율주행부문)</li>
-    </ul>
-  </li>
-  <li>Design of remote controlled life tube
-    <ul>
-      <li>2020.3 ~ 2020.6, Capstone Design</li>
-    </ul>
-  </li>
-</ul>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>dpkg <span class="nt">-i</span> wps-office_11.1.0.10702.XA_amd64.deb
+</code></pre></div></div>
+
+<p>끝!</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-13/01.png" alt="01" /></p>
 
 <p><br /></p>
-
-<h2 id="paper">PAPER</h2>
-
-<h3 id="internation-journal">Internation Journal</h3>
-
-<p><br /></p>
-
-<h3 id="international-conference">International Conference</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control for unmanned ground vehicles via real-time optimization”, <em>International Conference on Control, Automation and Control (ICCAS)</em>, 2021.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="domestic-journal">Domestic Journal</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control of a UGV swarm guaranteeing collision avoidance”, <em>IEMEK Journal of Embedded Systems and Applications</em>, 2022.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="domestic-conference">Domestic Conference</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Implementation of a distributed formation control multiple mobile robots”, <em>Korea Institute of Military Science and Technology (KIMST)</em>, 2021.</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="tech-stacks">TECH STACKS</h2>
-
-<ul>
-  <li>C, C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN</li>
-  <li>Gazebo, CarMaker, Webots, CARLA</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="contact">CONTACT</h2>
-
-<p>Email: scsc1125@gmail.com</p>
-
-<p>Github: bigbigpark</p>
-
-<p><br /></p>
-
-<p><a href="index copy.html">Blog Test</a></p>
 
 
       </section>

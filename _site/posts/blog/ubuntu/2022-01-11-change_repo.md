@@ -18,7 +18,7 @@ $ sudo apt install vim
 
 <br/>
 
-![img01](/assets/img/ubuntu/2022-01-11/01.png)
+![img01](/assets/img/blog/ubuntu/2022-01-11/01.png)
 
 지금 보면 kr.archive.ubuntu.com 으로 설정되어 있는데 이 부분을 변경하자
 

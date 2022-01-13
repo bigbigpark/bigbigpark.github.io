@@ -22,7 +22,7 @@ $ sudo apt install shutter
 
 제일 하단에 `+`버튼으로 단축키 추가
 
-![01](/assets/img/ubuntu/2022-01-12/01.png)
+![01](/assets/img/blog/ubuntu/2022-01-12/01.png)
 
 추가하면 이제 알캡처처럼 사용 가능
 
