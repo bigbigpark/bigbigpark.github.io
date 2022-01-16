@@ -102,7 +102,7 @@ If you'd like to change the theme's HTML layout:
 4. Paste the default layout content copied in the first step
 5. Customize the layout as you'd like
 
-For example, this [repository](https://github.com/BDHU/bdhu.github.io) shows how customizations are made on the original theme.
+For example, this [repository](https://github.com/BDHU/bdhu.github.io) shows how customizations are made on the original theme..
 
 ### Customizing Google Analytics code
 
