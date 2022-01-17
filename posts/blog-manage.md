@@ -19,6 +19,7 @@ tags: ubuntu
 
 ## Ubuntu/Linux
 INSTALL <br/>
+[How to install nvidia driver on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html) <br/>
 [How to install wps on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-13-install-wps.html) <br/>
 [How to install shutter on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-12-install-shutter.html) <br/>
 [How to install typora on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-12-install-typora.html) <br/>
