@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Git pages: local test using bundle | bigbigpark</title>
+<title>How to install nvidia driver on Ubuntu 18.04 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Git pages: local test using bundle" />
+<meta property="og:title" content="How to install nvidia driver on Ubuntu 18.04" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Git pages: local test using bundle" />
+<meta property="twitter:title" content="How to install nvidia driver on Ubuntu 18.04" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html","@type":"WebPage","headline":"Git pages: local test using bundle","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html","@type":"WebPage","headline":"How to install nvidia driver on Ubuntu 18.04","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=591dc4e30b51d9055abbb774b693a7e411f5ab16">
@@ -108,81 +108,46 @@
       </div>
       <section>
 
-      
-<h1 id="git-pages-local-test-using-bundle">Git pages: local test using bundle</h1>
+      <h1 id="how-to-install-nvidia-driver-on-ubuntu-1804">How to install nvidia driver on Ubuntu 18.04</h1>
 
-<p>tags: ruby, gem, bundle, git pages, local, test</p>
-
-<p>ref. https://jekyllrb.com/docs/</p>
+<p>Ubuntu 18.04에 Nvidia driver를 설치하는 방법을 알아보자</p>
 
 <p><br /></p>
 
-<p>로컬 저장소에서 commit, push를 하면 실제 사이트 반영까지 시간이 좀 걸린다</p>
+<h2 id="1-장치-확인">1. 장치 확인</h2>
 
-<p>하지만 우리는 블로그 세세한 내용을 수정하면서 실시간으로 보고 싶은데,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>lshw <span class="nt">-C</span> display
+</code></pre></div></div>
 
-<p>위와 같은 방법은 정말 <strong>시간낭비</strong>!</p>
-
-<p>따라서 로컬에서 테스트하는 방법을 알아보자</p>
-
-<p><br /></p>
-
-<h2 id="prerequisites">Prerequisites</h2>
-
-<ul>
-  <li>Ruby version 2.5.0 or higher</li>
-  <li>RubyGems</li>
-  <li>GCC and Make</li>
-</ul>
-
-<p>첫 번째 루비는 2.6 ~ 2.9 를 추천한다. 왜냐하면 Jekyll 3.X 버전과 Ruby 3.0 버전은 호환이 안된다</p>
-
-<p>-&gt; 이거를 몰라서 많이 고생했다</p>
+<p>description쪽 부분에 <strong>VGA</strong>라고 적혀있으면 일단 꼽혀있는 거임!</p>
 
 <p><br /></p>
 
-<p>설치는 다음 경로를 참고하자</p>
+<h2 id="2-저장소-추가">2. 저장소 추가</h2>
 
-<p>https://jekyllrb.com/docs/installation/#requirements</p>
-
-<p><br /></p>
-
-<h2 id="instructions">Instructions</h2>
-
-<h3 id="1-install-all-prerequisites">1. Install all prerequisites</h3>
-<ol>
-  <li>ruby 설치</li>
-  <li>rubygem 설치</li>
-  <li>gcc g++ make 설치</li>
-</ol>
-
-<p><br /></p>
-
-<h3 id="2-install-the-jekyll-and-bundler-gems">2. Install the jekyll and bundler gems</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler github-pages
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository ppa:graphics-drivers/ppa
+<span class="nv">$ </span><span class="nb">sudo </span>apt update
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="3-change-directory-at-your-repo">3. Change directory at your repo.</h3>
+<h2 id="3-권장-설치">3. 권장 설치</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOUR_LOCAL_REPOSITORY</span><span class="k">}</span>
+<p>Ubuntu에서는 설치 가능한 목록을 출력해줌</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>ubuntu-drivers devices
 </code></pre></div></div>
-<p>여기서 GemFile 안에 필요한 gem 파일을 설치 가능함 <br /></p>
 
-<p>이 경로에서 <strong>bundle install</strong> 입력!</p>
+<p>여기서 <strong>recommended</strong>라고 적힌 녀석을 설치해줘야함</p>
 
 <p><br /></p>
 
-<h3 id="4-build-the-site-and-make-it-available-on-a-local-server">4. Build the site and make it available on a local server</h3>
+<h2 id="4-설치">4. 설치</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+<p>위에서 설치하고 싶은 녀석을 설치하면 됨</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>nvidia-driver-470
 </code></pre></div></div>
-
-<p><br /></p>
-
-<h3 id="5-browse-to-http1270014000-or-localhost">5. Browse to http://127.0.0.1:4000 or localhost</h3>
 
 <p><br /></p>
 

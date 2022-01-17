@@ -33,7 +33,7 @@ remote_theme: BDHU/minimalist
 
 then running `bundle exec jekyll serve` for local deployment. Here is a [demo](https://github.com/BDHU/bdhu.github.io) using this theme.
 
-An example `_config.yml` file can be found [here](https://github.com/BDHU/bdhu.github.io/blob/master/_config.yml). More info can be found at [Jekyll Remote Theme](https://github.com/benbalter/jekyll-remote-theme).
+An example `_config.yml` file can be found [here](https://github.com/BDHU/bdhu.github.io/blob/master/_config.yml). More info can be found at [Jekyll Remote Theme](https://github.com/benbalter/jekyll-remote-theme)..
 
 ## Customizing
 
@@ -102,7 +102,7 @@ If you'd like to change the theme's HTML layout:
 4. Paste the default layout content copied in the first step
 5. Customize the layout as you'd like
 
-For example, this [repository](https://github.com/BDHU/bdhu.github.io) shows how customizations are made on the original theme.
+For example, this [repository](https://github.com/BDHU/bdhu.github.io) shows how customizations are made on the original theme..
 
 ### Customizing Google Analytics code
 
@@ -112,7 +112,7 @@ Google has released several iterations to their Google Analytics code over the y
 
 If you'd like to preview the theme locally (for example, in the process of proposing a change):
 
-1. Clone down the theme's repository (`git clone https://github.com/BDHU/minimalist`)
+1. Clone down the theme's repository  (`git clone https://github.com/BDHU/minimalist`)
 2. `cd` into the theme's directory
 3. Run `script/bootstrap` to install the necessary dependencies
 4. Run `bundle exec jekyll serve` to start the preview server

@@ -47,7 +47,7 @@ https://jekyllrb.com/docs/installation/#requirements
 ### 2. Install the jekyll and bundler gems
 
 ~~~bash
-$ gem install jekyll bundler
+$ gem install jekyll bundler github-pages
 ~~~
 
 <br/>
