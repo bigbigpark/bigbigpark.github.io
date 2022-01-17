@@ -54,7 +54,7 @@ Let me introduce myself :)
 <br/>
 
 ### International Conference
-* **Seongchang Park** and Seungmok Lee, "Distributed model predictive formation control for unmanned ground vehicles via real-time optimization", *International Conference on Control, Automation and Control (ICCAS)*, 2021.
+* **Seongchang Park** and Seungmok Lee, "Distributed model predictive formation control for unmanned ground vehicles via real-time optimization", *International Conference on Control, Automation and Systems (ICCAS)*, 2021.
 
 <br/>
 
