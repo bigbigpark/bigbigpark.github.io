@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Git pages: local test using bundle | bigbigpark</title>
+<title>How to install ceres solver 2.0 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Git pages: local test using bundle" />
+<meta property="og:title" content="How to install ceres solver 2.0" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-18-install-ceres.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-18-install-ceres.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Git pages: local test using bundle" />
+<meta property="twitter:title" content="How to install ceres solver 2.0" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-12-git-page-local-test.html","@type":"WebPage","headline":"Git pages: local test using bundle","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-18-install-ceres.html","@type":"WebPage","headline":"How to install ceres solver 2.0","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=9d0dbc78183e3d15ca4467d9085598a63c6df7ad">
@@ -108,83 +108,72 @@
       </div>
       <section>
 
-      
-<h1 id="git-pages-local-test-using-bundle">Git pages: local test using bundle</h1>
+      <h1 id="how-to-install-ceres-solver-20">How to install ceres solver 2.0</h1>
 
-<p>tags: ruby, gem, bundle, git pages, local, test</p>
+<p>ceres solver를 설치해보자</p>
 
-<p>ref. https://jekyllrb.com/docs/</p>
-
-<p><br /></p>
-
-<p>로컬 저장소에서 commit, push를 하면 실제 사이트 반영까지 시간이 좀 걸린다</p>
-
-<p>하지만 우리는 블로그 세세한 내용을 수정하면서 실시간으로 보고 싶은데,</p>
-
-<p>위와 같은 방법은 정말 <strong>시간낭비</strong>!</p>
-
-<p>따라서 로컬에서 테스트하는 방법을 알아보자</p>
+<p>Ref. http://ceres-solver.org/installation.html</p>
 
 <p><br /></p>
 
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="1-dependencies">1. Dependencies</h2>
+
+<p>v2.0 Ceres는 <strong>fully C++14-compliant complier</strong>를 요구</p>
+
+<p>&lt;=v1.4 Ceres는 <strong>C++11</strong> 이면 됨</p>
 
 <ul>
-  <li>Ruby version 2.5.0 or higher</li>
-  <li>RubyGems</li>
-  <li>GCC and Make</li>
+  <li><strong>Eigen 3.3</strong> or later</li>
+  <li><strong>CMake 3.5</strong> or later</li>
+  <li><strong>glog 0.3.1</strong> or later</li>
 </ul>
 
-<p>첫 번째 루비는 2.6 ~ 2.9 를 추천한다. 왜냐하면 Jekyll 3.X 버전과 Ruby 3.0 버전은 호환이 안된다</p>
-
-<p>-&gt; 이거를 몰라서 많이 고생했다</p>
-
 <p><br /></p>
 
-<p>설치는 다음 경로를 참고하자</p>
+<h2 id="2-install-all-the-dependencies">2. Install all the dependencies</h2>
 
-<p>https://jekyllrb.com/docs/installation/#requirements</p>
-
-<p><br /></p>
-
-<h2 id="instructions">Instructions</h2>
-
-<h3 id="1-install-all-prerequisites">1. Install all prerequisites</h3>
-<ol>
-  <li>ruby 설치</li>
-  <li>rubygem 설치</li>
-  <li>gcc g++ make 설치</li>
-</ol>
-
-<p><br /></p>
-
-<h3 id="2-install-the-jekyll-and-bundler-gems">2. Install the jekyll and bundler gems</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll bundler github-pages
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># CMake</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>cmake
+<span class="c"># google-glog + gflags</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libgoogle-glog-dev libgflags-dev
+<span class="c"># BLAS &amp; LAPACK</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libatlas-base-dev
+<span class="c"># Eigen3</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libeigen3-dev
+<span class="c"># SuiteSparse and CXSparse (optional)</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libsuitesparse-dev
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="3-change-directory-at-your-repo">3. Change directory at your repo.</h3>
+<h2 id="3-git-clone-ceres-solver">3. Git clone Ceres Solver</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOUR_LOCAL_REPOSITORY</span><span class="k">}</span>
-</code></pre></div></div>
-<p>여기서 GemFile 안에 필요한 gem 파일을 설치 가능함 <br /></p>
-
-<p>이 경로에서 <strong>bundle install</strong> 입력!</p>
-
-<p><br /></p>
-
-<h3 id="4-build-the-site-and-make-it-available-on-a-local-server">4. Build the site and make it available on a local server</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+<span class="nv">$ </span><span class="nb">mkdir </span>ceres
+<span class="nv">$ </span><span class="nb">cd </span>ceres
 </code></pre></div></div>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://ceres-solver.googlesource.com/ceres-solver
+</code></pre></div></div>
+
+<p>여기까지만 오면 [ceres] - [ceres-solver]로 폴더 경로가 잡혀있을텐데,</p>
+
+<p>직전 경로로 돌아가서 ceres-bin을 만들어 준다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ..
+<span class="nv">$ </span><span class="nb">mkdir </span>ceres-bin
+<span class="nv">$ </span><span class="nb">cd </span>ceres-bin
+</code></pre></div></div>
+
 <p><br /></p>
 
-<h3 id="5-browse-to-http1270014000-or-localhost">5. Browse to http://127.0.0.1:4000 or localhost</h3>
+<h2 id="4-build-test-and-install">4. Build, Test and Install</h2>
 
-<p><br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cmake ../ceres-solver
+<span class="nv">$ </span>make <span class="nt">-j3</span>
+<span class="nv">$ </span>make <span class="nb">test</span>
+<span class="nv">$ </span>make <span class="nb">install</span>
+</code></pre></div></div>
 
 
       </section>
