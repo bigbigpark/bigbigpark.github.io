@@ -13,6 +13,7 @@ tags: ubuntu
 <br/>
 
 ## ROS
+[[C++] Quaternion to Euler C++](/posts/blog/ros/2022-01-18-quat-to-euler.html) <br/>
 [How to install ROS noetic](/posts/blog/ros/2022-01-11-install_noetic.html)
 
 <br/>

@@ -8,20 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Blog Management | bigbigpark</title>
+<title>[C++] Quaternion to Euler | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Blog Management" />
-<meta name="author" content="Park Seong Chang" />
+<meta property="og:title" content="[C++] Quaternion to Euler" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog-manage.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog-manage.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ros/2022-01-18-quat-to-euler.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ros/2022-01-18-quat-to-euler.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Blog Management" />
+<meta property="twitter:title" content="[C++] Quaternion to Euler" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"},"name":"Park Seong Chang"},"url":"http://localhost:4000/posts/blog-manage.html","author":{"@type":"Person","name":"Park Seong Chang"},"@type":"WebPage","headline":"Blog Management","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ros/2022-01-18-quat-to-euler.html","@type":"WebPage","headline":"[C++] Quaternion to Euler","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=9d0dbc78183e3d15ca4467d9085598a63c6df7ad">
@@ -109,43 +108,27 @@
       </div>
       <section>
 
-      <small></small>
-<h1>Blog Management</h1>
+      <h1 id="c-quaternion-to-euler">[C++] Quaternion to Euler</h1>
 
-<p class="view">by Park Seong Chang</p>
+<p>많이 쓴다…</p>
 
-<p><br /></p>
-
-<h2 id="코딩테스트">코딩테스트</h2>
-<p><a href="/posts/blog/code_test/2022-01-11-baekjoon_0000.html">백준0000</a></p>
+<p>하지만 잘 안 외워져서 일단 블로그에 남긴다</p>
 
 <p><br /></p>
 
-<h2 id="ros">ROS</h2>
-<p><a href="/posts/blog/ros/2022-01-18-quat-to-euler.html">[C++] Quaternion to Euler C++</a> <br />
-<a href="/posts/blog/ros/2022-01-11-install_noetic.html">How to install ROS noetic</a></p>
+<h2 id="c-quat-to-euler">[C++] quat to euler</h2>
 
-<p><br /></p>
-
-<h2 id="ubuntulinux">Ubuntu/Linux</h2>
-<p>INSTALL <br />
-<a href="/posts/blog/ubuntu/2022-01-18-install-ceres.html">How to install ceres solver 2.0</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html">How to install nvidia driver on Ubuntu 18.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-13-install-wps.html">How to install wps on Ubuntu 18.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-12-install-shutter.html">How to install shutter on Ubuntu 18.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-12-install-typora.html">How to install typora on Ubuntu 18.04</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html">How to install OpenCV 3.4.5 on Ubuntu 20.04</a> <br /></p>
-
-<p>ERROR CODE <br />
-<a href="/posts/blog/ubuntu/2022-01-11-error_apt_update.html">Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)</a> <br /></p>
-
-<p>ETC <br />
-<a href="/posts/blog/ubuntu/2022-01-12-git-page-local-test.html">Git pages: local test</a> <br />
-<a href="/posts/blog/ubuntu/2022-01-11-change_repo.html">How to change repository on Ubuntu 20.04</a> <br /></p>
-
-
-
-  <small>Tags: <em>ubuntu</em></small>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;tf/tf.h&gt;
+</span>
+<span class="n">tf</span><span class="o">::</span><span class="n">Quaternion</span> <span class="nf">q</span><span class="p">(</span>
+        <span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+        <span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+        <span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
+<span class="n">tf</span><span class="o">::</span><span class="n">Matrix3x3</span> <span class="nf">m</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">;</span>
+<span class="n">m</span><span class="p">.</span><span class="n">getRPY</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">);</span>
+</code></pre></div></div>
 
 
 
