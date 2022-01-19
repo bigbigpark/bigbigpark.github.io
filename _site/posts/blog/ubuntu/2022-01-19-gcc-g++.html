@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>How to install typora on Ubuntu 18.04 | bigbigpark</title>
+<title>GCC, G++ 차이점 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="How to install typora on Ubuntu 18.04" />
+<meta property="og:title" content="GCC, G++ 차이점" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-12-install-typora.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-12-install-typora.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-19-gcc-g++.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-19-gcc-g++.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="How to install typora on Ubuntu 18.04" />
+<meta property="twitter:title" content="GCC, G++ 차이점" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-12-install-typora.html","@type":"WebPage","headline":"How to install typora on Ubuntu 18.04","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-19-gcc-g++.html","@type":"WebPage","headline":"GCC, G++ 차이점","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=f1493ae1720b34ef716c37f8b30d3ce07d131e62">
@@ -108,23 +108,64 @@
       </div>
       <section>
 
-      <h1 id="how-to-install-typora-on-ubuntu-1804">How to install typora on Ubuntu 18.04</h1>
+      <h1 id="gcc-g-차이점">GCC, G++ 차이점</h1>
 
-<p>ref.https://typora.io/#linux</p>
+<p>Ref. https://hsunnystory.tistory.com/112</p>
+
+<h2 id="gcc">GCC</h2>
+
+<p>: GNU Complier Collection &amp; GNU C Complier</p>
+
+<p>원래는 <strong>C언어용 컴파일러로 시작</strong>해서 GNU C Complier였지만</p>
+
+<p>2.9버전부터는 Objective C, 파스칼, 에이다 등과 같은 언어를 지원하게 되면서</p>
+
+<p><code class="language-plaintext highlighter-rouge">GNU Comlier Collection</code>으로 이름 변경</p>
 
 <p><br /></p>
 
-<p>유명한 markdown editor인 Typora를 설치해보자!</p>
+<p>Linux, Windows 등 수많은 운영체제를 지원 + 높은 호환성 지님</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget <span class="nt">-qO</span> - https://typora.io/linux/public-key.asc | <span class="nb">sudo </span>apt-key add -
+<p>자동 레지스터 할당, 반복적인 코드 제거, 상수 곱셈 최적화 등 많은 최적화를 수행하는 컴파일러</p>
 
-<span class="c"># add Typora's repository</span>
-<span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository <span class="s1">'deb https://typora.io/linux ./'</span>
-<span class="nv">$ </span><span class="nb">sudo </span>apt update
+<p><br /></p>
 
-<span class="c"># install typora</span>
-<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>typora
-</code></pre></div></div>
+<h2 id="g">G++</h2>
+
+<p>: GNU C++ Complier</p>
+
+<p><strong>C++ 언어용 컴파일러</strong></p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>GCC</th>
+      <th>G++</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>.c, .cpp 파일을 각각 C언어, C++언어로 컴파일</td>
+      <td>.c, cpp 파일 모두 C++ 언어로 컴파일</td>
+    </tr>
+    <tr>
+      <td>C라이브러리와 링크됨</td>
+      <td>C++ 라이브러리에 링크됨</td>
+    </tr>
+    <tr>
+      <td>미리 정의된 매크로 거의 없음</td>
+      <td>몇 가지 추가 매크로 존재</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>C++ 언어로 작성된 .cpp 파일은 g++로 컴파일하자</p>
 
 <p><br /></p>
 

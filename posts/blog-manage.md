@@ -19,6 +19,10 @@ tags: ubuntu
 <br/>
 
 ## Ubuntu/Linux
+MEMO <br/>
+[GCC와 G++의 차이점](/posts/blog/ubuntu/2022-01-19-gcc-g++.html)
+
+
 INSTALL <br/>
 [How to install ceres solver 2.0](/posts/blog/ubuntu/2022-01-18-install-ceres.html) <br/>
 [How to install nvidia driver on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html) <br/>
