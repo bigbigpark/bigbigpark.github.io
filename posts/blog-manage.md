@@ -20,6 +20,7 @@ tags: ubuntu
 
 ## Ubuntu/Linux
 MEMO <br/>
+[VSCODE for C++ setup](/posts/blog/ubuntu/2022-01-19-vscode-setup-linux.html) <br/>
 [GCC와 G++의 차이점](/posts/blog/ubuntu/2022-01-19-gcc-g++.html)
 
 
