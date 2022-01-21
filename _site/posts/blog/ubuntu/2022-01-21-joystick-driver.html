@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>How to install WPS on Ubuntu 18.04 | bigbigpark</title>
+<title>USB Joytick driver 설치 | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="How to install WPS on Ubuntu 18.04" />
+<meta property="og:title" content="USB Joytick driver 설치" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html" />
-<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ubuntu/2022-01-21-joystick-driver.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ubuntu/2022-01-21-joystick-driver.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="How to install WPS on Ubuntu 18.04" />
+<meta property="twitter:title" content="USB Joytick driver 설치" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-13-install-wps.html","@type":"WebPage","headline":"How to install WPS on Ubuntu 18.04","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-21-joystick-driver.html","@type":"WebPage","headline":"USB Joytick driver 설치","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=fe5e338088b4f31cca3a00d87a18f455a497f693">
@@ -108,33 +108,44 @@
       </div>
       <section>
 
-      <h1 id="how-to-install-wps-on-ubuntu-1804">How to install WPS on Ubuntu 18.04</h1>
+      <h1 id="usb-joytick-driver-설치">USB Joytick driver 설치</h1>
 
-<p>tags: Linux, Office MS, Powerpoint, Word, Excel</p>
+<p>드라이버 설치 해보자..</p>
 
-<p>리눅스에서 파워포인트, 워드, 엑셀 작업이 된다 ㅎㅎ</p>
-
-<p>Office 전용 앱은 Release되지 않아서 없지만 WPS가 너무 좋은 성능을 내고 있다</p>
+<p>처음에는 잘 안 잡힌다</p>
 
 <p><br /></p>
 
-<h2 id="installation">Installation</h2>
+<h2 id="1-usb-연결-상태-확인">1. USB 연결 상태 확인</h2>
 
-<p>사이트에 들어가서 deb 파일을 받아준다</p>
+<p>아래와 같은 명령어 2개가 자주 이용된다</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.wps.com/download/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>lsusb
+<span class="nv">$ </span>dmesg <span class="nt">--follow</span>
+</code></pre></div></div>
+
+<p>필자는 아래 명령어를 자주 애용한다</p>
+
+<p>실시간으로 보이기 때문!</p>
+
+<p>하지만 둘 다 이용하는 것이 바람직하다</p>
+
+<p><br /></p>
+
+<h2 id="2-usb-joystick-driver-설치">2. USB Joystick driver 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>xboxdrv joystick
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>jstest-gtk
 </code></pre></div></div>
 
 <p><br /></p>
 
-<p>설치 경로에 가서 아래와 같은 명령어로 설치</p>
+<h2 id="3-설치확인">3. 설치확인</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>dpkg <span class="nt">-i</span> wps-office_11.1.0.10702.XA_amd64.deb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jstest-gtk
 </code></pre></div></div>
 
-<p>끝!</p>
-
-<p><img src="/assets/img/blog/ubuntu/2022-01-13/01.png" alt="01" /></p>
+<p>안 뜨면 <code class="language-plaintext highlighter-rouge">Refresh</code>눌러서 확인해본다!!!</p>
 
 <p><br /></p>
 

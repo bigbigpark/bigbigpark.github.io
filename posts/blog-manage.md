@@ -27,12 +27,13 @@ MEMO <br/>
 
 
 INSTALL <br/>
-[How to install ceres solver 2.0](/posts/blog/ubuntu/2022-01-18-install-ceres.html) <br/>
-[How to install nvidia driver on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html) <br/>
-[How to install wps on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-13-install-wps.html) <br/>
-[How to install shutter on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-12-install-shutter.html) <br/>
-[How to install typora on Ubuntu 18.04](/posts/blog/ubuntu/2022-01-12-install-typora.html) <br/>
-[How to install OpenCV 3.4.5 on Ubuntu 20.04](/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html) <br/>
+[Joystick Driver](/posts/blog/ubuntu/2022-01-21-joystick-driver.html) <br/>
+[Ceres Solver 2.0](/posts/blog/ubuntu/2022-01-18-install-ceres.html) <br/>
+[Nvidia driver](/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html) <br/>
+[WPS sub. for Office](/posts/blog/ubuntu/2022-01-13-install-wps.html) <br/>
+[Shutter & Shortcuts](/posts/blog/ubuntu/2022-01-12-install-shutter.html) <br/>
+[Typora, markdown editor](/posts/blog/ubuntu/2022-01-12-install-typora.html) <br/>
+[OpenCV 3.4.5](/posts/blog/ubuntu/2022-01-11-install_opencv_3_4_5.html) <br/>
 
 ERROR CODE <br/>
 [Could not get lock /var/lib/dpkg/lock-frontend - open (11: resource temporarily unavailable)](/posts/blog/ubuntu/2022-01-11-error_apt_update.html) <br/>
