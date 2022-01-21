@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>ABOUT ME | bigbigpark</title>
+<title>Gazebo: libcurl:(51) ‘api.ignitionfuel.org’ | bigbigpark</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="ABOUT ME" />
+<meta property="og:title" content="Gazebo: libcurl:(51) ‘api.ignitionfuel.org’" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="For CV, Blog and Project" />
 <meta property="og:description" content="For CV, Blog and Project" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/posts/blog/ros/2022-01-21-gazebo-ignition.html" />
+<meta property="og:url" content="http://localhost:4000/posts/blog/ros/2022-01-21-gazebo-ignition.html" />
 <meta property="og:site_name" content="bigbigpark" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ABOUT ME" />
+<meta property="twitter:title" content="Gazebo: libcurl:(51) ‘api.ignitionfuel.org’" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/","@type":"WebSite","headline":"ABOUT ME","name":"bigbigpark","@context":"https://schema.org"}</script>
+{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ros/2022-01-21-gazebo-ignition.html","@type":"WebPage","headline":"Gazebo: libcurl:(51) ‘api.ignitionfuel.org’","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/colors-light.css?v=5b638ed57a258958d3f7ec8b9cea3a1b5f9df58b">
@@ -108,140 +108,27 @@
       </div>
       <section>
 
-      <h1 id="about-me">ABOUT ME</h1>
+      <h1 id="gazebo-libcurl51-apiignitionfuelorg">Gazebo: libcurl:(51) ‘api.ignitionfuel.org’</h1>
 
-<p>Welcome to bigbigpark’s house!
-<br />
-My name is <strong>Park Seong Chang</strong> from South Korea
-<br />
-Let me introduce myself :)
-<br />
-<br /></p>
+<p>[Err] [REST.cc:205] Error in REST request</p>
 
-<h2 id="education">EDUCATION</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Degree</th>
-      <th>School</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2015.03 ~ 2021.02</td>
-      <td>(B.S) Electronic Engineering</td>
-      <td>Keimyung University</td>
-    </tr>
-    <tr>
-      <td>2021.03 ~ 2022.02</td>
-      <td>(M.S) Mechanical Engineering</td>
-      <td>Keimyung University</td>
-    </tr>
-    <tr>
-      <td>2022.03 ~ 2023.02</td>
-      <td>(M.S) Smart Automobile</td>
-      <td>Soonchunhyang University</td>
-    </tr>
-  </tbody>
-</table>
+<p>libcurl: (51) SSL: no alternative certificate subject name matches target host name ‘api.ignitionfuel.org’</p>
 
 <p><br /></p>
 
-<h2 id="interests">INTERESTS</h2>
+<p>이런 메세지 본 적 있을 것이다!</p>
 
-<ul>
-  <li>Mobile robots</li>
-  <li>Autonomous vehicle</li>
-  <li>Multiple agents</li>
-  <li>SLAM</li>
-</ul>
+<p>타겟 호스트 이름 주소가 잘못됐다</p>
 
 <p><br /></p>
 
-<h2 id="project">PROJECT</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.ignition/fuel/config.yaml
+</code></pre></div></div>
 
-<ul>
-  <li>군집형 무인 CPS 특화연구실(측위기술 기반 군집 로봇 포메이션 제어 연구)
-    <ul>
-      <li>2019.11 ~ 2024.12, 국방과학연구소</li>
-    </ul>
-  </li>
-  <li>UWB를 이용한 전기자동차 무선충전 PAD 위치 측정
-    <ul>
-      <li>2019.9 ~ 2020.2, 현대NGV</li>
-    </ul>
-  </li>
-  <li>LiDAR-based curb, lane and object detection
-    <ul>
-      <li>2020.7 ~ 2021.11, 현대자동차그룹 자율주행 챌린지</li>
-    </ul>
-  </li>
-  <li>Traffic signal mapping of entire competition sites using V2X
-    <ul>
-      <li>2020.2 ~ 2020.10, 대학생 자율주행자동차 경진대회</li>
-    </ul>
-  </li>
-  <li>Traffic light detection using camera (YOLOv4)
-    <ul>
-      <li>2020.3 ~ 2020.9, 국제 대학생 창작자동차 경진대회(자율주행부문)</li>
-    </ul>
-  </li>
-  <li>Design of remote controlled life tube
-    <ul>
-      <li>2020.3 ~ 2020.6, Capstone Design</li>
-    </ul>
-  </li>
-</ul>
+<p>substitue <strong>ignitionfuel</strong> to <strong>ignitionrobotics</strong></p>
 
 <p><br /></p>
 
-<h2 id="paper">PAPER</h2>
-
-<h3 id="internation-journal">Internation Journal</h3>
-
-<p><br /></p>
-
-<h3 id="international-conference">International Conference</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control for unmanned ground vehicles via real-time optimization”, <em>International Conference on Control, Automation and Systems (ICCAS)</em>, 2021.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="domestic-journal">Domestic Journal</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control of a UGV swarm guaranteeing collision avoidance”, <em>IEMEK Journal of Embedded Systems and Applications</em>, 2022.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="domestic-conference">Domestic Conference</h3>
-<ul>
-  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Implementation of a distributed formation control multiple mobile robots”, <em>Korea Institute of Military Science and Technology (KIMST)</em>, 2021.</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="tech-stacks">TECH STACKS</h2>
-
-<ul>
-  <li>C, C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN</li>
-  <li>Gazebo, CarMaker, Webots, CARLA</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="contact">CONTACT</h2>
-
-<p>Email: scsc1125@gmail.com</p>
-
-<p>Github: bigbigpark</p>
-
-<p><br /></p>
-
-<p><a href="index copy.html">Blog Test</a></p>
 
 
       </section>

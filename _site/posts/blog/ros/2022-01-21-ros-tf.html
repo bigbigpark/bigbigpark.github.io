@@ -23,8 +23,8 @@
 {"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ros/2022-01-21-ros-tf.html","@type":"WebPage","headline":"ROS tf tree","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/colors-light.css?v=4cfb47a91554b1dca67330ec74a9a53277c1c4ee">
-    <link rel="stylesheet" href="/assets/css/style.css?v=4cfb47a91554b1dca67330ec74a9a53277c1c4ee">
+    <link rel="stylesheet" href="/assets/css/colors-light.css?v=5b638ed57a258958d3f7ec8b9cea3a1b5f9df58b">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5b638ed57a258958d3f7ec8b9cea3a1b5f9df58b">
 
     <link rel="preload" href="/assets/img/logo.png" as="image">
     <!--[if lt IE 9]>
@@ -264,6 +264,18 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rosrun robot_tf_tutorial tf_listener
 </code></pre></div></div>
 
+<p><br /></p>
+
+<h2 id="6-easy">6. EASY</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="c">&lt;!-- Create a transform sender for linking these frames. --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"tf_footprint_base"</span> <span class="na">pkg=</span><span class="s">"tf"</span> <span class="na">type=</span><span class="s">"static_transform_publisher"</span> <span class="na">args=</span><span class="s">"0 0 0 0 0 0 base_footprint base_link 40"</span> <span class="nt">/&gt;</span>	
+
+</code></pre></div></div>
+
+<p>이걸로 쉽게 하자…. <br />
+x y z r p y frame_id child_id Hz <br /></p>
 
 
       </section>
