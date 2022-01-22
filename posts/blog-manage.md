@@ -28,6 +28,7 @@ MEMO <br/>
 
 
 INSTALL <br/>
+[Brightness-controller](/posts/blog/ubuntu/2022-01-22-brightness-controller.html) <br/>
 [Joystick Driver](/posts/blog/ubuntu/2022-01-21-joystick-driver.html) <br/>
 [Ceres Solver 2.0](/posts/blog/ubuntu/2022-01-18-install-ceres.html) <br/>
 [Nvidia driver](/posts/blog/ubuntu/2022-01-17-install-nvidia-driver.html) <br/>
