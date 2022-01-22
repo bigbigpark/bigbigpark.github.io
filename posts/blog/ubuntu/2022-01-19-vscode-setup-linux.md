@@ -58,14 +58,25 @@ vscode 상단 바에서 [Terminal] - [Configure Default Build Task]를 누르면
 ~~~json
 {
 	"version": "2.0.0",
+	"runner": "terminal",
+	"type": "shell",
+	"echoCommand": true,
+	"presentation": {
+		"echo": true,
+		"reveal": "always",
+		"focus": false,
+		"panel": "shared",
+		"showReuseMessage": true,
+		"clear": false
+	},
 	"tasks": [
 		{
 			"type": "shell",
 			"label": "C/C++: g++ build active file",
 			"command": "/usr/bin/g++",
 			"args": [
-				"-fdiagnostics-color=always",
-				"-g",
+				// "-fdiagnostics-color=always",
+				"-g3",
 				"${file}",
 				"-o",
 				"${workspaceFolder}/bin/${fileBasenameNoExtension}"

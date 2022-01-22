@@ -20,11 +20,11 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="VSCODE setup C++ on Linux" />
 <script type="application/ld+json">
-{"description":"For CV, Blog and Project","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-19-vscode-setup-linux.html","@type":"WebPage","headline":"VSCODE setup C++ on Linux","@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/logo.png"}},"url":"http://localhost:4000/posts/blog/ubuntu/2022-01-19-vscode-setup-linux.html","headline":"VSCODE setup C++ on Linux","@type":"WebPage","description":"For CV, Blog and Project","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/colors-light.css?v=fe5e338088b4f31cca3a00d87a18f455a497f693">
-    <link rel="stylesheet" href="/assets/css/style.css?v=fe5e338088b4f31cca3a00d87a18f455a497f693">
+    <link rel="stylesheet" href="/assets/css/colors-light.css?v=18cc3390540219399f0df30c1a54d06cdd058623">
+    <link rel="stylesheet" href="/assets/css/style.css?v=18cc3390540219399f0df30c1a54d06cdd058623">
 
     <link rel="preload" href="/assets/img/logo.png" as="image">
     <!--[if lt IE 9]>
@@ -174,14 +174,25 @@
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0.0"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"runner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"terminal"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"echoCommand"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"presentation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="nl">"echo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"reveal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"focus"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"panel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shared"</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"showReuseMessage"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"clear"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+	</span><span class="p">},</span><span class="w">
 	</span><span class="nl">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 		</span><span class="p">{</span><span class="w">
 			</span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell"</span><span class="p">,</span><span class="w">
 			</span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C/C++: g++ build active file"</span><span class="p">,</span><span class="w">
 			</span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/usr/bin/g++"</span><span class="p">,</span><span class="w">
 			</span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-				</span><span class="s2">"-fdiagnostics-color=always"</span><span class="p">,</span><span class="w">
-				</span><span class="s2">"-g"</span><span class="p">,</span><span class="w">
+				</span><span class="err">//</span><span class="w"> </span><span class="s2">"-fdiagnostics-color=always"</span><span class="p">,</span><span class="w">
+				</span><span class="s2">"-g3"</span><span class="p">,</span><span class="w">
 				</span><span class="s2">"${file}"</span><span class="p">,</span><span class="w">
 				</span><span class="s2">"-o"</span><span class="p">,</span><span class="w">
 				</span><span class="s2">"${workspaceFolder}/bin/${fileBasenameNoExtension}"</span><span class="w">
