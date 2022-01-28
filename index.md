@@ -23,10 +23,10 @@ Let me introduce myself :)
 
 ## INTERESTS
 
-* Mobile robots
-* Autonomous vehicle
-* Multiple agents
+* Autonomous Vehicle
+* LiDAR
 * SLAM
+* Multi Robot System
 
 <br/>
 
@@ -72,7 +72,7 @@ Let me introduce myself :)
 
 ## TECH STACKS
 
-* C, C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN
+* C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN
 * Gazebo, CarMaker, Webots, CARLA
 
 <br/>
