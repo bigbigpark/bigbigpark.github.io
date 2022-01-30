@@ -8,7 +8,7 @@ tags: ubuntu
 <br/>
 
 ## 코딩테스트
-[15552](/posts/blog/code_test/2022-01-25-baekjoon_15552.html) [4673](/posts/blog/code_test/2022-01-27-baekjoon_4673.html) [1065](/posts/blog/code_test/2022-01-28-baekjoon_1065.html) 
+[15552](/posts/blog/code_test/2022-01-25-baekjoon_15552.html) [4673](/posts/blog/code_test/2022-01-27-baekjoon_4673.html) [1065](/posts/blog/code_test/2022-01-28-baekjoon_1065.html) [2941](/posts/blog/code_test/2022-01-30-baekjoon_2941.html) [1316](/posts/blog/code_teset/2022-01-30-baekjoon_1316.html) 
 
 <br/>
 
