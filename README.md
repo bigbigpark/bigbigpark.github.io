@@ -41,6 +41,8 @@ An example `_config.yml` file can be found [here](https://github.com/BDHU/bdhu.g
 
 Minimalist will respect the following variables, if set in your site's `_config.yml`:
 
+1
+
 ```yml
 title: [The title of your site]
 description: [A short description of your site's purpose]
