@@ -15,9 +15,10 @@ author: Park Seong Chang
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
+  Posts:
+    - C++: "https://naver.com"
+    - 딥러닝: "https://naver.com"
+    - 최적화: "https://naver.com"
   Project: "https://naver.com"
   CV: "https://google.com"
 
