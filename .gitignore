@@ -1,6 +1,7 @@
 # project
 _site
 .sass-cache
+.vscode
 
 # general
 .DS_Store

@@ -15,14 +15,13 @@ What else do you need?
 
 To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions. -->
 
-Welcome to bigbigpark's house!
+안녕하세요! bigbigpark의 하우스에 놀러오신 것을 환영합니다!! :-)
 <br/>
-My name is **Park Seong Chang** from South Korea
+블로그는 한글 위주로 작성할 것이구요
 <br/>
-Let me introduce myself :)
-<br/>
-<br/>
-
+간단한 제 소개를 먼저 아래와 같이 드리겠습니다
+<br/> <br/>
+ 
 ## EDUCATION
 
 | Date              | Degree                       | School                   |
@@ -36,9 +35,9 @@ Let me introduce myself :)
 ## INTERESTS
 
 * Autonomous Vehicle
+* Multi Robot System
 * LiDAR
 * SLAM
-* Multi Robot System
 
 <br/>
 
@@ -93,9 +92,6 @@ Let me introduce myself :)
 <br/>
 
 ## CONTACT
-
 Email: scsc1125@gmail.com
-
-Github: bigbigpark
 
 <br/>
