@@ -3,6 +3,10 @@
 # set up your website you should go through all these settings and edit them, but after
 # the initial set up you won't need to come back to this file often.
 
+# If you are building a GitHub project page then use these settings:
+url: "https://bigbigpark.github.io"
+baseurl: ""
+
 # --- Required options --- #
 
 # Name of website
@@ -16,7 +20,7 @@ author: Park Seong Chang
 navbar-links:
   About Me: "aboutme"
   Posts:
-    - C++: "https://daum.net"
+    - C++: "/posts/c++.md"
     - 딥러닝: "https://google.com"
     - 최적화: "https://naver.com"
   Project: "https://naver.com"

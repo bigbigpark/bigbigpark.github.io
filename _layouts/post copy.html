@@ -41,14 +41,6 @@ layout: base
 
       <article role="main" class="blog-post">
         {{ content }}
-        {% if page.tags %}
-          {% for tag in page.tags %}
-            {% if site.data.tags contains tag %}
-            <span class="tag">{{ site.data.format[tag] }}</span>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-
       </article>
 
       {% if page.tags.size > 0 %}
