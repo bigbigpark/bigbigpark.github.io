@@ -20,7 +20,7 @@ author: Park Seong Chang
 navbar-links:
   About Me: "aboutme"
   Posts:
-    - C++: "/posts/c++.md"
+    - C++: "c++"
     - 딥러닝: "https://google.com"
     - 최적화: "https://naver.com"
   Project: "https://naver.com"
@@ -54,7 +54,7 @@ social-network-links:
   youtube: bigbigpark
 #  medium: yourname
 #  reddit: yourname
-  linkedin: seongcahngpark
+  linkedin: seongchangpark
 #  xing: yourname
   # stackoverflow: ""
 #  snapchat: deanat78
@@ -73,7 +73,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+# rss-description: This website is a virtual proof that I'm awesome
 
 # --- General options --- #
 
@@ -143,7 +143,7 @@ mobile-theme-col: "#0085A1"
 #gtag: ""
 
 # Fill in your Google Analytics ID to track your website using Google Analytics
-google_analytics: "UA-216719934-1"
+google_analytics: UA-216719934-1
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
 #cloudflare_analytics: ""
@@ -236,7 +236,7 @@ defaults:
     values:
       layout: "post"
       comments: true  # add comments to all blog posts
-      social-share: true # add social media sharing buttons to all blog posts
+      social-share: false # add social media sharing buttons to all blog posts
   -
     scope:
       path: "" # any file that's not a post will be a "page" layout by default
