@@ -4,4 +4,4 @@ title: c++ YES
 tags: [c++]
 ---
 
-What?
+[What](posts/c++/2022-02-22-c++)

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: c++ YES
-tags: [c++]
+title: optimization
+tags: [optimization]
 ---
 
 What?
