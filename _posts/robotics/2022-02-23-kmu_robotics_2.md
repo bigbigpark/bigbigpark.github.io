@@ -2,7 +2,6 @@
 layout : post
 title : "[KMU #2] 로봇 모션1"
 tags: [robotics]
-use_math: true
 ---
 
 <br/>
@@ -110,11 +109,12 @@ $$
 
 따라서 `space state term` 으로 나타내면,
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 \dot x\\
 \dot y\\
 \dot \theta
-\end{bmatrix} = \begin{bmatrix} Vcos(\theta)\\ Vsin(\theta)\\ w\end{bmatrix}
+\end{bmatrix} = \begin{bmatrix} Vcos(\theta)\\ Vsin(\theta)\\ w\end{bmatrix} \\
 $$
 
 <br/>
