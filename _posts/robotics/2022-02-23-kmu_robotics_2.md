@@ -2,6 +2,7 @@
 layout : post
 title : "[KMU #2] 로봇 모션1"
 tags: [robotics]
+use_math: true
 ---
 
 <br/>
