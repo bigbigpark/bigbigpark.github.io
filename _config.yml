@@ -28,6 +28,7 @@ navbar-links:
     - 최적화: "optimization"
     - ROS: "ros"
     - 에러: "error"
+    - 설치: "install"
   Project: "projects"
   CV: "cv"
 
