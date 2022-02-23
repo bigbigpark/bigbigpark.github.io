@@ -21,7 +21,10 @@ navbar-links:
   About Me: "aboutme"
   Posts:
     - C++: "cplusplus"
+    - Python: "python"
     - 딥러닝: "deep-learning"
+    - 로보틱스: "robotics"
+    - 선형대수학: "linearalgebra"
     - 최적화: "optimization"
     - ROS: "ros"
   Project: "projects"
