@@ -5,6 +5,10 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo/favicon.ico">
 
+  <!-- Latex -->
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
   {% capture title %}
     {%- if page.share-title -%}
       {{ page.share-title | strip_html | xml_escape }}
