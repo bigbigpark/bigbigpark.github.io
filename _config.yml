@@ -224,12 +224,19 @@ label: blog-comments # Label that will be assigned to GitHub Issues created by U
 # Output options (more information on Jekyll's site)
 timezone: Asia/Seoul
 markdown: kramdown
-highlighter: rouge
 permalink: /:year-:month-:day-:title/
 paginate: 5
+highlighter: rouge
 
 kramdown:
   input: GFM
+  syntax_highlighter_opts:
+    default_lang: markdown
+    css_class   : 'syntax'
+
+# kramdown:
+#   syntax_highlighter_opts:
+#       disable : true
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
