@@ -110,6 +110,9 @@
 <loc>http://localhost:4000/install/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/latex/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/linearalgebra/</loc>
 </url>
 <url>
