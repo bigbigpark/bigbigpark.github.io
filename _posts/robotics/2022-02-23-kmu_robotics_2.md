@@ -52,12 +52,46 @@ reference frame이란 `origin` 또는 `coordinate system` 으로부터 정의됨
 ## Coordinate Systems
 
 3가지가 존재
-* 직교좌표계(Cartesian=Rectangular)
+* 직교좌표계(Cartesian=Rectangular) w.r.t. $$ x,y,z $$ <br/>
+* 원통좌표계(Cylinderical=polar) w.r.t. $$ r,\theta,z$$ <br/>
+* 구형좌표계(Spherical) w.r.t. $$ r,\theta,\phi$$
 
-$$
-x+y+z+d  = 1
-$$
+<br/>
 
+## Global & Local frame
 
-* 원통좌표계(Cylinderical=polar)
-* 구형좌표계(Spherical)
+1. Global frame
+  * Earth-centered inertial frame(=inertial frame)
+    * ECI frame, 지구 질량 중심이 원점 관성 공간에서 회전 X
+    * 뉴턴의 법칙이 완전히 유효한 기준 좌표계, 실제로 존재 X
+2. Local frame
+  * Body-fixed frame = Vehicle-fixed frame
+
+<br/>
+
+## Wheeled Robots
+* Unicycle : 한발자전거 같은 거
+* Steered wheels : 
+  - bicycle
+  - tricycle
+* `Defferential drive`
+  - 대부분의 모바일 로봇은 이렇게 구성
+* Omnidirectional
+* Tracked locomotion
+* Walking wheels
+
+![img](/assets/img/robotics/2022-02-23-kmu_01.png)
+
+<br/>
+
+## Kinematics of Wheeled Vehicles
+
+* Unicycle
+
+![img](/assets/img/robotics/2022-02-23-kmu_02.png)
+
+x와 y의 좌표계가 뒤집혀 있는데, 이동체가 바뀌어도 알고리즘을 바꾸지 않아도 됨 <br/>
+지상 빼고는 전부 이런 형태 <br/>
+
+`Position vector` : $$ \textbf{r} = x\textbf{i}+y\textbf{j} $$ <br/>
+`Velocity vector` : 위의 위치 벡터를 편미분 하면 됨 <br/>
