@@ -23,6 +23,7 @@ navbar-links:
     - C++: "cplusplus"
     - 딥러닝: "deep-learning"
     - 최적화: "optimization"
+    - ROS: "ros"
   Project: "projects"
   CV: "cv"
 

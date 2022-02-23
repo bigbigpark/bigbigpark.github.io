@@ -19,10 +19,10 @@ layout: page
 
 <div id="full-tags-list">
 {%- for tag in tags_list -%}
-    {% if tag == "c++" %}
+    {% if tag == "ros" %}
     <h2 id="{{- tag -}}" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"> </i>
-        &nbsp;C++&nbsp;<!-- ({{site.tags[tag].size}}) -->
+        &nbsp;ROS&nbsp;<!-- ({{site.tags[tag].size}}) -->
     </h2>
     <br/>
     <div class="post-list">
