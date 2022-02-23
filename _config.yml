@@ -30,6 +30,7 @@ navbar-links:
     - 에러: "error"
     - 설치: "install"
   Project: "projects"
+  Paper: "paper"
   CV: "cv"
 
 # --- Logo --- #
