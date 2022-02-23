@@ -4,4 +4,6 @@ title: c++ YES
 tags: [c++]
 ---
 
-[What]("/projects.md")
+{% for post in site.posts %}
+  
+{% endfor %}  
