@@ -27,6 +27,7 @@ navbar-links:
     - 선형대수학: "linearalgebra"
     - 최적화: "optimization"
     - ROS: "ros"
+    - 에러: "error"
   Project: "projects"
   CV: "cv"
 
