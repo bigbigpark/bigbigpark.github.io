@@ -42,6 +42,10 @@ $$\rightarrow \, $$ 왼쪽에서 오른쪽으로 가기 위해서는 `Euler Angl
 
 <br/>
 
+## Euler Angle Transformation
+
+![img](/assets/img/robotics/2022-02-24-00.png)
+
 ## Coordinate Transformation
 
 좌표계간 변환을 해보자! <br/>
