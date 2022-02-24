@@ -1,6 +1,6 @@
 ---
 layout : post
-title : "[KMU #2] 로봇 모션1"
+title : "[KMU #02] Robot Motion 1"
 tags: [robotics]
 ---
 
