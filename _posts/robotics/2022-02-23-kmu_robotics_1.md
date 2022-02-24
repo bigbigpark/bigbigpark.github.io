@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "[KMU #01] 이동로봇공학"
 tags: [robotics]
 ---
