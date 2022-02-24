@@ -1,6 +1,6 @@
 ---
 layout: post
-title: brightness-controller 설치
+title: 리눅스 밝기 조절
 tags: [install]
 ---
 

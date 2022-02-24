@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Shutter
+title: 리눅스 스크린 캡처
 tags: [install]
 ---
 

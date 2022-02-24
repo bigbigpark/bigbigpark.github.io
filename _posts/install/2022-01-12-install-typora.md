@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Typora
+title: 마크다운 에디터 (Typora)
 tags: [install]
 ---
 
