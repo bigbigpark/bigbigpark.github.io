@@ -88,3 +88,84 @@ tags: robotics
 ## Clasical Control: PID Control
 
 ![img](/assets/img/robotics/2022-02-24-25.png) 
+
+<br/>
+
+## Modern Control in State-Space
+
+![img](/assets/img/robotics/2022-02-28-01.png)
+
+<br/>
+
+## Modern Control in State-Space
+
+![img](/assets/img/robotics/2022-02-28-02.png)
+
+<br/>
+
+## 모든 시스템이 선형은 아님!
+
+![img](/assets/img/robotics/2022-02-28-03.png)
+
+<br/>
+
+
+## (Self-Tuning) Adaptive Control
+
+Operating condition이 어떻냐에 따라 제어법을 바꿀 수 있다 <br/>
+아래와 같이 두 가지 접근법도 존재! <br/>
+
+![img](/assets/img/robotics/2022-02-28-04.png)
+
+<br/>
+
+## Motion Control of Vehicles
+
+Ground Vehicles은 `종방향`, `횡방향`의 속도가 주요 관심사 <br/>
+`Kinematic` model이 주로 사용됨 <br/>
+Aerial Vehicles는 rpy가 direction이 주요 관심사 <br/>
+
+![img](/assets/img/robotics/2022-02-28-05.png)
+
+<br/>
+
+## Autopilot Design
+
+![img](/assets/img/robotics/2022-02-28-06.png)
+
+<br/>
+
+## Integral Control
+
+쓰로틀이 0일 때 에러값을 0으로 만들어 주던지 <br/>
+
+forgetting factor 를 적용하던지 <br/>
+
+![img](/assets/img/robotics/2022-02-28-07.png)
+
+<br/>
+
+## Turning Control (선회 제어)
+
+![img](/assets/img/robotics/2022-02-28-08.png)
+
+<br/>
+
+## Thrust Allocation (추력 분배)
+
+![img](/assets/img/robotics/2022-02-28-10.png)
+
+
+<br/>
+
+## Thrust Allocation:: Moore-Penros Pseudoinverse
+
+![img](/assets/img/robotics/2022-02-28-09.png)
+
+<br/>
+
+## Thrust Allocation:: Moore-Penros Pseudoinverse
+
+![img](/assets/img/robotics/2022-02-28-11.png)
+
+<br/>
