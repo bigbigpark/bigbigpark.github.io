@@ -26,6 +26,7 @@ navbar-links:
     - 로보틱스: "robotics"
     - 선형대수학: "linearalgebra"
     - 최적화: "optimization"
+    - 드론: "drone"
     - ROS: "ros"
     - 에러: "error"
     - 설치: "install"
