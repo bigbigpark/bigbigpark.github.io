@@ -47,13 +47,13 @@ To be honest, I'm having some trouble remembering right now, so why don't you ju
   * 2019.11 ~ 2024.12, 국방과학연구소
 * UWB를 이용한 전기자동차 무선충전 PAD 위치 측정
   * 2019.9 ~ 2020.2, 현대NGV
-* LiDAR-based curb, lane and object detection
+* LiDAR기반 연석, 차선 및 객체 인지
   * 2020.7 ~ 2021.11, 현대자동차그룹 자율주행 챌린지
-* Traffic signal mapping of entire competition sites using V2X
+* V2X를 이용한 교차로 신호등 매핑 및 신호 예측
   * 2020.2 ~ 2020.10, 대학생 자율주행자동차 경진대회
-* Traffic light detection using camera (YOLOv4)
+* 카메라를 이용한 교통 신호 인지
   * 2020.3 ~ 2020.9, 국제 대학생 창작자동차 경진대회(자율주행부문)
-* Design of remote controlled life tube
+* 원격 조종 구명튜브 설계
   * 2020.3 ~ 2020.6, Capstone Design
 
 <br/>
