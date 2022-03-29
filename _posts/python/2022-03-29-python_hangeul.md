@@ -16,6 +16,8 @@ SyntaxError: Non-ASCII character '\xea' in file gps_test.py on line 18, but no e
 
 ## Solution
 
+끝!
+
 ~~~python
  # -*- coding: utf-8 -*-
 ~~~
