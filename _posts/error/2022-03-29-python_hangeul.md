@@ -1,7 +1,10 @@
 ---
-layout: post
 title: "[Python] 한글 입력 오류"
-tags: python
+
+toc: true
+toc_sticky: true
+category: error
+tags: [python, hangeul, 한글, 입력, unicode]
 ---
 
 아래와 같은 에러가 날 경우 해결하자

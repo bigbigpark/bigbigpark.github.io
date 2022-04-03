@@ -28,12 +28,19 @@ docs:
       - title: "Useful Code"
         url: /categories/cpp_useful
 
+  - title: 📂 Python 프로그래밍
+    children:
+      # - title: "문법 기초"
+      #   url: /categories/python
+      - title: "Useful Code"
+        url: /categories/python_useful
+
   - title: 📂 Point Cloud
     children:
       - title: "PCL 튜토리얼"
         url: /categories/pcl
-      - title: "Useful Code"
-        url: /categories/pcl_useful
+      # - title: "Useful Code"
+      #   url: /categories/pcl_useful
 
   - title: 📂 ROS 프로그래밍
     children:
