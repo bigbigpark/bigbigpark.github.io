@@ -1,0 +1,14 @@
+# main links
+main:
+  - title: "블로그 방문하기"
+    url: https://bigbigpark.github.io
+  - title: "About"
+    url: /about/
+  - title: "윤동주"
+    url: /categories/윤동주/
+  - title: "Category"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+  # - title: "Sitemap"
+  #   url: /sitemap/

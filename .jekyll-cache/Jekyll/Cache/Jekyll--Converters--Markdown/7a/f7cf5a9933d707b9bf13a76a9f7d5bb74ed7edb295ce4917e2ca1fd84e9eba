@@ -1,0 +1,7 @@
+I"`<p>Min, Max값을 정해서 해당 value가 값 안에 들어오도록 하자</p>
+
+<p><br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#define   CLAMP(value, low, high) ((value) &lt; (low) ? (low) : ((value) &gt; (high) ? (high) : (value)))
+</span></code></pre></div></div>
+:ET

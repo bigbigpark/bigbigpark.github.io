@@ -1,0 +1,35 @@
+I"�<p><br /></p>
+
+<p>본 게시글들은 계명대학교 홍성훈 교수님의 이동로봇공학특론 수업을 바탕으로 제작되었습니다 <br /></p>
+
+<h2 id="이동로봇공학-1">이동로봇공학 #1</h2>
+
+<p>돌아서면 까먹고.. ㅠㅠ <br />
+학교 다니면서 공부했던 내용들을 위주로 정리합니다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="control-block-diagram">Control Block diagram</h2>
+
+<p>제어랑 추정이랑 같이 사용되는 것 같다 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-23-control_block.png" alt="img" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Guidance</code> : 제어 오차를 만들기 위한 Path planning도 포함 <br />
+<code class="language-plaintext highlighter-rouge">Vehicle w\ Actuator</code> : 여기에서 Process Noise 존재 <br />
+<code class="language-plaintext highlighter-rouge">Sensor</code> : 여기서 Measurement Noise 존재 <br />
+<code class="language-plaintext highlighter-rouge">Estimator</code> : Motion model(w/ Process Noise) + Measurement Model(w/ Measurement Noise)로 최종 state의 추정치 <br /></p>
+
+<p><br /></p>
+
+<h2 id="noise와-disturbance의-차이">Noise와 Disturbance의 차이</h2>
+
+<p>둘 다 시스템에 영향을 주는 요소인 것은 맞는데….! <br /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Noise</code> : 잡음, High freq.</li>
+  <li><code class="language-plaintext highlighter-rouge">Disturbance</code> : 외란, Low freq.</li>
+</ul>
+
+<p><br /></p>
+:ET

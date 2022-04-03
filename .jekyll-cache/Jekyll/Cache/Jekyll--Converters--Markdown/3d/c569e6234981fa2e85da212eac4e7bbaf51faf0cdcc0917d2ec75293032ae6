@@ -1,0 +1,11 @@
+I"h<p>매트랩 설치는 superuser로 설치하면 되는데,,, <br />
+그 후에 adds-on 설치할 때 <code class="language-plaintext highlighter-rouge">/usr/local/MATLAB/R2021b</code> 폴더에 write할 수 없다고 에러가 뜰 경우가 있다 <br /></p>
+
+<p>말 그대로 권한이 없어서 그런거니 권한을 주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> // 사람마다 다른데 /usr/local/<span class="o">{</span><span class="nv">$매</span>트랩경로<span class="o">}</span> 입력하면 된다.
+ // 만약 없다고 뜰 경우 본인이 설치한 매트랩 경로를 넣어주자!
+ <span class="nv">$ </span><span class="nb">sudo chown</span> <span class="nt">-R</span> <span class="nv">$USER</span>:<span class="nv">$USER</span> /usr/local/MATLAB/R2021b
+
+</code></pre></div></div>
+:ET

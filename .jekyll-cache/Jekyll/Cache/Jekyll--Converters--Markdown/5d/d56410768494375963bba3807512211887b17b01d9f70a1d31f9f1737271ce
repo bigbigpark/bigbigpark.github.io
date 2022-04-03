@@ -1,0 +1,14 @@
+I"�<p>pi_to_pi <br />
+각도 계산할 때 필수임 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="n">angle</span> <span class="o">&gt;=</span> <span class="n">M_PI</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">angle</span> <span class="o">-=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">M_PI</span><span class="p">;</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">M_PI</span><span class="p">)</span>
+  <span class="n">angle</span> <span class="o">+=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">M_PI</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">angle</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

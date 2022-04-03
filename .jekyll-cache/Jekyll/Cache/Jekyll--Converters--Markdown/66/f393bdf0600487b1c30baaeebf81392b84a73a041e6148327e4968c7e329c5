@@ -1,0 +1,129 @@
+I"i<h2 id="자유도--degrees-of-freedom-dofs">자유도 : Degrees of Freedom (DOFs)</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">동적 시스템</code> (Dynamic System)
+    <ul>
+      <li>한 object의 configuration을 나타내는데 필요한 실수값의 좌표계의 최소 숫자</li>
+    </ul>
+  </li>
+</ul>
+
+\[A=\begin{bmatrix}
+acos(\theta) \; -asin(\theta) \; c \\
+asin(\theta) \; acos(\theta) \; d \\
+0 \; 0 \; 1\\
+\end{bmatrix}
+\rightarrow DoF(A) = 4\]
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">수학</code>
+    <ul>
+      <li>논리적으로 독립된 값의 최댓값</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="how-to-compute-motion">How to compute Motion</h2>
+
+<ul>
+  <li>From forces/moments to position/orientation <br /></li>
+</ul>
+
+<p><img src="/assets/img/robotics/2022-02-24-01.png" alt="img" /></p>
+
+<p>왼쪽 3개는 <code class="language-plaintext highlighter-rouge">body-fixed frame</code>, 오른쪽 2개는 <code class="language-plaintext highlighter-rouge">global frame</code> 에서 정의됨</p>
+
+\[[u,v,w] \; \rightarrow \, [\dot{x} \; \dot{y} \; \dot{z}] \\
+[p,q,r] \; \rightarrow \, [\dot{\phi} \; \dot{\theta} \; \dot{\psi}] \\\]
+
+<p>\(\rightarrow \,\) 왼쪽에서 오른쪽으로 가기 위해서는 <code class="language-plaintext highlighter-rouge">Euler Angle Transformation</code>이 필요!</p>
+
+<p><br /></p>
+
+<h2 id="euler-angle-transformation">Euler Angle Transformation</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-00.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="coordinate-transformation">Coordinate Transformation</h2>
+
+<p>좌표계간 변환을 해보자! <br />
+A와 B 프레임 사이의 Transformation을 해보자 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-02.png" alt="img" /></p>
+
+<p><br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-03.png" alt="img" /></p>
+
+<h2 id="yaw-angle">Yaw angle</h2>
+
+<p>roll pitch yaw라고 부르지만 실제 변환은 yaw pitch roll 순서로 변환됨 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-04.png" alt="img" /></p>
+
+<h2 id="pitch-angle">Pitch angle</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-05.png" alt="img" /></p>
+
+<h2 id="roll-angle">Roll angle</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-06.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="position-transformation-matrix">Position Transformation Matrix</h2>
+
+<p>보통은 global frame에서 표현되는 body-fixed frame의 변환을 많이 씀! <br />
+i.e. <code class="language-plaintext highlighter-rouge">Odometry</code> <br />
+따라서 아래처럼 변환을 해보면 yaw-pitch-roll 순서로 행렬이 곱해짐을 확인 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-07.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="linear-velocity-transformation">Linear Velocity Transformation</h2>
+
+<p>\(\therefore \,\) 선속도와 각속도도 Transformation으로 표현 가능! <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-08.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="angular-velocity-transformation">Angular Velocity Transformation</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-09.png" alt="img" /></p>
+
+<p><img src="/assets/img/robotics/2022-02-24-10.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="simulation-of-6-dof-motion">Simulation of 6-DoF Motion</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-11.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="underactuated-systems">Underactuated Systems</h2>
+
+<p>Control input의 개수보다 Dimension of configuration space가 큰 시스템!!!</p>
+
+<p><img src="/assets/img/robotics/2022-02-24-12.png" alt="img" /></p>
+
+<h2 id="underactuated-vehicle">Underactuated Vehicle</h2>
+
+<p>Underactuated 시스템은 우리 주변에 굉장히 많이 있음!</p>
+<ul>
+  <li>
+    <p>바퀴형 로봇, 드론, 잠수함 등등
+<br />
+심지어 Fully actuated system도 특정 상황에서 Underactuated system으로 변경되기도 함 <br /></p>
+  </li>
+  <li>시스템 고장 &amp; 데미지</li>
+  <li>이 때는 fault-tolerant(일부 고장에도 정상동작하는) 시스템을 고려해야 함</li>
+</ul>
+
+<p><img src="/assets/img/robotics/2022-02-24-13.png" alt="img" /></p>
+:ET

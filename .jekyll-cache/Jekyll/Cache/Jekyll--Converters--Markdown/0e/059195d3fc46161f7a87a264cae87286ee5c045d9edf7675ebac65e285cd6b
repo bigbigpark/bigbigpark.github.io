@@ -1,0 +1,9 @@
+I"O<h2 id="자유도--degrees-of-freedom-dofs">자유도 : Degrees of Freedom (DOFs)</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">동적 시스템</code> (Dynamic System)
+    <ul>
+      <li>한 object의 configuration을 나타내는데 필요한 실수값의 좌표계의 최소 숫자</li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,3 @@
+I"<p>매트랩 설치는 superuser로 설치하면 되는데,,, <br />
+그 후에 adds-on 설치할 때 <code class="language-plaintext highlighter-rouge">/usr/local/MATLAB/R2021b</code> 폴더에 write할 수 없다고 에러가 뜰 경우가 있다 <br /></p>
+:ET

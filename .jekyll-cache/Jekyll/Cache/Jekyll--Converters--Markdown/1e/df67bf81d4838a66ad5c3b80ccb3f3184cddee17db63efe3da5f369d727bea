@@ -1,0 +1,14 @@
+I"�<p>rospy 노드를 만들어보자</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Imu</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'python_node'</span><span class="p">)</span>
+
+<span class="n">sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscribe</span><span class="p">(</span><span class="s">'Topic name'</span><span class="p">,</span> <span class="n">Msg</span><span class="p">,</span> <span class="n">callbackName</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+
+</code></pre></div></div>
+:ET

@@ -1,0 +1,166 @@
+I"R<p><br /></p>
+
+<h2 id="concept-of-stability">Concept of Stability</h2>
+
+<p>제어의 가장 중요한 성능은 <code class="language-plaintext highlighter-rouge">Stabliity</code>임</p>
+
+<p><img src="/assets/img/robotics/2022-02-24-14.png" alt="img" /></p>
+
+<p>3가지의 평형 상태가 존재하지만 첫 번째가 제일 stable</p>
+
+<p><br /></p>
+
+<h2 id="vehicle-stability">Vehicle Stability</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-15.png" alt="img" /></p>
+
+<p>노란색 선에서 외력이 들어올 때,</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">직선성</code>이 유지</li>
+  <li>Magnitude값은 떨어졌지만 오른쪽으로 가는 <code class="language-plaintext highlighter-rouge">방향성</code> 유지</li>
+  <li>1번과 2번을 합치면 general한 position stability가 됨</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="stability-vs-maneuverability">Stability vs. Maneuverability</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-16.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="vehicle-control-system">Vehicle Control System</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-17.png" alt="img" /></p>
+
+<p>&lt;br/.</p>
+
+<h2 id="guidance-control-and-navigation">Guidance, Control and Navigation</h2>
+
+<p>보통 항공우주 쪽에서 GNC(Guidance, Naviation &amp; Control) &lt;br/.</p>
+
+<p><img src="/assets/img/robotics/2022-02-24-18.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="what-is-control">What is Control?</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-19.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="linear-system">Linear System</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-20.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="transfer-function-in-s-domain">Transfer Function in s-Domain</h2>
+
+<p>라플라스 트랜스폼을 해봅시당</p>
+
+<p><img src="/assets/img/robotics/2022-02-24-21.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="analysis-of-system-response">Analysis of System Response</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-22.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="why-use-feedback-control">Why use feedback control?</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-23.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="control-approaches">Control Approaches</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-24.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="clasical-control-pid-control">Clasical Control: PID Control</h2>
+
+<p><img src="/assets/img/robotics/2022-02-24-25.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="modern-control-in-state-space">Modern Control in State-Space</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-01.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="modern-control-in-state-space-1">Modern Control in State-Space</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-02.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="모든-시스템이-선형은-아님">모든 시스템이 선형은 아님!</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-03.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="self-tuning-adaptive-control">(Self-Tuning) Adaptive Control</h2>
+
+<p>Operating condition이 어떻냐에 따라 제어법을 바꿀 수 있다 <br />
+아래와 같이 두 가지 접근법도 존재! <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-28-04.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="motion-control-of-vehicles">Motion Control of Vehicles</h2>
+
+<p>Ground Vehicles은 <code class="language-plaintext highlighter-rouge">종방향</code>, <code class="language-plaintext highlighter-rouge">횡방향</code>의 속도가 주요 관심사 <br />
+<code class="language-plaintext highlighter-rouge">Kinematic</code> model이 주로 사용됨 <br />
+Aerial Vehicles는 rpy가 direction이 주요 관심사 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-28-05.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="autopilot-design">Autopilot Design</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-06.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="integral-control">Integral Control</h2>
+
+<p>쓰로틀이 0일 때 에러값을 0으로 만들어 주던지 <br /></p>
+
+<p>forgetting factor 를 적용하던지 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-28-07.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="turning-control-선회-제어">Turning Control (선회 제어)</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-08.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="thrust-allocation-추력-분배">Thrust Allocation (추력 분배)</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-10.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="thrust-allocation-moore-penros-pseudoinverse">Thrust Allocation:: Moore-Penros Pseudoinverse</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-09.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="thrust-allocation-moore-penros-pseudoinverse-1">Thrust Allocation:: Moore-Penros Pseudoinverse</h2>
+
+<p><img src="/assets/img/robotics/2022-02-28-11.png" alt="img" /></p>
+
+<p><br /></p>
+:ET

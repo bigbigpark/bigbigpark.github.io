@@ -1,0 +1,21 @@
+I"r<p>공백을 기준으로 문자열을 잘라보자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span>  <span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>  <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+  <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"alpha bravo charile delta"</span><span class="p">;</span>
+    <span class="n">istringstream</span> <span class="n">ss</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">word</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span> <span class="n">getline</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="sc">' '</span><span class="p">)</span> <span class="p">)</span>
+      <span class="n">words</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+:ET

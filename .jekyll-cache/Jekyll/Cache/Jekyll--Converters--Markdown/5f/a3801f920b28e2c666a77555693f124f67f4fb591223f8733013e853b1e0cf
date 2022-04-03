@@ -1,0 +1,85 @@
+I"�<p><br /></p>
+
+<p>C++ 디버그 모드를 한번 구성해보자</p>
+
+<p><br /></p>
+
+<h2 id="1-json-파일-추가를-위한-과정">1. JSON 파일 추가를 위한 과정</h2>
+
+<p><strong>Ctrl + Shift + D</strong> 눌러서 왼쪽에 보이는 <strong>Run and Debug</strong> 를 누르자</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-22/01.png" alt="01" /></p>
+
+<p><br /></p>
+
+<h2 id="2-gdblldb-설정">2. GDB/LLDB 설정</h2>
+
+<p>사진에 나와 있는 <strong>C++(GDB/LLDB)</strong>를 클릭</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-22/02.png" alt="02" /></p>
+
+<h2 id="3-default-setting">3. Default Setting</h2>
+
+<p>맨 밑에 <strong>Default Configuration</strong> 을 누른다</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-22/03.png" alt="03" /></p>
+
+<p><br /></p>
+
+<h2 id="4-json-파일-설정">4. JSON 파일 설정</h2>
+
+<p>다시 workspace로 돌아오면 <strong>.vscode</strong> 파일 안에 launch.json 이 추가되었다</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-22/04.png" alt="04" /></p>
+
+<p><br /></p>
+
+<p>아래와 같이 수정해주자</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">Use</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">learn</span><span class="w"> </span><span class="err">about</span><span class="w"> </span><span class="err">possible</span><span class="w"> </span><span class="err">attributes.</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">Hover</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">view</span><span class="w"> </span><span class="err">descriptions</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">existing</span><span class="w"> </span><span class="err">attributes.</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">information</span><span class="p">,</span><span class="w"> </span><span class="err">visit:</span><span class="w"> </span><span class="err">https://go.microsoft.com/fwlink/?linkid=</span><span class="mi">830387</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(gdb) Launch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceFolder}/bin/${fileBasenameNoExtension}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"stopAtEntry"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceFolder}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"environment"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"externalConsole"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"MIMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"setupCommands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Set Disassembly Flavor to Intel"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-gdb-set disassembly-flavor intel"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="5-사용법">5. 사용법</h2>
+
+<p>원하는 시점에 <strong>BP</strong>(breakpoint, 브레이크포인트)를 걸고,</p>
+
+<p>Ctrl + B를 이용해 <strong>빌드</strong>를 먼저 하고 <strong>F5</strong>를 눌러서 디버그 모드에 진입한다</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-22/05.png" alt="05" /></p>
+
+<p><br /></p>
+
+:ET

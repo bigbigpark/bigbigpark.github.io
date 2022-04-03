@@ -1,0 +1,85 @@
+I"A<p><br /></p>
+
+<p>OS: Ubuntu 18.04 Focal
+Package: OpenCV 3.4.5</p>
+
+<p><br /></p>
+
+<h2 id="1-미리-설치된-opencv-버전-삭제">1. 미리 설치된 OpenCV 버전 삭제</h2>
+
+<p>두번째 명령어 실행시 관련된 다른 패키지도영향을 받을 수 있음
+<br />
+i.e. nvidia graphic driver</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt purge libopencv<span class="k">*</span> python3-opencv
+<span class="nv">$ </span><span class="nb">sudo </span>apt autoremove <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-부가-패키지-설치">2. 부가 패키지 설치</h2>
+
+<p>블로그 참조: https://wth-mongdol.tistory.com/m/223</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 빌드, 소스 관련</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> build-essential cmake pkg-config git
+
+<span class="c"># 이미지 관련</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> libjpeg-dev libtiff5-dev libpng-dev libjasper-dev
+
+<span class="c"># 동영상 및 카메라 관련 </span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev libxvidcore-dev libx264-dev libxine2-dev libv4l-dev v4l-utils libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+<span class="c"># GUI, qt, 최적화, python3 관련</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> libgtk-3-dev libatlas-base-dev libeigen3-dev gfortran
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> python3-dev python3-numpy libtbb2 libtbb-dev
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-opencv-345-설치">3. OpenCV 3.4.5 설치</h2>
+
+<p>opencv-x.x.x: 기본 소스 코드</p>
+
+<p>opencv_contrib-x.x.x: 추가 기능 코드(Extra Module, 알고리즘, 테스트 중인 신기능 포함)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget <span class="nt">-O</span> opencv-3.4.5.zip https://github.com/opencv/opencv/archive/3.4.5.zip
+<span class="nv">$ </span>wget <span class="nt">-O</span> opencv_contrib-3.4.5.zip https://github.com/opencv/opencv_contrib/archive/3.4.5.zip
+</code></pre></div></div>
+
+<p>압축 풀기</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>unzip opencv-3.4.5.zip
+<span class="nv">$ </span>unzip opencv_contrib-3.4.5.zip
+</code></pre></div></div>
+
+<p>빌드 준비</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">cd </span>opencv-3.4.5
+ <span class="nv">$ </span><span class="nb">mkdir </span>build
+ <span class="nv">$ </span><span class="nb">cd </span>build
+</code></pre></div></div>
+
+<p>빌드</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cmake <span class="se">\ </span><span class="nt">-D</span> <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="se">\ </span><span class="nt">-D</span> <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_TBB</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_IPP</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_1394</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_WITH_DEBUG_INFO</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_DOCS</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">INSTALL_C_EXAMPLES</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_TESTS</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_PERF_TESTS</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_QT</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_GTK</span><span class="o">=</span>OFF <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_OPENGL</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>../../opencv_contrib-3.4.5/modules <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_V4L</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_FFMPEG</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">WITH_XINE</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">BUILD_NEW_PYTHON_SUPPORT</span><span class="o">=</span>ON <span class="se">\ </span><span class="nt">-D</span> <span class="nv">OPENCV_GENERATE_PKGCONFIG</span><span class="o">=</span>ON ../
+</code></pre></div></div>
+
+<p>make</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 코어 개수 확인</span>
+<span class="nv">$ </span><span class="nb">nproc</span> 
+<span class="nv">$ </span>make <span class="nt">-j16</span>
+
+<span class="c"># 이제 설치를 해줍니다. </span>
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span> 
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-버전-확인">3. 버전 확인</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pkg-config <span class="nt">--modversion</span> opencv
+</code></pre></div></div>
+
+:ET

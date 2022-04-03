@@ -1,0 +1,5 @@
+I"H<p>가끔 가다가 뜨는 에러… 해결해보자! <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>libcanberra-gtk-module libcanberra-gtk3-module
+</code></pre></div></div>
+:ET

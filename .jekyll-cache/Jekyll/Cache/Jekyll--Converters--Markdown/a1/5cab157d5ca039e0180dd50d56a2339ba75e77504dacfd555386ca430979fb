@@ -1,0 +1,12 @@
+I"c<p><br /></p>
+
+<p>우분투 설치했던 USB로 부팅 <br />
+<code class="language-plaintext highlighter-rouge">Try Ubuntu without installing</code> <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository ppa:yannubuntu/boot-repair
+ <span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+ <span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>boot-repair
+</code></pre></div></div>
+
+<p>이후 recommend 적힌거 ㄱㄱ <br /></p>
+:ET

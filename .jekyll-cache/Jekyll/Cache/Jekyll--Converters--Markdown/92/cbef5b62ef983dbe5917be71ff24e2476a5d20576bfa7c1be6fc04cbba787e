@@ -1,0 +1,130 @@
+I"�<p>안녕하세요! bigbigpark의 하우스에 놀러오신 것을 환영합니다!! :-)
+<br />
+블로그는 한글 위주로 작성할 것이구요
+<br />
+간단한 제 소개를 먼저 아래와 같이 드리겠습니다
+<br /> <br /></p>
+
+<h2 id="education">EDUCATION</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Degree</th>
+      <th>School</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2022.03 ~ 2023.02</td>
+      <td>(M.S) Smart Automobile</td>
+      <td>Soonchunhyang University</td>
+    </tr>
+    <tr>
+      <td>2021.03 ~ 2022.02</td>
+      <td>(M.S) Mechanical Engineering</td>
+      <td>Keimyung University</td>
+    </tr>
+    <tr>
+      <td>2015.03 ~ 2021.02</td>
+      <td>(B.S) Electronic Engineering</td>
+      <td>Keimyung University</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="interests">INTERESTS</h2>
+
+<ul>
+  <li>Autonomous Vehicle</li>
+  <li>Multi Robot System</li>
+  <li>LiDAR</li>
+  <li>SLAM</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="project">PROJECT</h2>
+
+<ul>
+  <li>군집형 무인 CPS 특화연구실(측위기술 기반 군집 로봇 포메이션 제어 연구)
+    <ul>
+      <li>2019.11 ~ 2024.12, 국방과학연구소</li>
+    </ul>
+  </li>
+  <li>UWB를 이용한 전기자동차 무선충전 PAD 위치 측정
+    <ul>
+      <li>2019.9 ~ 2020.2, 현대NGV</li>
+    </ul>
+  </li>
+  <li>LiDAR기반 연석, 차선 및 객체 인지
+    <ul>
+      <li>2020.7 ~ 2021.11, 현대자동차그룹 자율주행 챌린지</li>
+    </ul>
+  </li>
+  <li>V2X를 이용한 교차로 신호등 매핑 및 신호 예측
+    <ul>
+      <li>2020.2 ~ 2020.10, 대학생 자율주행자동차 경진대회</li>
+    </ul>
+  </li>
+  <li>카메라를 이용한 교통 신호 인지
+    <ul>
+      <li>2020.3 ~ 2020.9, 국제 대학생 창작자동차 경진대회(자율주행부문)</li>
+    </ul>
+  </li>
+  <li>원격 조종 구명튜브 설계
+    <ul>
+      <li>2020.3 ~ 2020.6, Capstone Design</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="paper">PAPER</h2>
+
+<h3 id="internation-journal">Internation Journal</h3>
+
+<p><br /></p>
+
+<h3 id="international-conference">International Conference</h3>
+
+<ul>
+  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control for unmanned ground vehicles via real-time optimization”, <em>International Conference on Control, Automation and Systems (ICCAS)</em>, 2021.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="domestic-journal">Domestic Journal</h3>
+
+<ul>
+  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Distributed model predictive formation control of a UGV swarm guaranteeing collision avoidance”, <em>IEMEK Journal of Embedded Systems and Applications</em>, 2022.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="domestic-conference">Domestic Conference</h3>
+
+<ul>
+  <li><strong>Seongchang Park</strong> and Seungmok Lee, “Implementation of a distributed formation control multiple mobile robots”, <em>Korea Institute of Military Science and Technology (KIMST)</em>, 2021.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="tech-stacks">TECH STACKS</h2>
+
+<ul>
+  <li>C++, ROS, Python, LabVIEW, Matlab, HTML, MARKDOWN</li>
+  <li>Gazebo, CarMaker, Webots, CARLA</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="contact">CONTACT</h2>
+<p>Email: scsc1125@gmail.com</p>
+
+<p><br /></p>
+:ET

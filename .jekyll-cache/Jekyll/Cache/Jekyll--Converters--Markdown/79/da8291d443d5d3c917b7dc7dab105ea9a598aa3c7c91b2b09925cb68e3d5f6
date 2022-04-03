@@ -1,0 +1,25 @@
+I"�<p><br /></p>
+
+<p>마크다운(markdown) 문법은 강력한데 수식쓰기에는 버겁다<br />
+많이 쓰는 레이텍을 적용시켜 보자! <br />
+<br /></p>
+
+<h2 id="레이텍latex-문법-적용">레이텍(Latex) 문법 적용</h2>
+
+<p>기본 지킬 테마는 아래와 달리 수학 수식을 지원하지 않는다! <br />
+수식 넣을 때 불편하므로 플러그인 추가해주자</p>
+
+\[x + y + z + = 1\]
+
+<p><br /></p>
+
+<h2 id="경로-설정">경로 설정</h2>
+
+<p><code class="language-plaintext highlighter-rouge">루트 디렉토리</code> - <code class="language-plaintext highlighter-rouge">_includes</code> - <code class="language-plaintext highlighter-rouge">head.html</code> <br />
+여기에 아래와 같은 코드를 추가해주자  <br /></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Latex --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+:ET

@@ -1,0 +1,16 @@
+I"�<p>아래와 같은 에러가 날 경우 해결하자</p>
+
+<h2 id="error-case">Error case</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SyntaxError: Non-ASCII character <span class="s1">'\xea'</span> <span class="k">in </span>file gps_test.py on line 18, but no encoding declared<span class="p">;</span> see http://python.org/dev/peps/pep-0263/ <span class="k">for </span>details
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>끝!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># -*- coding: utf-8 -*-
+</span></code></pre></div></div>
+:ET

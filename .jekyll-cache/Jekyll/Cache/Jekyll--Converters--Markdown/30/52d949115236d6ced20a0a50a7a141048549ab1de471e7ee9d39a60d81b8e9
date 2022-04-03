@@ -1,0 +1,36 @@
+I"<p><br /></p>
+
+<p>화면 밝기 조절하는 거를 설치해보자!</p>
+
+<p><br /></p>
+
+<h2 id="1-저장소-추가-add-ppa">1. 저장소 추가 (ADD PPA)</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository ppa:apandada1/brightness-controller
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-패키지-업데이트-및-설치">2. 패키지 업데이트 및 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt update
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>brightness-controller
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-실행">3. 실행</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brightness-controller
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-삭제">4. 삭제</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt purge brightness-controller
+</code></pre></div></div>
+
+<p><br /></p>
+
+:ET

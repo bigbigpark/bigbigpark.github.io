@@ -1,0 +1,173 @@
+I"}8<p><br /></p>
+
+<h2 id="ros-tf-tree">ROS tf tree</h2>
+
+<p>Ref. https://velog.io/@richard7714/ROS-Navigation-tf</p>
+
+<p><br /></p>
+
+<p>Robot system에는 수많은 3D coordinates들이 존재</p>
+
+<p>tf는 많은 frame들을 계속 tracking하여 frame들간 상대적인 위치를 계속 기록</p>
+
+<p><strong>tf는 distributed system에서 구동</strong>되기 때문에, 로봇의 coordinate에 대한 모든 정보는 다른 모든 ROS component들도 사용할 수 있음</p>
+
+<p>즉, transform information의 중심서버가 존재하지 않음</p>
+
+<p><br /></p>
+
+<p><img src="/assets/img/blog/ros/2022-01-21/01.png" alt="01" /></p>
+
+<p>여기서 로봇의 실제 중심는 <code class="language-plaintext highlighter-rouge">base_link</code>이고 스캐너의 좌표 중심은 <code class="language-plaintext highlighter-rouge">base_laser</code>임</p>
+
+<p>따라서 라이다로부터 스캔된 정보를 로봇 중심에서의 좌표로 <strong>transformation하는 과정</strong>이 필요함!</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">odom</code> -&gt; <code class="language-plaintext highlighter-rouge">base_footprint</code> -&gt; <code class="language-plaintext highlighter-rouge">base_link</code> -&gt; <code class="language-plaintext highlighter-rouge">sensor_link</code> 순이다!!! <br /></p>
+
+<p>이를 쉽게 해주는 것이 바로 <strong>tf library</strong> 임</p>
+
+<p><br /></p>
+
+<h2 id="1-writing-code">1. Writing Code</h2>
+
+<p>In ${workspace}/src</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>catkin_create_pkg robot_setup_tf roscpp tf geometry_msgs
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-broadcasting-a-transform">2. Broadcasting a Transform</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;tf/transform_broadcaster.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"tf_broadcaster"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="n">r</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+  <span class="n">tf</span><span class="o">::</span><span class="n">TransformBroadcaster</span> <span class="n">broadcaster</span><span class="p">;</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="n">nh</span><span class="p">.</span><span class="n">ok</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">broadcaster</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span>
+      <span class="n">tf</span><span class="o">::</span><span class="n">StampedTransform</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">::</span><span class="n">Transform</span><span class="p">(</span><span class="n">tf</span><span class="o">::</span><span class="n">Quaternion</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">::</span><span class="n">Vector3</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)),</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">(),</span> <span class="s">"based_link"</span><span class="p">,</span> <span class="s">"base_laser"</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>TransformBroadcaster를 통해 transform을 송신하려면 <strong>5개의 argument</strong>가 필요</p>
+
+<p><br /></p>
+
+<h2 id="3-listening-a-transform">3. Listening a Transform</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;tf/transform_listener.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;geometry_msgs/PointStamped.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">transformPoint</span><span class="p">(</span><span class="k">const</span> <span class="n">tf</span><span class="o">::</span><span class="n">TransformListener</span><span class="o">&amp;</span> <span class="n">listener</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">PointStamped</span> <span class="n">laser_point</span><span class="p">;</span>
+  <span class="n">laser_point</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"base_laser"</span><span class="p">;</span>
+
+  <span class="n">laser_point</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="p">();</span>
+
+  <span class="c1">// just an arbitrary point</span>
+  <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+  <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
+  <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="k">try</span>
+  <span class="p">{</span>
+    <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">PointStamped</span> <span class="n">base_point</span><span class="p">;</span>
+    <span class="n">listener</span><span class="p">.</span><span class="n">transformPoint</span><span class="p">(</span><span class="s">"based_link"</span><span class="p">,</span> <span class="n">laser_point</span><span class="p">,</span> <span class="n">base_point</span><span class="p">);</span>
+
+    <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"base_laser: (%.2f, %.2f. %.2f) -----&gt; base_link: (%.2f, %.2f, %.2f) at time %.2f"</span><span class="p">,</span>
+           <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">laser_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+           <span class="n">base_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">base_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">base_point</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">base_point</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">toSec</span><span class="p">());</span>
+    
+    
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">tf</span><span class="o">::</span><span class="n">TransformException</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span> <span class="c1">//catch(const std::exception&amp; e)</span>
+  <span class="p">{</span>
+    <span class="c1">// std::cerr &lt;&lt; e.what() &lt;&lt; '\n';</span>
+    <span class="n">ROS_ERROR</span><span class="p">(</span><span class="s">"Received an exception trying to transform a point from </span><span class="se">\"</span><span class="s">base_laser</span><span class="se">\"</span><span class="s"> to </span><span class="se">\"</span><span class="s">base_link</span><span class="se">\"</span><span class="s">: %s"</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+  <span class="p">}</span>
+  
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"tf_listener"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+  <span class="n">tf</span><span class="o">::</span><span class="n">TransformListener</span> <span class="n">listener</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+
+  <span class="c1">// 1초에 a point를 Transform 할 거임</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">createTimer</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">transformPoint</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">listener</span><span class="p">)));</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>tf::TransformListener 객체는 자동으로 ROS 환경에 존재하는 transform message를 subscribe하고, 들어오는 모든 transform 데이터를 관리하는 역할 수행</li>
+  <li>transformPoint함수는 system의 main()안에 있는 ros::Timer에 대한 callback()</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="4-cmakeliststxt">4. CMakeLists.txt</h2>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_executable</span><span class="p">(</span>tf_broadcaster src/tf_broadcaster.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>tf_broadcaster
+  <span class="si">${</span><span class="nv">catkin_LIBRARIES</span><span class="si">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>tf_listener src/tf_listener.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>tf_listener
+  <span class="si">${</span><span class="nv">catkin_LIBRARIES</span><span class="si">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="5-run">5. Run</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roscore
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rosrun robot_tf_tutorial tf_broadcaster
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rosrun robot_tf_tutorial tf_listener
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="6-easy">6. EASY</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="c">&lt;!-- Create a transform sender for linking these frames. --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"tf_footprint_base"</span> <span class="na">pkg=</span><span class="s">"tf"</span> <span class="na">type=</span><span class="s">"static_transform_publisher"</span> <span class="na">args=</span><span class="s">"0 0 0 0 0 0 base_footprint base_link 40"</span> <span class="nt">/&gt;</span>	
+
+</code></pre></div></div>
+
+<p>이걸로 쉽게 하자…. <br />
+x y z r p y frame_id child_id Hz <br /></p>
+:ET

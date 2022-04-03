@@ -1,0 +1,20 @@
+I" <p><br /></p>
+
+<p>ref.https://typora.io/#linux</p>
+
+<p><br /></p>
+
+<p>유명한 markdown editor인 Typora를 설치해보자!</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget <span class="nt">-qO</span> - https://typora.io/linux/public-key.asc | <span class="nb">sudo </span>apt-key add -
+
+<span class="c"># add Typora's repository</span>
+<span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository <span class="s1">'deb https://typora.io/linux ./'</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt update
+
+<span class="c"># install typora</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>typora
+</code></pre></div></div>
+
+<p><br /></p>
+:ET

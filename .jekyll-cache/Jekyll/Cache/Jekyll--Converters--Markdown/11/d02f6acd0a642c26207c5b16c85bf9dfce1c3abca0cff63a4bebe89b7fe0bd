@@ -1,0 +1,67 @@
+I"<p><br /></p>
+
+<p>ceres solver를 설치해보자</p>
+
+<p>Ref. http://ceres-solver.org/installation.html</p>
+
+<p><br /></p>
+
+<h2 id="1-dependencies">1. Dependencies</h2>
+
+<p>v2.0 Ceres는 <strong>fully C++14-compliant complier</strong>를 요구</p>
+
+<p>&lt;=v1.4 Ceres는 <strong>C++11</strong> 이면 됨</p>
+
+<ul>
+  <li><strong>Eigen 3.3</strong> or later</li>
+  <li><strong>CMake 3.5</strong> or later</li>
+  <li><strong>glog 0.3.1</strong> or later</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-install-all-the-dependencies">2. Install all the dependencies</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># CMake</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>cmake
+<span class="c"># google-glog + gflags</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libgoogle-glog-dev libgflags-dev
+<span class="c"># BLAS &amp; LAPACK</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libatlas-base-dev
+<span class="c"># Eigen3</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libeigen3-dev
+<span class="c"># SuiteSparse and CXSparse (optional)</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>libsuitesparse-dev
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-git-clone-ceres-solver">3. Git clone Ceres Solver</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+<span class="nv">$ </span><span class="nb">mkdir </span>ceres
+<span class="nv">$ </span><span class="nb">cd </span>ceres
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://ceres-solver.googlesource.com/ceres-solver
+</code></pre></div></div>
+
+<p>여기까지만 오면 [ceres] - [ceres-solver]로 폴더 경로가 잡혀있을텐데,</p>
+
+<p>직전 경로로 돌아가서 ceres-bin을 만들어 준다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ..
+<span class="nv">$ </span><span class="nb">mkdir </span>ceres-bin
+<span class="nv">$ </span><span class="nb">cd </span>ceres-bin
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-build-test-and-install">4. Build, Test and Install</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cmake ../ceres-solver
+<span class="nv">$ </span>make <span class="nt">-j3</span>
+<span class="nv">$ </span>make <span class="nb">test</span>
+<span class="nv">$ </span>make <span class="nb">install</span>
+</code></pre></div></div>
+:ET

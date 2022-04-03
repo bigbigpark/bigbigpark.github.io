@@ -1,0 +1,156 @@
+I",<p>킹갓 Ji Zhang님께서 RSS 2014년에 발표하신 LOAM 리뷰 <br />
+Mapping보다는 Odometry를 집중적으로 보자! <br /></p>
+
+<h2 id="loam-개요">LOAM 개요</h2>
+
+<p>논문 연구팀은 odometry and mapping을 위한 실시간 method를 제안 <br />
+Loop closure(LC)가 없이 <code class="language-plaintext highlighter-rouge">low-drift</code> &amp; <code class="language-plaintext highlighter-rouge">high accuracy</code> 달성 <br /></p>
+
+<p><br /></p>
+
+<h2 id="하드웨어">하드웨어</h2>
+
+<p><img src="/assets/img/paper/2022-03-01-01.png" alt="img" /></p>
+
+<p>2D 라이다를 부착하여 시계방향/반시계방향으로 회전 <br />
+360도 스캔하는데 1초 걸림 <br /></p>
+
+<p><br /></p>
+
+<h2 id="loam-알고리즘-구조">LOAM 알고리즘 구조</h2>
+
+<p><img src="/assets/img/paper/2022-03-01-02.png" alt="img" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Odometry</code>는 10Hz로 동작 후 Transformation 출력 <br />
+<code class="language-plaintext highlighter-rouge">Mapping</code>은 1Hz로 동작 후 Transformation 출력 <br />
+결과적으로 각 모듈에서 나온 Transformation을 통합! <br /></p>
+
+<p><br /></p>
+
+<h2 id="odometry-estimation">Odometry Estimation</h2>
+
+<ol>
+  <li>Feature extraction</li>
+</ol>
+
+<p>한 scan을 4부분의 subregion으로 분할 <br />
+각 point의 곡률을 계산함<br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-03.png" alt="img" /></p>
+
+<p>c값을 기준으로 각 subregion들을 정렬시킴! <br /></p>
+
+<p>c가 크면 <code class="language-plaintext highlighter-rouge">Edge</code>, 작으면 <code class="language-plaintext highlighter-rouge">Planar</code>라고 특징 분류 <br /></p>
+
+<p>\(\therefore\) 
+이 특징을 기반으로 Scan matching을 수행할 거다!! <br />
+전형적인 Keypoint 기반 Scan matching, LOAM에서 Keypoint는 Edge와 Planar가 됨</p>
+
+<p><br /></p>
+
+<ol>
+  <li>Finding Feature Point Correspondence</li>
+</ol>
+
+<p>매칭을 수행하려면 Correspondence를 찾아야 함 <br />
+별다른 기법은 쓰이지 않고 Euclidean Distance 기반 추출! <br />
+<code class="language-plaintext highlighter-rouge">KDTree</code> 자료 구조를 이용해서 현재 scene과 직전 scene의 특징점[Edge/Planar]의 closest point의 거리값을 비교해서 특징점 추출!!</p>
+
+<ul>
+  <li>Dist. at <strong>Edge</strong> feature 
+<img src="/assets/img/paper/2022-03-01-04.png" alt="img" /></li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>Dist. at <strong>Planar</strong> feature
+<img src="/assets/img/paper/2022-03-01-05.png" alt="img" /></li>
+</ul>
+
+<p><br /></p>
+
+<p>위의 두 개를 vectorize 해서 최적화 할거임 <br /></p>
+
+<p><br /></p>
+
+<ol>
+  <li>Motion estimation</li>
+</ol>
+
+<p>라이다는 <code class="language-plaintext highlighter-rouge">선형 움직임을 가정</code>하고 모델링 <br />
+따라서 라이다 모션의 Linear interpolation이 가능 <br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-06.png" alt="img" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Translation</code>의 공식! <br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-07.png" alt="img" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Rotation</code>의 공식! using <strong>Rodrigues Formula</strong> <br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-08.png" alt="img" /></p>
+
+<p><br /></p>
+
+<p>이를 벡터화 하면</p>
+
+<p><img src="/assets/img/paper/2022-03-01-09.png" alt="img" /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-10.png" alt="img" /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-11.png" alt="img" /></p>
+
+<p>식을 이렇게 두면 d를 minimize하는 T_k+1을 찾는 문제로 바뀐다! <br />
+따라서 f의 자코비안을 구한 다음 0으로 만들자 <br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-12.png" alt="img" /></p>
+
+<p>LM method를 이용해서 Least Square 문제 푸는게 다임 <br /></p>
+
+<h2 id="mapping은-생략한다">Mapping은 생략한다</h2>
+
+<p><br /></p>
+
+<h2 id="experiment">Experiment</h2>
+
+<p><img src="/assets/img/paper/2022-03-01-13.png" alt="img" /></p>
+
+<p>복도는 당연히 잘 되는 거고 <br />
+채소들이 많은 곳도 은근 잘 되는듯…?!</p>
+
+<p><br /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-14.png" alt="img" /></p>
+
+<p><img src="/assets/img/paper/2022-03-01-15.png" alt="img" /></p>
+
+<p>IMU를 써서 Kalman Filter 돌린 연구 결과도 존재~!</p>
+
+<p><br /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>LOAM논문은 다음과 같은 Contribution이 있음</p>
+
+<ol>
+  <li>Odometry 와 Mapping 모듈을 병렬적으로 나눠서 처리했다는 점. 각 10Hz, 1Hz</li>
+  <li>Loop closure 없이 low drift &amp; high accuracy를 달성했다는 점</li>
+</ol>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">나의 의견</code> <br /></p>
+
+<p>LOAM은 2022년 3월 현재 KITTI Odometry benchmark rand #3을 할 정도로 수준 높은 알고리즘 <br /></p>
+
+<p>특징이라고 뽑아 놨지만 Edge와 Planar가 명확하게 분리돼서 추출되는건 아님.. Planar에도 많은 Edge가 추출되더라 <br /></p>
+
+<p><br /></p>
+
+<p>Graph 최적화가 아닌 이상 LM Method로 많이 푸는 것 같다.. 여기서 핵심은 어떤 것을 기준으로 Data association 하느냐인듯?</p>
+
+<p><br /></p>
+
+<p>이런 류의 논문들은 모두 깊게 파고들면 ICP에 기반하는 것 같다</p>
+:ET

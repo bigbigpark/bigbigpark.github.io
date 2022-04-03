@@ -1,0 +1,40 @@
+I"R<h2 id="definition-of-guidance">Definition of Guidance</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Vehicle Guidance</code> : 현재 위치에서 타겟 위치로 가기 위한 path/trajectory를 계산하는 액션임 <br /></p>
+
+<p><img src="/assets/img/robotics/2022-02-28-12.png" alt="img" /></p>
+
+<p><br /></p>
+
+<h2 id="guidance-systems">Guidance Systems</h2>
+
+<ul>
+  <li>세계 2차 대전 이후부터 Guidance 미사일 등장</li>
+  <li>Control theory 연구와 더불어 guidance theory 연구도 같이 진행</li>
+  <li>결과적으로, <code class="language-plaintext highlighter-rouge">guided missile community</code>에서 많은 문헌들이 존재</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="guidance-and-control">Guidance and Control</h2>
+
+<ul>
+  <li>Guidance는 Control과 어떻게 다른가?
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Control</code>은 주어진 목적(i.e. trajectory tracking)을 만족시키는 힘과 모멘트를 결정하는 것</li>
+    </ul>
+  </li>
+  <li>관련 연구 주제: <code class="language-plaintext highlighter-rouge">Motion Planning</code>
+    <ul>
+      <li>모션 플래닝은 <code class="language-plaintext highlighter-rouge">Robotics</code>나 <code class="language-plaintext highlighter-rouge">Computer Science</code> 분야에서 전통적으로 사용되어 왔던 용어</li>
+      <li><code class="language-plaintext highlighter-rouge">정의</code>: 장애물이 포함된 환경에서 initial location에서 goal location으로 움직이기 위해 실행되는 일련의 action들의 집합을 planning하는 것!</li>
+    </ul>
+  </li>
+  <li>Vehicle guidance 와 Control System은 두가지 요소로 구성됨
+    <ul>
+      <li>(1) Attitude control systems</li>
+      <li>(2) Path control systems(i.e. trajectory tracking, path following)</li>
+    </ul>
+  </li>
+</ul>
+:ET

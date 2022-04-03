@@ -1,0 +1,31 @@
+I"�<p><br /></p>
+
+<p>ref.https://www.howtoinstall.me/ubuntu/18-04/shutter/</p>
+
+<p>Shutter 설치하고  shutter shortcut 도 설정해보자</p>
+
+<p><br /></p>
+
+<h2 id="1--install-shutter">1.  Install shutter</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt update
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>shutter
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-set-as-shortcuts">2. Set as shortcuts</h2>
+
+<p>[Settings]-[Keyboard] 경로로 이동</p>
+
+<p>제일 하단에 <code class="language-plaintext highlighter-rouge">+</code>버튼으로 단축키 추가</p>
+
+<p><img src="/assets/img/blog/ubuntu/2022-01-12/01.png" alt="01" /></p>
+
+<p>추가하면 이제 알캡처처럼 사용 가능</p>
+
+<p>나는  <strong>Ctrl+Alt+C</strong> 가 편해서 이렇게 함</p>
+
+<p>저장은 <strong>Ctrl+Shift+S</strong>
+<br /></p>
+:ET

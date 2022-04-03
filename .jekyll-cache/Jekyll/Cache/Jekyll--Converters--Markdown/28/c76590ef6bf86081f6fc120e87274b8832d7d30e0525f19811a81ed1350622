@@ -1,0 +1,15 @@
+I"*<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Take it EAZY</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>killall apt apt-get
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo rm</span> /var/lib/apt/lists/lock
+<span class="nv">$ </span><span class="nb">sudo rm</span> /var/cache/apt/archives/lock
+<span class="nv">$ </span><span class="nb">sudo rm</span>/var/lib/dpkg/lock<span class="k">*</span>
+
+<span class="nv">$ </span><span class="nb">sudo </span>dpkg <span class="nt">--configure</span> <span class="nt">-a</span>
+</code></pre></div></div>
+
+:ET
