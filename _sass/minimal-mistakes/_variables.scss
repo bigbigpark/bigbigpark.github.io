@@ -14,7 +14,7 @@ $indent-var: 0.4em !default;
 
 /* system typefaces */
 $serif: "Helvetica", "Nanum Gothic", serif !default;
-$sans-serif: "Helvetica", "Nanum Gothic", -apple-system, BlinkMacSystemFont, sans-serif !default;
+$sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica", "Nanum Gothic", sans-serif !default;
 $monospace: "Helvetica", Monaco, Consolas, "Lucida Console", monospace !default;
 
 /* sans serif typefaces */
