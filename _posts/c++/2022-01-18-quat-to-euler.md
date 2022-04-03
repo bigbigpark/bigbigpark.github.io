@@ -1,7 +1,10 @@
 ---
-layout: post
-title: Quaternion to Euler 변환
-tags: [c++]
+title: "[C++] Quaternion to Euler 변환"
+
+toc: true
+toc_sticky: true
+categories: c++
+tags: [c++, euler, quaternion, transformation, robotics]
 ---
 
 <br/>
@@ -16,7 +19,10 @@ tags: [c++]
 
 ## quat to euler
 
-코드는 아래와 같이 사용하면 됨
+**코드**는 아래와 같이 `사용`하면 됨 <br/>
+
+$$ ax+by+cz=1 $$ <br/>
+
 
 ~~~c++
 #include <tf/tf.h>

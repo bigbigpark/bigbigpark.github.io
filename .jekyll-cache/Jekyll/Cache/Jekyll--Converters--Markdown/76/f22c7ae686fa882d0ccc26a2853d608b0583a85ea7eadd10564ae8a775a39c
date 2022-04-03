@@ -1,4 +1,4 @@
-I"&	<p><br /></p>
+I"�	<p><br /></p>
 
 <h2 id="quaternion-to-euler">Quaternion to Euler</h2>
 
@@ -10,7 +10,9 @@
 
 <h2 id="quat-to-euler">quat to euler</h2>
 
-<p>코드는 아래와 같이 사용하면 됨</p>
+<p><strong>코드</strong>는 아래와 같이 <code class="language-plaintext highlighter-rouge">사용</code>하면 됨 <br /></p>
+
+<p>\(ax+by+cz=1\) <br /></p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;tf/tf.h&gt;</span><span class="cp">
 </span>

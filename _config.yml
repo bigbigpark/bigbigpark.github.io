@@ -103,9 +103,9 @@ analytics:
 # Site Author
 author:
   name             : "박성창 (bigbigpark)"
-  avatar           : "/assets/img/logo/logo.png"
+  avatar           : "/assets/img/logo/bio-photo.png"
   bio              : "M.S. Student of Future Convergence Technology"
-  location         : "South Korea"
+  # location         : "South Korea"
   email            :
   links:
     - label: "GitHub"
