@@ -4,7 +4,9 @@ permalink: /about/
 layout: single
 ---
 
-안녕하세요! bigbigpark의 하우스에 놀러오신 것을 환영합니다!! :-)
+<br/>
+
+안녕하세요! bigbigpark의 하우스에 놀러오신 것을 환영합니다!! :)
 <br/>
 블로그는 한글 위주로 작성할 것이구요
 <br/>
@@ -49,9 +51,9 @@ layout: single
 
 ## PAPER
 
-### Internation Journal
+<!-- ### Internation Journal -->
 
-<br/>
+<!-- <br/> -->
 
 ### International Conference
 

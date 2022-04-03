@@ -1,14 +1,54 @@
 # main links
 main:
-  - title: "블로그 방문하기"
-    url: https://bigbigpark.github.io
   - title: "About"
     url: /about/
-  - title: "윤동주"
-    url: /categories/윤동주/
-  - title: "Category"
-    url: /categories/
-  - title: "Tags"
-    url: /tags/
+  - title: "CV"
+    url: /about/
+  # - title: "윤동주"
+  #   url: /categories/윤동주/
+  # - title: "Category"
+  #   url: /categories/
+  # - title: "Tags"
+  #   url: /tags/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+# docs:
+#   - title: C++
+#     children:
+#       - title: "Basic C++"
+#         url: cplusplus/
+#         category: "c++"
+
+docs:
+  - title: 📂 C++ 프로그래밍
+    children:
+      - title: "문법 기초"
+        url: /categories/cpp
+      - title: "Useful Code"
+        url: /categories/cpp_useful
+
+  - title: 📂 Point Cloud
+    children:
+      - title: "PCL 튜토리얼"
+        url: /categories/pcl
+      - title: "Useful Code"
+        url: /categories/pcl_useful
+
+  - title: 📂 ROS 프로그래밍
+    children:
+      - title: "문법 기초"
+        url: /categories/ros
+      - title: "Useful Code"
+        url: /categories/ros_useful
+
+  - title: 📂 수학
+    children:
+      - title: "선형대수학"
+        url: /categories/linalg
+  - title: 📂 ETC
+    children:
+      - title: "에러 코드"
+        url: /categories/error
+      - title: "설치 방법 정리"
+        url: /categories/install
