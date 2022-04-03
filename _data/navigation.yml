@@ -46,9 +46,17 @@ docs:
     children:
       - title: "선형대수학"
         url: /categories/linalg
+
+  - title: 📂 리눅스
+    children:
+      - title: "기초 지식"
+        url: /categories/linux
+
   - title: 📂 ETC
     children:
       - title: "에러 코드"
         url: /categories/error
       - title: "설치 방법 정리"
         url: /categories/install
+      - title: "latex 문법 정리"
+        url: /categories/latex

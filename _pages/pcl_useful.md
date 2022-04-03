@@ -1,11 +1,9 @@
 ---
 title: "문법 기초"
-permalink: /categories/cpp/
+permalink: /categories/pcl_useful/
 layout: category
 author_profile: true
-taxonomy: cpp
+taxonomy: pcl_useful
 sidebar:
   nav : "docs"
 ---
-
-C++ 포스팅 모음입니다.

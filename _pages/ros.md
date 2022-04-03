@@ -7,5 +7,3 @@ taxonomy: ros
 sidebar:
   nav : "docs"
 ---
-
-C++ 포스팅 모음입니다.
