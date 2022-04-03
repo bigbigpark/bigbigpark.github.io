@@ -1,7 +1,10 @@
 ---
-layout: post
 title: Jekyll Latex 문법 적용
-tags: install
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, jekyll latex, 문법 적용, math, latex]
 ---
 
 <br/>

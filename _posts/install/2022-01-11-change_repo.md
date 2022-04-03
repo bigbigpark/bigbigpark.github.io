@@ -1,7 +1,10 @@
 ---
-layout: post
 title: 저장소 변경
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [우분투 저장소, repository, change, kakao, mirror, 저장소, linux, ubuntu]
 ---
 
 <br/>

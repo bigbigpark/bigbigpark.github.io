@@ -1,10 +1,11 @@
 ---
-layout: post
 title: Gazebo, libcurl:(51) 'api.ignitionfuel.org'
-tags: [error]
----
 
-<br/>
+toc: true
+toc_sticky: true
+category: error
+tags: [gazebo, ros, error, ignitionfuel]
+---
 
 [Err] [REST.cc:205] Error in REST request
 

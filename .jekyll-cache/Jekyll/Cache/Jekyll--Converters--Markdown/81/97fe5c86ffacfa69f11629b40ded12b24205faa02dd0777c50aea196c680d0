@@ -1,0 +1,79 @@
+I"S<p><br /></p>
+
+<h2 id="개요">개요</h2>
+<p>프로그램이 무겁다는 것은 알고리즘의 실행시간이 길다는 것을 의미한다 <br />
+어떤 알고리즘이 동작하기 전과 후의 시간을 비교해보자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
+</span>
+<span class="kt">clock_t</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+<span class="c1">// [HERE] : My code</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"실행시간: "</span> <span class="o">&lt;&lt;</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>  <span class="o">&lt;&lt;</span> <span class="s">" ms"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>보통의 경우 위와 같이 짜지만, <strong>클래스</strong>를 이용하여 만들어 보자 <br />
+<br /></p>
+
+<h2 id="다운로드">다운로드</h2>
+<p>코드는 아래 주소에서 다운로드 할 수 있습니다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/bigbigpark/tic_toc.git
+</code></pre></div></div>
+<p><br /></p>
+
+<p>in <code class="language-plaintext highlighter-rouge">tic_toc.h</code></p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Copyrights below,</span>
+<span class="c1">// Author:   Tong Qin     qintonguav@gmail.com</span>
+<span class="c1">//           Shaozu Cao   saozu.cao@connect.ust.hk</span>
+
+<span class="cp">#pragma once
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">TicToc</span>
+<span class="p">{</span>
+  <span class="nl">public:</span>
+    <span class="n">TicToc</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">tic</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">tic</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">toc</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">elapsed_seconds</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">elapsed_seconds</span><span class="p">.</span><span class="n">count</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="p">}</span>
+
+  <span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">&gt;</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">TicToc</code>클래스를 이용해서 object를 하나 생성합니다 <br />
+코드 실행 시간을 측정하고 싶은 곳 앞에서 <code class="language-plaintext highlighter-rouge">object.tic()</code> <br />
+뒤에서 <code class="language-plaintext highlighter-rouge">object.toc()</code>을 받아서 출력하면 정확한 시간(ms)이 출력됩니다! <br /></p>
+
+<p><br /></p>
+
+<h2 id="예제">예제</h2>
+<p>아래와 같이 사용합니다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TicToc</span> <span class="n">t_whole</span><span class="p">;</span>
+
+<span class="n">t_whole</span><span class="p">.</span><span class="n">tic</span><span class="p">();</span>
+<span class="c1">// [Your code!]</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"실행시간: "</span> <span class="o">&lt;&lt;</span> <span class="n">t_whole</span><span class="p">.</span><span class="n">toc</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+</code></pre></div></div>
+:ET

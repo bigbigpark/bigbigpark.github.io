@@ -1,7 +1,10 @@
 ---
-layout: post
 title: 리눅스 스크린 캡처
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, screen, 화면캡쳐, 캡처, capture, shutter]
 ---
 
 <br/>

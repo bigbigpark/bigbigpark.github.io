@@ -1,7 +1,10 @@
 ---
-layout: post
 title: 리눅스 그림판
-tags: install
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, 그림판, 리눅스, 설치, 우분투]
 ---
 
 ## 리눅스 그림판 설치

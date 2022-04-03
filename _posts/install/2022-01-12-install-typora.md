@@ -1,7 +1,10 @@
 ---
-layout: post
 title: 마크다운 에디터 (Typora)
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, markdown, editor, free, 마크다운, 에디터, 리눅스, 무료]
 ---
 
 <br/>

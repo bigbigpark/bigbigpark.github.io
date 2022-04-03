@@ -1,8 +1,13 @@
 ---
-layout: post
-title: Could not get lock /var/lib/dpkg/lock-frontend - open (11 resource temporarily unavailable)
-tags: [error]
+title: sudo apt update 에러 해결!
+
+toc: true
+toc_sticky: true
+category: error
+tags: [update, linux, update, lock, 패키지, 업데이트, 오류, sudo, linux, ubuntu]
 ---
+
+Could not get lock /var/lib/dpkg/lock-frontend - open (11 resource temporarily unavailable)
 
 <br/>
 

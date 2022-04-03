@@ -1,0 +1,20 @@
+I"N<p>[Err] [REST.cc:205] Error in REST request</p>
+
+<p>libcurl: (51) SSL: no alternative certificate subject name matches target host name ‘api.ignitionfuel.org’</p>
+
+<p><br /></p>
+
+<p>이런 메세지 본 적 있을 것이다!</p>
+
+<p>타겟 호스트 이름 주소가 잘못됐다</p>
+
+<p><br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.ignition/fuel/config.yaml
+</code></pre></div></div>
+
+<p>substitue <strong>ignitionfuel</strong> to <strong>ignitionrobotics</strong></p>
+
+<p><br /></p>
+
+:ET

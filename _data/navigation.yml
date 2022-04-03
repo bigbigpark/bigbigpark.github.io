@@ -42,10 +42,12 @@ docs:
       - title: "Useful Code"
         url: /categories/ros_useful
 
-  - title: 📂 수학
+  - title: 📂 스터디/이론
     children:
       - title: "선형대수학"
         url: /categories/linalg
+      - title: "로봇공학"
+        url: /categories/robotics
 
   - title: 📂 리눅스
     children:

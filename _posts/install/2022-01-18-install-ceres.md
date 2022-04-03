@@ -1,7 +1,10 @@
 ---
-layout: post
 title: Ceres Solver 2.0
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, ceres, 설치, 라이브러리, 우분투, 리눅스, ubuntu, linux]
 ---
 
 <br/>

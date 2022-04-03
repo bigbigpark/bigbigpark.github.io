@@ -1,7 +1,10 @@
 ---
-layout: post
 title: Nvidia Driver (수동)
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, nvidia, graphic driver, 엔비디아, 그래픽드라이퍼, 설치, 리눅스, 수동]
 ---
 
 <br/>

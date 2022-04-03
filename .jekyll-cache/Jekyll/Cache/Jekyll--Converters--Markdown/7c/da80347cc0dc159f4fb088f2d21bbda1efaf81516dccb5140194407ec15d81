@@ -1,0 +1,72 @@
+I"<p>Ubuntu 18.04에 ROS melodic 설치하기</p>
+
+<p><br /></p>
+
+<h2 id="1-설치">1. 설치</h2>
+
+<p>packages.ros.org로부터 software를 받도록 PC setup하는 과정</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>sh <span class="nt">-c</span> <span class="s1">'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>key 등록</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>curl <span class="c"># if you haven't already installed curl</span>
+<span class="nv">$ </span>curl <span class="nt">-s</span> https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | <span class="nb">sudo </span>apt-key add -
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>Update package</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt update
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>설치</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>ros-melodic-desktop-full
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>환경변수 설정</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># 파일 제일 하단에 아래 문장 기입</span>
+<span class="nb">source</span> /opt/ros/melodic/setup.bash
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-디펜던시-설치">2. 디펜던시 설치</h2>
+
+<p>ROS workspace를 구축하고 빌드하는데 있어서 dependencies를 설치해야 함</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>python3-rosdep
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3--initialize-rosdep">3.  Initialize rosdep</h2>
+
+<p>ROS tools를 사용하기 전, rosdep을 초기화를 해야 함</p>
+
+<p>rosdep은 사용자가 컴파일할 소스의 dependencies를 쉽게 설치 하게끔 함</p>
+
+<p>최초 1회만 하면 됨</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>rosdep init
+<span class="nv">$ </span>rosdep update
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://wiki.ros.org/noetic/Installation">ROS Melodic installation instructions</a></li>
+</ul>
+:ET

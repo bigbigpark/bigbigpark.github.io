@@ -1,7 +1,10 @@
 ---
-layout: post
 title: 리눅스 밝기 조절
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, brightness, controll, 리눅스, 화면밝기, linux]
 ---
 
 <br/>

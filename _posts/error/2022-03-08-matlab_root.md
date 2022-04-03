@@ -1,7 +1,10 @@
 ---
-layout: post
-title: "Matlab /usr/local/MATLAB/R2021b 접근 불가 에러"
-tags: error
+title: "[Linux]Matlab /usr/local/MATLAB/R2021b 접근 불가 에러"
+
+toc: true
+toc_sticky: true
+category: error
+tags: [matlob, error, linux, binary, previlege, access, ubuntu]
 ---
 
 매트랩 설치는 superuser로 설치하면 되는데,,, <br/>

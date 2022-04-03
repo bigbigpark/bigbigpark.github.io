@@ -1,7 +1,10 @@
 ---
-layout: post
-title: 깃 블로그 로컬 테스트
-tags: [install]
+title: GitPages 로컬 테스트
+
+toc: true
+toc_sticky: true
+category: install
+tags: [local, jekyll, ruby, local, text]
 ---
 
 <br/>

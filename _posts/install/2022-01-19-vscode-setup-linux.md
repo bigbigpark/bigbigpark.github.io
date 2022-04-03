@@ -1,7 +1,10 @@
 ---
-layout: post
 title: vscode 빌드 셋업
-tags: [install]
+
+toc: true
+toc_sticky: true
+category: install
+tags: [install, vscode, linux, ubuntu, 리눅스, IDE, 편집기, 코드]
 ---
 
 <br/>

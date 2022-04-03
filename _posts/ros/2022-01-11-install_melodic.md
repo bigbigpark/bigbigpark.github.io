@@ -1,10 +1,13 @@
 ---
-layout: post
-title: ROS melodic 설치 (Ubuntu 18.04)
-tags: [ros]
+title: ROS Melodic 설치 (Ubuntu 18.04)
+
+toc: true
+toc_sticky: true
+category: install
+tags: [ros, melodic, ubuntu 18.04, 설치, 멜로딕, 우분투, 로스]
 ---
 
-Ref. http://wiki.ros.org/noetic/Installation
+Ubuntu 18.04에 ROS melodic 설치하기 
 
 <br/>
 
@@ -78,3 +81,6 @@ $ sudo rosdep init
 $ rosdep update
 ~~~
 
+
+## Reference
+* [ROS Melodic installation instructions](http://wiki.ros.org/noetic/Installation)
