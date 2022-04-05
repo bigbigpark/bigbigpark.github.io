@@ -8,7 +8,7 @@ tags: [pcl, point cloud, PCL, 포인트 클라우드, PCD, read, 읽기]
 ---
 
 PCD 파일을 읽어보자 <br/>
-파일 [다운로드]() <br/>
+파일 [다운로드](https://drive.google.com/file/d/15yuCMz8WIJMevyVqPUDZMmUyYj6s5Vex/view?usp=sharing) <br/>
 
 ## 전체 코드
 
