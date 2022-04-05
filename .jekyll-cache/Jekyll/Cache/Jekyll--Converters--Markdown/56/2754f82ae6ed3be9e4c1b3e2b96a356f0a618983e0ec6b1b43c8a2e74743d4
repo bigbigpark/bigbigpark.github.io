@@ -1,0 +1,50 @@
+I"�<h2 id="마크다운-문법">마크다운 문법</h2>
+
+<p>기본적으로 <code class="language-plaintext highlighter-rouge">$$ $$</code>으로 시작함 <br />
+타이포라에서는 <code class="language-plaintext highlighter-rouge">Ctrl+Shift+M</code> <br /></p>
+
+<p><br /></p>
+
+<h2 id="카테고리-없이-정리함">카테고리 없이 정리함</h2>
+
+<p>볼드체 : <code class="language-plaintext highlighter-rouge">\textbf{}</code> as \(\textbf{R}\) <br />
+햇 : <code class="language-plaintext highlighter-rouge">\hat{}</code> as \(\hat{y},\hat {\textbf{X}}\)<br />
+분수 : <code class="language-plaintext highlighter-rouge">\frac{A}{B}</code> as \(\frac{A}{B}\) <br />
+줄바꿈 : <code class="language-plaintext highlighter-rouge">\\</code>  <br />
+한 칸 여백 : <code class="language-plaintext highlighter-rouge">\,</code> <br />
+두 칸 여백 : <code class="language-plaintext highlighter-rouge">\;</code> <br />
+행렬 :</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">$$</span><span class="nb">A</span><span class="o">=</span><span class="nv">\begin</span><span class="p">{</span><span class="nb">bmatrix</span><span class="p">}</span><span class="nb">
+</span><span class="m">0</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">1</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">2</span><span class="nv">\\</span><span class="nb">
+</span><span class="m">3</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">4</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">5</span><span class="nv">\\</span><span class="nb">
+</span><span class="m">6</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">7</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">8</span><span class="nb">
+</span><span class="nv">\end</span><span class="p">{</span><span class="nb">bmatrix</span><span class="p">}</span><span class="nb">
+</span><span class="p">$$</span>
+</code></pre></div></div>
+
+<p>\(A=\begin{bmatrix}
+0 &amp; 1 &amp; 2\\
+3 &amp; 4 &amp; 5\\
+6 &amp; 7 &amp; 8
+\end{bmatrix}\)
+수식 넘버링:</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">$$</span><span class="nb">
+
+</span><span class="nv">\begin</span><span class="p">{</span><span class="nb">align</span><span class="p">}</span><span class="nb">
+V</span><span class="p">_</span><span class="nb">f</span><span class="o">=</span><span class="nb">V</span><span class="o">=</span><span class="nb">V</span><span class="p">_{</span><span class="nb">fx</span><span class="p">}</span><span class="o">=</span><span class="nb">V</span><span class="o">-</span><span class="nb">fcos</span><span class="o">(</span><span class="nv">\delta</span><span class="o">)</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+V</span><span class="p">_{</span><span class="nb">fy</span><span class="p">}</span><span class="o">=</span><span class="nb">rl</span><span class="o">=</span><span class="nb">V</span><span class="p">_</span><span class="nb">fsin</span><span class="o">(</span><span class="nv">\delta</span><span class="o">)</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+
+</span><span class="nv">\end</span><span class="p">{</span><span class="nb">align</span><span class="p">}</span><span class="nb">
+
+</span><span class="p">$$</span>
+</code></pre></div></div>
+
+\[\begin{align}
+V_f=V=V_{fx}=V-fcos(\delta) \\
+V_{fy}=rl=V_fsin(\delta) \\
+
+\end{align}\]
+
+<p>점3개 : <code class="language-plaintext highlighter-rouge">\therefore</code> \(\therefore\) <br />
+점3개뒤로 : <code class="language-plaintext highlighter-rouge">\because</code> \(\because\) <br /></p>
+:ET
