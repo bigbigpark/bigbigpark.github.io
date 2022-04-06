@@ -1,0 +1,29 @@
+I"g<p>리눅스에 설치한 패키지 경로를 찾아보자<br /></p>
+
+<p>리눅스는 계정 별로, 설치 방법별로 경로가 다르게 잡히는 거 같다 <br /></p>
+
+<h2 id="apt-install로-설치">apt install로 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>dpkg <span class="nt">-L</span> openjdk-8-jre
+</code></pre></div></div>
+
+<h2 id="gem으로-설치">gem으로 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem environment | <span class="nb">grep </span>something
+</code></pre></div></div>
+
+<h2 id="rpm으로-설치">rpm으로 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rpm <span class="nt">-qa</span> | <span class="nb">grep </span>pcre
+</code></pre></div></div>
+
+<h2 id="yum으로-설치">yum으로 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>yum list installed pcre<span class="k">*</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://dveamer.github.io/ubuntu/FindWhereThePackageInstalled.html">패키지가 설치 된 위치 찾기 in Ubuntu</a></li>
+</ul>
+:ET
