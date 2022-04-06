@@ -1,5 +1,5 @@
 ---
-title: "[linux] Little Endian, Big Endian 확인"
+title: "[Linux] Little Endian, Big Endian 확인"
 
 toc: true
 toc_sticky: true
