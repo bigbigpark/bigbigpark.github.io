@@ -1,0 +1,46 @@
+I"�<p>Voxel Grid Filter로 다운샘플링 시키기 <br /></p>
+
+<h2 id="전체-코드">전체 코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/io/pcd_io.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/point_types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/filters/voxel_grid.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">cloud</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="p">);</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">cloud_filtered</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="p">);</span>
+
+  <span class="c1">// 값 채우기</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCDReader</span> <span class="n">reader</span><span class="p">;</span>
+
+  <span class="c1">// 위에 cloud를 .pcd파일로 불러오기</span>
+  <span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">"./table_scene_lms400.pcd"</span><span class="p">,</span> <span class="o">*</span><span class="n">cloud</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[before] size: "</span> <span class="o">&lt;&lt;</span> <span class="n">cloud</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">cloud</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="s">" ("</span> <span class="o">&lt;&lt;</span> <span class="n">pcl</span><span class="o">::</span><span class="n">getFieldsList</span><span class="p">(</span><span class="o">*</span><span class="n">cloud</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" )"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="c1">// Create filtering object</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">VoxelGrid</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">&gt;</span> <span class="n">voxel</span><span class="p">;</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">setInputCloud</span> <span class="p">(</span><span class="n">cloud</span><span class="p">);</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">setLeafSize</span><span class="p">(</span><span class="mf">0.1</span><span class="n">f</span><span class="p">,</span><span class="mf">0.1</span><span class="n">f</span><span class="p">,</span><span class="mf">0.1</span><span class="n">f</span><span class="p">);</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_filtered</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[after] size: "</span> <span class="o">&lt;&lt;</span> <span class="n">cloud_filtered</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">cloud_filtered</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="s">" ("</span> <span class="o">&lt;&lt;</span> <span class="n">pcl</span><span class="o">::</span><span class="n">getFieldsList</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_filtered</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" )"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="c1">// 쓰기</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCDWriter</span> <span class="n">writer</span><span class="p">;</span>
+  <span class="n">writer</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"./table_scene_lms400_voxel.pcd"</span><span class="p">,</span> <span class="o">*</span><span class="n">cloud_filtered</span><span class="p">,</span> 
+  <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector4f</span><span class="o">::</span><span class="n">Zero</span><span class="p">(),</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaternionf</span><span class="o">::</span><span class="n">Identity</span><span class="p">(),</span> <span class="nb">false</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://pcl.readthedocs.io/projects/tutorials/en/master/index.html#">Point Cloud Library</a></li>
+</ul>
+:ET
