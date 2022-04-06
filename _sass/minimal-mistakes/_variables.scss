@@ -13,9 +13,9 @@ $paragraph-indent: false !default; // true, false (default)
 $indent-var: 0.4em !default;
 
 /* system typefaces */
-$serif: "Calibri", "Nanum Gothic", serif !default;
-$sans-serif: -apple-system, BlinkMacSystemFont, "Calibri", "Nanum Gothic", sans-serif !default;
-$monospace: "Calibri", Monaco, Consolas, "Lucida Console", monospace !default;
+$serif: $helvetica "Nanum Gothic", serif !default;
+$sans-serif: -apple-system, BlinkMacSystemFont, $helvetica, "Nanum Gothic", sans-serif !default;
+$monospace: $helvetica, Monaco, Consolas, "Lucida Console", monospace !default;
 
 /* sans serif typefaces */
 $sans-serif-narrow: $sans-serif !default;
