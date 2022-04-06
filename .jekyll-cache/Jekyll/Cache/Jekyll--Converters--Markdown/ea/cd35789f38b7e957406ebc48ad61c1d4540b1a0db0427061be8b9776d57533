@@ -1,0 +1,29 @@
+I"�<p>내 컴퓨터가 Little endian인 지, Big endian인 지 확인해보자! <br /></p>
+
+<h2 id="전체-코드">전체 코드</h2>
+
+<p>가볍게 아래 소스를 컴파일&amp;빌드 후 실행해보자 ! <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x00000001</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Little"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"big"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=v_lovepooh_v&amp;logNo=20197032346">Big-Endian &amp; Little-Endian 확인용 테스트 코드</a></li>
+</ul>
+:ET
