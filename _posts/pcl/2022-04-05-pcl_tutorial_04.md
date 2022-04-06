@@ -7,7 +7,7 @@ category: pcl
 tags: [pcl, point cloud, PCL, 포인트 클라우드, Voxel, Filter]
 ---
 
-PCD 파일 형식으로 저장해보자 <br/>
+Voxel Grid Filter로 다운샘플링 시키기 <br/>
 
 
 ## 전체 코드
