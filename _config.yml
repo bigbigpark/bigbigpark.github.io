@@ -24,7 +24,7 @@ description              : "디스크립션 테스트"
 url                      : "https://bigbigpark.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/img/logo/logo.png"
+teaser                   : "/assets/img/bio/logo.png"
 logo                     : # 사이트 로고 
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
@@ -84,7 +84,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "/assets/img/logo/bio-photo.png"  # Open Graph/Twitter default site image
+og_image                 : "/assets/img/bio/bio-photo.png"  # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -103,7 +103,7 @@ analytics:
 # Site Author
 author:
   name             : "박성창 (bigbigpark)"
-  avatar           : "/assets/img/logo/bio-photo.png"
+  avatar           : "/assets/img/bio/bio-photo.png"
   bio              : "M.S. Student of Future Convergence Technology"
   # location         : "South Korea"
   email            :
