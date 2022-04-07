@@ -1,0 +1,15 @@
+I"�<p>C++의 파일 입출력에 대해 알아보자 <br /></p>
+
+<h2 id="서론">서론</h2>
+
+<p>어떤 알고리즘을 개발할 경우 실험 결과를 <strong>텍스트</strong>로 저장하는 경우가 많다 <br />
+보통 텍스트 or 바이너리 파일로 저장을 하여 나중에 분석하는 경우가 많으므로 오늘은 C++ 스타일의 file stream에 대해 간략히 정리해보고자 한다 <br /> <br /></p>
+
+<h2 id="file-stream-정리">File Stream 정리</h2>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li>[C++] 파일입출력(ofstream, ifstream)에 대해서](https://blockdmask.tistory.com/322)</li>
+  <li><a href="https://0-sunny.tistory.com/60">C++ File fstream I/O ofstream, ifstream</a></li>
+</ul>
+:ET

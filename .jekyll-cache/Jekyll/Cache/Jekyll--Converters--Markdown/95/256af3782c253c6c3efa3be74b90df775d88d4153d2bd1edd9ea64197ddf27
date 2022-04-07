@@ -1,0 +1,62 @@
+I"R
+<p>C++의 파일 입출력에 대해 알아보자 <br /></p>
+
+<h2 id="서론">서론</h2>
+
+<p>어떤 알고리즘을 개발할 경우 실험 결과를 <strong>텍스트</strong>로 저장하는 경우가 많다 <br />
+보통 텍스트 or 바이너리 파일로 저장을 하여 나중에 분석하는 경우가 많으므로 오늘은 C++ 스타일의 file stream에 대해 간략히 정리해보고자 한다 <br /> <br /></p>
+
+<p>추가로 바로 예제 및 응용에 들어가보자</p>
+
+<p><br /></p>
+
+<h2 id="file-stream-정리">File Stream 정리</h2>
+
+<h3 id="1-헤더파일-선언">1. 헤더파일 선언</h3>
+
+<p>구구절절하게 나열하는 것보다 핵심적인 것만 적겠다 <br />
+<strong>ifstream</strong>과 <strong>ofstream</strong>도 쉽게 <strong>fstream</strong>을 불러와서 사용하자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<p>솔직히 우리가 하고 싶은 기능은 아래와 같다 <br /></p>
+<ul>
+  <li>open()</li>
+  <li>close()</li>
+  <li>read()</li>
+  <li>write()</li>
+</ul>
+
+<p>따라서 빠르게 사용하는 방법을 알아본다 <br /></p>
+
+<h3 id="2-열기open-닫기close">2. 열기(open), 닫기(close)</h3>
+
+<p><strong>중요 :</strong> 파일은 열었으면 무조건 닫아줘야 한다 <br />
+이 부분은 진짜 명심하자!! <br /><br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// file 객체 선언</span>
+<span class="n">fstream</span> <span class="n">file</span><span class="p">;</span>
+
+<span class="c1">// 열기</span>
+<span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"../output.txt"</span><span class="p">,</span> <span class="n">ios</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+
+<span class="c1">// 닫기</span>
+<span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>여기서 열기 함수를 자세히 보자 <br />
+file.open() 함수는 다음과 같이 구성되어 있다 <br /></p>
+<ol>
+  <li>파일 경로</li>
+  <li>모드</li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://blockdmask.tistory.com/322">C++ 파일입출력 (ofstream, ifstream)에 대해서</a></li>
+  <li><a href="https://0-sunny.tistory.com/60">C++ File fstream I/O ofstream, ifstream</a></li>
+</ul>
+:ET
