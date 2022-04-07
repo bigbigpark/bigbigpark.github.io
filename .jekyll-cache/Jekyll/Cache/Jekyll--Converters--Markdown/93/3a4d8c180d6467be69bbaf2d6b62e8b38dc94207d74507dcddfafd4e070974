@@ -1,0 +1,76 @@
+I"�<p>위도,경도 배열을 실제 지도에 얹어보자! <br /></p>
+
+<h2 id="실행-순서">실행 순서</h2>
+
+<h3 id="1-vscode에서-jupyter-notebook-실행">1. vscode에서 jupyter notebook 실행</h3>
+
+<p>Extension이 없다면 <strong>Ctrl+Shift+X</strong>를 눌러 <strong>Jupyter</strong>를 검색한 후 다운로드 해준다 <br />
+이후 <strong>Ctrl+Shift+P</strong>를 누른 후 <strong>Create</strong>라고 검색한 후에 주피터 노트북을 생성한다 <br />
+아래와 같이 생성된다면 절반쯤 성공!<br /> <br /></p>
+
+<p><img src="/assets/img/python/2022-04-07/01.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="2-라이브러리-불러오기">2. 라이브러리 불러오기</h3>
+
+<p>일단 아래와 같이 명령어를 입력해준다 <br /><br /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그 후 <strong>Ctrl+Enter</strong>를 눌러서 빌드 해주는 데, 이 때 파이썬 버전 선택창이 나온다 <br /> Python 3.X를 선택하도록 하자 <br />
+잠시 후 빌드가 될 것이다 <br /> <br /></p>
+
+<p><img src="/assets/img/python/2022-04-07/02.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="3-데이터가-저장된-텍스트-파일-불러오기">3. 데이터가 저장된 텍스트 파일 불러오기</h3>
+
+<p>데이터 생김새 확인하기 <br />
+가진 데이터는 아래와 같은 구조로 이루어져있다 <br />
+따라서 불러올 때 numpy를 이용하여 1행을 스킵하고 불러오자 <br /><br /></p>
+
+<p><img src="/assets/img/python/2022-04-07/03.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">'../output2.txt'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="4-중심-좌표-입력을-통한-맵-불러오기">4. 중심 좌표 입력을 통한 맵 불러오기</h3>
+
+<p>지도를 불러올 때 중심이 되는 좌표를 정하자 <br />
+아무 좌표를 입력해서 네이버 지도처럼 움직일 수 있지만 데이터의 첫 좌표를 입력한다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 위도
+</span><span class="n">latitude</span> <span class="o">=</span> <span class="mf">3.71864530e+01</span>
+<span class="c1"># 경도
+</span><span class="n">longitude</span> <span class="o">=</span> <span class="mf">1.26647149e+02</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="p">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">],</span>
+               <span class="n">zoom_start</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+              <span class="p">)</span>
+</code></pre></div></div>
+
+<p><br />
+여기까지 온 후 <strong>Ctrl+Enter</strong>를 눌러 결과를 확인해보자 <br /><br />
+아래쪽과 같은 화면처럼 나올 것이다 <br /></p>
+
+<p><img src="/assets/img/python/2022-04-07/04.png" alt="" /></p>
+
+<p><br />
+이제 남은 것은 해당 지도에 도형을 그리는 것만 남았다 <br /></p>
+
+<h3 id="5-지도에-도형-그리기">5. 지도에 도형 그리기</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)):</span>
+  <span class="n">folium</span><span class="p">.</span><span class="n">Circle</span><span class="p">(</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s">'#ff0000'</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s">'crimson'</span><span class="p">,</span>
+    <span class="p">).</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,12 @@
+I"m<p>위도,경도 배열을 실제 지도에 얹어보자! <br /></p>
+
+<h2 id="실행-순서">실행 순서</h2>
+
+<h3 id="1-vscode에서-jupyter-notebook-실행">1. vscode에서 jupyter notebook 실행</h3>
+
+<p>Extension이 없다면 <strong>Ctrl+Shift+X</strong>를 눌러 <strong>Jupyter</strong>를 검색한 후 다운로드 해준다 <br />
+이후 <strong>Ctrl+Shift+P</strong>를 누른 후 <strong>Create</strong>라고 검색한 후에 주피터 노트북을 생성한다 <br />
+아래와 같이 생성된다면 절반쯤 성공!<br /> <br /></p>
+
+<p><img src="/assets/img/python/2022-04-07/01.png" alt="1" /></p>
+:ET
