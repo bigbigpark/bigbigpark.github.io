@@ -1,9 +1,9 @@
 # main links
 main:
-  - title: "About"
-    url: /404/
+  # - title: "About"
+  #   url: /404/
   - title: "CV"
-    url: /404/
+    url: /CV-seongchang park.pdf
   # - title: "윤동주"
   #   url: /categories/윤동주/
   # - title: "Category"

@@ -1,0 +1,111 @@
+I":<p>How to extract indeices from segmentation <br /></p>
+
+<p><br /></p>
+
+<h2 id="전체-코드">전체 코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/io/pcd_io.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/point_types.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/ModelCoefficients.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/sample_consensus/method_types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/sample_consensus/model_types.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/segmentation/sac_segmentation.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/filters/voxel_grid.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/filters/extract_indices.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">cloudBlob</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="p">);</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">cloudFilteredBlob</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="p">);</span>
+
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">cloudFiltered</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">cloudP</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">cloudF</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="c1">// Read</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCDReader</span> <span class="n">reader</span><span class="p">;</span>
+  <span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">"../data/tutorials/table_scene_lms400.pcd"</span><span class="p">,</span> <span class="o">*</span><span class="n">cloudBlob</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[before] size: "</span> <span class="o">&lt;&lt;</span> <span class="n">cloudBlob</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">cloudBlob</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="c1">// Downsampling</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">VoxelGrid</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PCLPointCloud2</span><span class="o">&gt;</span> <span class="n">voxel</span><span class="p">;</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">setInputCloud</span><span class="p">(</span><span class="n">cloudBlob</span><span class="p">);</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">setLeafSize</span><span class="p">(</span><span class="mf">0.01</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.01</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.01</span><span class="n">f</span><span class="p">);</span>
+  <span class="n">voxel</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">*</span><span class="n">cloudFilteredBlob</span><span class="p">);</span>
+
+  <span class="c1">// Convert from [pcl::PCLPointCloud2] to [pcl::PointCloud&lt;pcl::PointXYZ&gt;]</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">fromPCLPointCloud2</span><span class="p">(</span><span class="o">*</span><span class="n">cloudFilteredBlob</span><span class="p">,</span> <span class="o">*</span><span class="n">cloudFiltered</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[after] size: "</span> <span class="o">&lt;&lt;</span> <span class="n">cloudFiltered</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">cloudFiltered</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="c1">// Write downsampled version</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PCDWriter</span> <span class="n">writer</span><span class="p">;</span>
+  <span class="n">writer</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"../data/tutorials/table_scene_lms400_downsampled.pcd"</span><span class="p">,</span> <span class="o">*</span><span class="n">cloudFiltered</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+  <span class="c1">// Declare Model Coefficient &amp; Inlier</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">coeff</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="p">());</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">inliers</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="p">());</span>
+
+  <span class="c1">// Create segment object</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">SACSegmentation</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span> <span class="n">seg</span><span class="p">;</span>
+  <span class="c1">// optional</span>
+  <span class="n">seg</span><span class="p">.</span><span class="n">setOptimizeCoefficients</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+  <span class="c1">// Mandatory</span>
+  <span class="n">seg</span><span class="p">.</span><span class="n">setModelType</span><span class="p">(</span> <span class="n">pcl</span><span class="o">::</span><span class="n">SACMODEL_PLANE</span><span class="p">);</span>
+  <span class="n">seg</span><span class="p">.</span><span class="n">setMethodType</span> <span class="p">(</span><span class="n">pcl</span><span class="o">::</span><span class="n">SAC_RANSAC</span><span class="p">);</span>
+  <span class="n">seg</span><span class="p">.</span><span class="n">setMaxIterations</span> <span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="n">seg</span><span class="p">.</span><span class="n">setDistanceThreshold</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
+
+  <span class="c1">// Create filtering object</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">ExtractIndices</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span> <span class="n">extract</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">nr_points</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">cloudFiltered</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">();</span>
+  <span class="c1">// original cloud의 30%는 유지</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">cloudFiltered</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">nr_points</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Segment the largest planar componet from the remaining cloud</span>
+    <span class="n">seg</span><span class="p">.</span><span class="n">setInputCloud</span><span class="p">(</span> <span class="n">cloudFiltered</span><span class="p">);</span>
+    <span class="n">seg</span><span class="p">.</span><span class="n">segment</span><span class="p">(</span><span class="o">*</span><span class="n">inliers</span><span class="p">,</span> <span class="o">*</span><span class="n">coeff</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">inliers</span><span class="o">-&gt;</span><span class="n">indices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"주어진 데이터셋에 대한 planar model 추정 실패"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Extract inliers</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">setInputCloud</span> <span class="p">(</span><span class="n">cloudFiltered</span><span class="p">);</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">setIndices</span> <span class="p">(</span><span class="n">inliers</span><span class="p">);</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">setNegative</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">filter</span> <span class="p">(</span><span class="o">*</span><span class="n">cloudP</span><span class="p">);</span>
+    <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Extracted inlieres size : "</span> <span class="o">&lt;&lt;</span> <span class="n">cloudP</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">cloudP</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="s">" data points."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">"../temp/table_scene_lms400_plane_"</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">".pcd"</span><span class="p">;</span>
+    <span class="n">writer</span><span class="p">.</span><span class="n">write</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="o">*</span><span class="n">cloudP</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+    <span class="c1">// Create filtering object</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">setNegative</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+    <span class="n">extract</span><span class="p">.</span><span class="n">filter</span> <span class="p">(</span><span class="o">*</span><span class="n">cloudF</span><span class="p">);</span>
+    <span class="n">cloudFiltered</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">cloudF</span><span class="p">);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://pcl.readthedocs.io/projects/tutorials/en/master/index.html#">Point Cloud Library</a></li>
+</ul>
+:ET
