@@ -289,5 +289,5 @@ defaults:
       share: false
       related: false
       sidebar_main: true
-      # sidebar:
-      #   nav: "docs"
+      # sidebar: false
+        # nav: "docs"

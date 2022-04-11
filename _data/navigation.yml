@@ -14,13 +14,6 @@ main:
   #   url: /sitemap/
 
 # docs:
-#   - title: C++
-#     children:
-#       - title: "Basic C++"
-#         url: cplusplus/
-#         category: "c++"
-
-# docs:
 #   - title: 📂 C++ 프로그래밍
 #     children:
 #       - title: "문법 기초"
