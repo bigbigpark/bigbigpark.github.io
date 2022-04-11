@@ -1,13 +1,13 @@
 ---
-title: "[#12] Intelgral image를 이용한 특징점 찾기"
+title: "[#12] Integral image를 이용한 특징점 찾기"
 
 toc: true
 toc_sticky: true
 category: pcl
-tags: [pcl, point cloud, 포인트 클라우드, estimate, surface, normals, 법선벡터, 평면, 추정]
+tags: [pcl, point cloud, 포인트 클라우드, estimate, integral, images, estimatation]
 ---
 
-How 3D features work <br/>
+Estimation using integral images <br/>
 
 <br/>
 
