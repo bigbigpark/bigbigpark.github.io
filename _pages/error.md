@@ -4,6 +4,5 @@ permalink: /categories/error/
 layout: category
 author_profile: true
 taxonomy: error
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

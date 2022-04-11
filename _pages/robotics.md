@@ -4,6 +4,5 @@ permalink: /categories/robotics/
 layout: category
 author_profile: true
 taxonomy: robotics
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

@@ -4,6 +4,5 @@ permalink: /categories/linalg/
 layout: category
 author_profile: true
 taxonomy: linalg
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

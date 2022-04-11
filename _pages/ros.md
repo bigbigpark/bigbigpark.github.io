@@ -4,6 +4,5 @@ permalink: /categories/ros/
 layout: category
 author_profile: true
 taxonomy: ros
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

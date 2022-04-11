@@ -4,6 +4,5 @@ permalink: /categories/cpp_useful/
 layout: category
 author_profile: true
 taxonomy: cpp_useful
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

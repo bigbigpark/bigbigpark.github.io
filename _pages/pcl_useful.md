@@ -4,6 +4,5 @@ permalink: /categories/pcl_useful/
 layout: category
 author_profile: true
 taxonomy: pcl_useful
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

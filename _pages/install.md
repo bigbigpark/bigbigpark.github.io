@@ -4,6 +4,5 @@ permalink: /categories/install/
 layout: category
 author_profile: true
 taxonomy: install
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

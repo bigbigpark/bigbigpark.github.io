@@ -4,6 +4,5 @@ permalink: /categories/python/
 layout: category
 author_profile: true
 taxonomy: python
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

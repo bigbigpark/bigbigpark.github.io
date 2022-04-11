@@ -4,6 +4,5 @@ permalink: /categories/latex/
 layout: category
 author_profile: true
 taxonomy: latex
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---

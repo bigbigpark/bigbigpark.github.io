@@ -4,6 +4,5 @@ permalink: /categories/python_useful/
 layout: category
 author_profile: true
 taxonomy: python_useful
-sidebar:
-  nav : "docs"
+sidebar_main : true
 ---
