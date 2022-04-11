@@ -6,42 +6,99 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
   <ul class="nav__items" id="category_tag_menu">
-      <!--전체 글 수-->
       <li>
-            📂 <span style="font-family:'Cafe24Oneprettynight';">포스팅</style> <span style="font-family:'Coming Soon';"></style> <span style="font-family:'Cafe24Oneprettynight';"></style> 
-      </li>
-      <li>
-        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-        <span class="nav__sub-title">C/C++/C#</span>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C -->
+        <span class="nav__sub-title">📂 C++ 프로그래밍 </span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
-                    {% if category[0] == "c++" %}
-                        <li><a href="/categories/cpp" class="">- C++</a></li>
+                    {% if category[0] == "cpp" %}
+                        <li><a href="/categories/cpp" class="">문법 기초({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "ROS" %}
-                        <li><a href="/categories/ros" class="">C++ STL & 표준 ({{category[1].size}})</a></li>
+                    {% if category[0] == "cpp_useful" %}
+                        <li><a href="/categories/cpp_useful" class="">Useful Code({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Coding Test</span>
+        <span class="nav__sub-title"> 📂 Python 프로그래밍</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Algorithm" %}
-                        <li><a href="/categories/algorithm" class="">알고리즘 구현 (with C++) ({{category[1].size}})</a></li>
+                    {% if category[0] == "python_useful" %}
+                        <li><a href="/categories/python_useful" class="">Useful Code({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title"> 📂 Point Cloud</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "pcl" %}
+                        <li><a href="/categories/pcl" class="">Useful Code({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title"> 📂 ROS 프로그래밍</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "ros" %}
+                        <li><a href="/categories/ros" class="">문법 기초({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Programmers" %}
-                        <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
+                    {% if category[0] == "ros_useful" %}
+                        <li><a href="/categories/ros_useful" class="">Useful Code({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title"> 📂 스터디/이론</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "linalg" %}
+                        <li><a href="/categories/linalg" class="">선형대수학({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "robotics" %}
+                        <li><a href="/categories/robotics" class="">로봇공학({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title"> 📂 리눅스</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "linux" %}
+                        <li><a href="/categories/linux" class="">기초 지식({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title"> 📂 Tips</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "error" %}
+                        <li><a href="/categories/error" class="">에러 코드 정리({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "install" %}
+                        <li><a href="/categories/install" class="">설치 방법 정리({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "latex" %}
+                        <li><a href="/categories/latex" class="">Latex 문법 정리({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
