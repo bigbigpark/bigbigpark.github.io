@@ -20,7 +20,7 @@ title                    : "코딩처음입니다만"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "bigbigpark"
-description              : "디스크립션 테스트"
+description              : "Multi-Robot/SLAM/Localization"
 url                      : "https://bigbigpark.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
