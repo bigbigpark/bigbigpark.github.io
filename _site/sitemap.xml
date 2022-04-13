@@ -251,6 +251,9 @@
 <loc>http://localhost:4000/categories/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/categories/ceres/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/categories/cpp/</loc>
 </url>
 <url>
