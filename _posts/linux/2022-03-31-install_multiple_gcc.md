@@ -1,13 +1,13 @@
 ---
-title: "Multiple GCC versions"
+title: "g++/gcc 여러 버전 설치"
 
 toc: true
 toc_sticky: true
-category: install
+category: linux
 tags: [install, gcc, g++, multiple, other version, 여러 버전]
 ---
 
-다양한 종류의 GCC 버전을 설치해보자 ! <br/>
+다양한 종류의 GCC 버전을 설치해보자! <br/>
 
 ## Check your gcc version
 

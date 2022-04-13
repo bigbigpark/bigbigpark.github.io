@@ -1,5 +1,5 @@
 ---
-title: "[GNSS] 양방향 NMEA to UTM"
+title: "wgs84 to utm 변환"
 
 toc: true
 toc_sticky: true
