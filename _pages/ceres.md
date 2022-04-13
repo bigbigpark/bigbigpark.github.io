@@ -1,5 +1,5 @@
 ---
-title: "C++ 유용한 코드 모음"
+title: "Ceres Solver 관련 정리"
 permalink: /categories/ceres/
 layout: category
 author_profile: true
