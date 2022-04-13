@@ -1,5 +1,5 @@
 ---
-title: "[문자열] 공백을 기준으로 자르기"
+title: "문자열: 공백을 기준으로 자르기"
 
 toc: true
 toc_sticky: true
