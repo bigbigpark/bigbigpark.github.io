@@ -1,0 +1,31 @@
+I"N<p>How to construct CMakeLists.txt to use ceres sovler<br /></p>
+
+<h2 id="cmakeliststxt-파일-구성하기">CMakeLists.txt 파일 구성하기</h2>
+
+<p>Ceres solver를 설치하고 아래와 같이 빌드 코딩 후 빌드해보자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ceres/ceres.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">"glog/logging.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">Problem</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// The variable to solve for with its initial value. It will be</span>
+  <span class="c1">// mutated in place by the solver.</span>
+  <span class="kt">double</span>       <span class="n">x</span>         <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">double</span> <span class="n">initial_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+  <span class="c1">// Build the problem.</span>
+  <span class="n">Problem</span> <span class="n">problem</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://groups.google.com/g/ceres-solver/c/wt8lf1aXrfg">undefined reference to `ceres::Problem::Problem()’</a></li>
+</ul>
+:ET

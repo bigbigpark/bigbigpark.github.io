@@ -1,0 +1,16 @@
+I"w<p>How to construct CMakeLists.txt to use ceres sovler<br /></p>
+
+<h2 id="ceres-library-불러오기">ceres library 불러오기</h2>
+
+<p>Ceres solver를 설치하고 아래와 같이 코딩 후 빌드 해보자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ceres/ceres.h&gt;</span><span class="cp">
+</span>
+
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://groups.google.com/g/ceres-solver/c/wt8lf1aXrfg">undefined reference to `ceres::Problem::Problem()’</a></li>
+</ul>
+:ET
