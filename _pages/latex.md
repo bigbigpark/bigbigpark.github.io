@@ -1,5 +1,5 @@
 ---
-title: "개발하면서 에러코드 모음"
+title: "Latex 관련 정리"
 permalink: /categories/latex/
 layout: category
 author_profile: true
