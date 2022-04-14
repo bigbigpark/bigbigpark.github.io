@@ -23,7 +23,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title"> 📂 LIBRARY</span>
+        <span class="nav__sub-title"> 📂 LIBRARY / FRAMEWORK</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "pcl" %}
@@ -45,7 +45,6 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title"> 📂 ROS 프로그래밍</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "ros_useful" %}
@@ -53,7 +52,8 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title"> 📂 스터디/이론</span>
+        <!-- <span class="nav__sub-title"> 📂 ROS 프로그래밍</span> -->
+        <!-- <span class="nav__sub-title"> 📂 스터디/이론</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "linalg" %}
@@ -74,8 +74,8 @@
                         <li><a href="/categories/robotics" class="">로봇공학({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
-            </ul>
-        <span class="nav__sub-title"> 📂 리눅스</span>
+            </ul> -->
+        <span class="nav__sub-title"> 📂 Linux / Ubuntu</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "linux" %}
