@@ -1,5 +1,5 @@
 ---
-title: "[#2] add_residuals.cpp"
+title: "add_residuals.cpp"
 
 toc: true
 toc_sticky: true
