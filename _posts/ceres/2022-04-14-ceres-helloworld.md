@@ -83,18 +83,30 @@ int main(int argc, char** argv) {
 }
 ~~~
 
-## 설명
+## Break the code
 
 ### CostFunctor
 
 `CostFunctor` 구조체 안에 residual이 선언되어 있다 <br/>
 ~~~c++
-residual[0] = 10 - x[0];
+struct CostFunctor {
+    template<typename T>
+    bool operator()(const T *const x, T *residual) const {
+        residual[0] = 10.0 - x[0];
+        return true;
+    }
+};
 ~~~
 이라고 선언하면 우리가 최소화 해야하는 함수는 <br/>
  $$ \frac{1}{2} *(10 \, - \, x)^2 $$ 인 것을 알 수 있다 <br/>
 
 ### CostFunction/AutoDiffCostFunction
+
+~~~c++
+CostFunction* cost_function =
+    new AutoDiffCostFunction<CostFunctor, 1, 1>(new CostFunctor);
+problem.AddResidualBlock(cost_function, nullptr, &x);
+~~~
 
 위의 식에서 $$f$$에 해당하는 부분이다 <br/>
 cost function을 어떤 함수로 가져갈 지 선언해준다 <br/>
@@ -106,13 +118,20 @@ cost function을 어떤 함수로 가져갈 지 선언해준다 <br/>
 
 ### AddResidualBlock
 
+~~~c++
+problem.AddResidualBlock(cost_function, nullptr, &x);
+~~~
 인자가 넘어가는 형태로 보아 위에서 정의했던 cost_function $$ f $$ 를 최소화 하는 파라미터 $$x$$를 찾아야 하니까 그런 residual block 하나를 추가하겠다라는 뜻 인 거 같다!<br/>
 
 ### Solver
 
 solver를 선언하기 전에 `options`를 먼저 선언해주고, solver의 option들을 넣어준다 <br/>
 ~~~c++
-options.minimizer_progress_to_stdout = true;
+Solver::Options options;
+  options.linear_solver_type = ceres::DENSE_QR;
+  options.minimizer_progress_to_stdout = true;
+  Solver::Summary summary;
+  Solve(options, &problem, &summary);
 ~~~
 는 최소화 하는 과정을 출력할 지 말 지 결정하는 파라미터로 추정된다. <br/>
 
