@@ -1,0 +1,105 @@
+I")-<p>Ceres solver 사용법 정리<br /></p>
+
+<p>이 글은 <a href="https://github.com/LimHyungTae">임형태</a>님의 <a href="https://github.com/LimHyungTae/helloceres">helloceres</a> git 코드를 기반으로 작성되었습니다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="example-code">Example Code</h2>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//</span>
+<span class="c1">// Tutorial Author: shapelim@kaist.ac.kr (임형태)</span>
+
+<span class="cp">#include</span> <span class="cpf">"ceres/ceres.h"</span><span class="cp">
+#include</span> <span class="cpf">"glog/logging.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">AutoDiffCostFunction</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">CostFunction</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">Problem</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">Solver</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">ceres</span><span class="o">::</span><span class="n">Solve</span><span class="p">;</span>
+
+<span class="c1">// 예제 1. Cost function을 2개 생성해서 addResidualBlock 해보기</span>
+
+<span class="c1">// 첫 번째 cost function:  0.5 (10 - x)^2 </span>
+<span class="k">struct</span> <span class="nc">CostFunctor1</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="k">const</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">residual</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 두 번째 cost function:  0.5 (x)^2</span>
+<span class="k">struct</span> <span class="nc">CostFunctor2</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="k">const</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">residual</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">google</span><span class="o">::</span><span class="n">InitGoogleLogging</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="c1">// 초기 x 값 선언</span>
+    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+
+    <span class="c1">// 초기의 값과 optimization을 완료한 값을 확인해보기 위해 초기 x 값을 const로 고정시켜 둠</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">initial_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+    <span class="c1">// {1, 1} &lt;- 이 숫자들의 의미가 각각 Cost function의 {residual의 수, 변수의 수}를 나타내는 것과 같다.</span>
+    <span class="n">Problem</span> <span class="n">problem</span><span class="p">;</span>
+    <span class="c1">// 첫 번째 cost function 선언</span>
+    <span class="n">CostFunction</span> <span class="o">*</span><span class="n">cost_function1</span> <span class="o">=</span>
+                         <span class="k">new</span> <span class="n">AutoDiffCostFunction</span><span class="o">&lt;</span><span class="n">CostFunctor1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">CostFunctor1</span><span class="p">);</span>
+    <span class="c1">// 두 번째 cost function 선언</span>
+    <span class="n">CostFunction</span> <span class="o">*</span><span class="n">cost_function2</span> <span class="o">=</span>
+                         <span class="k">new</span> <span class="n">AutoDiffCostFunction</span><span class="o">&lt;</span><span class="n">CostFunctor2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">CostFunctor2</span><span class="p">);</span>
+
+    <span class="n">problem</span><span class="p">.</span><span class="n">AddResidualBlock</span><span class="p">(</span><span class="n">cost_function1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">problem</span><span class="p">.</span><span class="n">AddResidualBlock</span><span class="p">(</span><span class="n">cost_function2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+
+    <span class="c1">// Run the solver!</span>
+    <span class="n">Solver</span><span class="o">::</span><span class="n">Options</span> <span class="n">options</span><span class="p">;</span>
+    <span class="n">options</span><span class="p">.</span><span class="n">eta</span>                          <span class="o">=</span> <span class="mf">1e-4</span><span class="p">;</span>
+    <span class="n">options</span><span class="p">.</span><span class="n">function_tolerance</span>           <span class="o">=</span> <span class="mf">1e-10</span><span class="p">;</span>
+    <span class="n">options</span><span class="p">.</span><span class="n">minimizer_progress_to_stdout</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">Solver</span><span class="o">::</span><span class="n">Summary</span> <span class="n">summary</span><span class="p">;</span>
+    <span class="n">Solve</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">problem</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">summary</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="p">.</span><span class="n">BriefReport</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x : "</span> <span class="o">&lt;&lt;</span> <span class="n">initial_x</span>
+              <span class="o">&lt;&lt;</span> <span class="s">" -&gt; "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="break-the-code">Break the code</h2>
+
+<h3 id="two-cost-function">Two cost function</h3>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 첫 번째 cost function:  0.5 (10 - x)^2 </span>
+<span class="k">struct</span> <span class="nc">CostFunctor1</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="k">const</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">residual</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 두 번째 cost function:  0.5 (x)^2</span>
+<span class="k">struct</span> <span class="nc">CostFunctor2</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="k">const</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">residual</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://github.com/LimHyungTae/helloceres">LimHyungTae/helloceres</a></li>
+</ul>
+:ET
