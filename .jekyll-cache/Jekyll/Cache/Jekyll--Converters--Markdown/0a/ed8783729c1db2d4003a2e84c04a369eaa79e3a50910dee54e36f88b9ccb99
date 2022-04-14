@@ -1,9 +1,0 @@
-I"ü<p>How to construct CMakeLists.txt to use ceres sovler<br /></p>
-
-<h2 id="tbd">TBD</h2>
-
-<h2 id="reference">Reference</h2>
-<ul>
-  <li>(undefined reference to ceres::Problem::Problem())[https://groups.google.com/g/ceres-solver/c/wt8lf1aXrfg]</li>
-</ul>
-:ET
