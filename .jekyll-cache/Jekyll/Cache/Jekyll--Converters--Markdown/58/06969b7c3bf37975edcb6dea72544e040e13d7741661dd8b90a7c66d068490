@@ -1,0 +1,89 @@
+I"�<p>How to mount google drive on Ubuntu/Linux <br /></p>
+
+<p><strong>구글 드라이브</strong>를 리눅스 환경에 마운트하는 방법을 정리한다 <br />
+매~~우 쉬우니 차례차례 명령어만 따라치면 손쉽게 할 수 있다 <br /></p>
+
+<h2 id="설치">설치</h2>
+
+<p>아래 명령어를 차례로 입력해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository ppa:alessandro-strada/ppa
+<span class="nv">$ </span><span class="nb">sudo </span>apt update
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>google-drive-ocamlfuse
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="폴더-생성">폴더 생성</h2>
+
+<p>구글 드라이브를 마운트할 <strong>폴더</strong>를 하나 생성해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> ~/GoogleDrive
+</code></pre></div></div>
+
+<p><br />
+사진으로 보면 아래와 같다 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/07.png" alt="" /></p>
+
+<h2 id="구글-드라이브-마운트-하기">구글 드라이브 마운트 하기</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>google-drive-ocamlfuse ~/GoogleDrive
+</code></pre></div></div>
+
+<p><br />
+사진으로 보면 아래와 같다 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/08.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>여기까지 무사히 따라왔다면 <strong>구글 계정</strong>으로 <strong>로그인</strong> 하라는 창이 하나 열린다 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/09.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>드라이브에 연동되어 있는 구글 계정으로 로그인 한다 <br />
+우측 하단에 <strong>허용</strong>을 누른다 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/10.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>아래 사진과 같이 뜬다면 성공 ! <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/11.png" alt="" /></p>
+
+<h2 id="결과-확인">결과 확인</h2>
+
+<p>아까 마운트할 폴더를 만든 경로에 구글 드라이브가 성공적으로 마운팅된 것을 확인할 수 있다 <br />
+(아래 사진 확인)</p>
+
+<p><img src="/assets/img/install/2022-04-15/12.png" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="꿀팁">꿀팁</h2>
+
+<p>구글 드라이브를 마운트하고 싶을때마다 아래 명령어 치기는 너무 time-consuming한 일이다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>google-drive-ocamlfuse ~/GoogleDrive
+</code></pre></div></div>
+
+<h3 id="단축키-설정">단축키 설정</h3>
+
+<p>환경변수 편집창을 열고, <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+</code></pre></div></div>
+
+<p>제일 하단에 아래 명령을 추가해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">gd</span><span class="o">=</span><span class="s1">'google-drive-ocamlfuse ~/GoogleDrive'</span>
+</code></pre></div></div>
+
+<p>환경변수 편집창을 닫고 반영해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+:ET
