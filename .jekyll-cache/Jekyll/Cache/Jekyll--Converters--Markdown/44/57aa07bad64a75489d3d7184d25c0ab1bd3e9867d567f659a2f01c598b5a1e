@@ -1,0 +1,74 @@
+I"�<p>How to visualize PointCloud2 on rviz <br /></p>
+
+<p>How to play bag file using rosbag <br /></p>
+
+<p><br /></p>
+
+<p>rosbag 파일을 play하면서 rviz에 시각화 하는 것을 정리한다 <br />
+오늘 재생할 파일은 <a href="https://ouster.com/">ouster</a>사에서 제공하는 sample data를 이용한다 <br /></p>
+
+<h2 id="샘플데이터-재생하기">샘플데이터 재생하기</h2>
+<h3 id="1-roscore-실행">1. roscore 실행</h3>
+
+<p>roscore를 실행해주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roscore
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>(사진) <br /></p>
+
+<p><img src="/assets/img/ros/01.png" alt="" /></p>
+
+<h3 id="2-rosbag-실행">2. rosbag 실행</h3>
+
+<p>다른 터미널에서 rosbag 파일을 재생해준다 <br />
+<code class="language-plaintext highlighter-rouge">-l</code> 옵션은 무한 재생하겠다는 뜻이다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rosbag play OS1-64_city3.bag <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>(사진) <br /></p>
+
+<p><img src="/assets/img/ros/02.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>rviz에 띄우기에 앞서서 <strong>2가지 확인</strong>이 필요하다 <br /></p>
+
+<ol>
+  <li>저장된 데이터의 <strong>토픽 이름</strong>이 무엇인지</li>
+  <li>저장된 데이터의 <strong>frame_id</strong>가 무엇인지</li>
+</ol>
+
+<h4 id="토픽이름-확인">토픽이름 확인</h4>
+
+<p>아래 명령어로 현재 ros 통신 안에 있는 토픽 이름을 모두 확인할 수 있다 <br />
+<code class="language-plaintext highlighter-rouge">-v</code> 옵션은 publisher랑 subscriber랑 분리해서 볼 수 있다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rostopic list <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="frame_id-확인">frame_id 확인</h4>
+
+<p>위에서 토픽 이름을 확인한 결과<br />
+저장되어 있는 라이다 데이터는 sensor_msgs/PointCloud2 형식이고, 이름은 <strong>/os1_cloud_node/points</strong>임을 확인할 수 있다 <br />
+따라서 아래쪽의 명령어 <code class="language-plaintext highlighter-rouge">echo</code>를 입력하게 되면 라이다 데이터를 터미널에 모두 출력하는데 이 때 <code class="language-plaintext highlighter-rouge">grep frame_id</code>라고 하면 frame_id를 포함하는 것만 출력해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rostopic <span class="nb">echo</span> /os1_cloud_node/points | <span class="nb">grep </span>frame_id
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>(사진) <br /></p>
+
+<p><img src="/assets/img/ros/04.png" alt="" /></p>
+
+<h3 id="3-rviz-실행">3. rviz 실행</h3>
+
+:ET

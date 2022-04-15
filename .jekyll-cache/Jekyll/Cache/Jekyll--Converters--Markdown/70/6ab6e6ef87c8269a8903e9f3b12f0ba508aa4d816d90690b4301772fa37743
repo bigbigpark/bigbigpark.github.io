@@ -1,0 +1,34 @@
+I"�<p>How to visualize PointCloud2 on rviz <br /></p>
+
+<p>How to play bag file using rosbag <br /></p>
+
+<p><br /></p>
+
+<p>rosbag 파일을 play하면서 rviz에 시각화 하는 것을 정리한다 <br />
+오늘 재생할 파일은 <a href="https://ouster.com/">ouster</a>사에서 제공하는 sample data를 이용한다 <br /></p>
+
+<h2 id="샘플데이터-재생하기">샘플데이터 재생하기</h2>
+<h3 id="1-roscore-실행">1. roscore 실행</h3>
+
+<p>roscore를 실행해주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roscore
+</code></pre></div></div>
+
+<p>(사진)
+<img src="/assets/img/ros/01.png" alt="" /></p>
+
+<h3 id="2-rosbag-실행">2. rosbag 실행</h3>
+
+<p>다른 터미널에서 rosbag 파일을 재생해준다 <br />
+<code class="language-plaintext highlighter-rouge">-l</code> 옵션은 무한 재생하겠다는 뜻이다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rosbag play OS1-64_city3.bag <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p>(사진)
+<img src="/assets/img/ros/02.png" alt="" /></p>
+
+<h3 id="3-rviz-실행">3. rviz 실행</h3>
+
+:ET
