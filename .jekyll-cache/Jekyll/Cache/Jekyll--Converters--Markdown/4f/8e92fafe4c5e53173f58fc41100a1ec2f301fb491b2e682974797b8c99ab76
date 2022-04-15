@@ -1,0 +1,11 @@
+I"�<p><strong>ros::spin()</strong>과 <strong>ros::spinOnce</strong>의 차이점에 대해서 정리한다 <br /></p>
+
+<p>ros 통신에서는 기본적으로 message가 토픽 형식으로 subscriber에 수신이 될 경우 그것을 <strong>큐(queue)</strong>에 저장한다 <br />
+보통 수신받는 곳에서는 spin() 메소드를 이용하여 큐에 있는 메세지를 처리하도록 구성이 되어 있다 <br />
+이 때 <strong>spin</strong>, <strong>spinOnce</strong> 모두 토픽을 subscribe할 때 해당 callback 함수를 실행시키는 역할을 수행한다 <br /></p>
+
+<h2 id="차이점">차이점</h2>
+
+<p>무엇이 다른가? <br /></p>
+
+:ET

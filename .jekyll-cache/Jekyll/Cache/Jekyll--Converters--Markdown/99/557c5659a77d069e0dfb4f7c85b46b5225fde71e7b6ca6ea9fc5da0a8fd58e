@@ -1,0 +1,60 @@
+I"=<p><strong>ros::spin()</strong>과 <strong>ros::spinOnce</strong>의 차이점에 대해서 정리한다 <br /></p>
+
+<p>게시글 끝에 간단한 코드 예제를 보면서 이해를 돕자! <br /></p>
+
+<p><br /></p>
+
+<p>ros 통신에서는 기본적으로 message가 토픽 형식으로 subscriber에 수신이 될 경우 그것을 <strong>큐(queue)</strong>에 저장한다 <br /></p>
+
+<p><br /></p>
+
+<p>보통 수신측에서 spin() 메소드를 이용하여 큐에 있는 메세지를 처리하도록 구성이 되어 있다 <br />
+이 때 <strong>spin</strong>, <strong>spinOnce</strong> 모두 토픽을 subscribe할 때 해당 callback 함수를 실행시키는 역할을 수행한다 <br /></p>
+
+<h2 id="차이점">차이점</h2>
+
+<p>무엇이 다른가? <br /></p>
+
+<h3 id="rosspin">ros::spin()</h3>
+
+<p>아주 쉽게 말해서 ros::spin()은 일종의 <strong>무한 루프</strong>이다 <br />
+즉, 이 함수가 호출되기 이전에 선언된 모든 callback 함수를 모두 실행하고 있다고 생각하면 된다 <br /></p>
+
+<p><br /></p>
+
+<p>이 경우 별도의 <strong>while</strong>문을 사용하지 않아도 된다 <br />
+무한루프이므로 ros::spin() 이후에 선언된 문장들은 별도의 종료 프로세스가 있기 전까지 실행되지 않으니 주의하자 <br /></p>
+
+<p><br /></p>
+
+<h3 id="rosspinonce">ros::spinOnce</h3>
+
+<p>경험상 ros::spin()에 비해 정말 유연하고 자주 사용되는 방법인 것 같다 <br />
+<strong>ros::spinOnce()</strong>라는 이름에서도 느껴지듯 <strong>한번 돈다</strong>이런 뉘앙스다 <br /></p>
+
+<p>이는 현재까지 요청된 모든 callback 함수를 호출하고 callback 함수에 들어갔다가 바로 다음 줄의 명렁어로 넘어간다 <br />
+따라서 이 때 필요한 것은 <strong>반복문</strong>의 구조와 <strong>그 주기</strong>를 필요로 한다 <br /></p>
+
+<blockquote>
+  <p>주기는 ros::Rate() 메소드를 이용해서 정의한다 <br /></p>
+</blockquote>
+
+<p>특히 센서 데이터나 현재 상태를 정해진 주기(e.g. 100Hz)로 업데이트 시켜야할 때 자주 사용된다 <br /></p>
+
+<h2 id="코드-예제">코드 예제</h2>
+
+<h3 id="rosspin-1">ros::spin()</h3>
+
+<p>chatcallback()이라는 콜백함수를 루프 주기 없이 계속 실행하겠다는 뜻이다 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"listener"</span><span class="p">);</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">"chat"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">chatcallback</span><span class="p">);</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
