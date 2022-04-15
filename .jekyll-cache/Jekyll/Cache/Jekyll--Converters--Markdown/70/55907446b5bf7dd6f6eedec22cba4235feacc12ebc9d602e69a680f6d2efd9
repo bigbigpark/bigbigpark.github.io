@@ -1,8 +1,17 @@
-I"�<p>Could not get lock /var/lib/dpkg/lock-frontend - open (11 resource temporarily unavailable)</p>
+I"<p>sudo apt update 에러 해결! <br /></p>
 
 <p><br /></p>
 
-<p><code class="language-plaintext highlighter-rouge">Take it EAZY</code></p>
+<p>가끔 패키지 업데이트를 수행하다가 아래와 같은 에러 메세지를 보게 된다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not get lock /var/lib/dpkg/lock-frontend - open <span class="o">(</span>11 resource temporarily unavailable<span class="o">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>그럴 때는 아래와 같이 명령어를 입력해준 후 해결하자 <br /></p>
+
+<h2 id="solve">Solve</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>killall apt apt-get
 </code></pre></div></div>
