@@ -1,18 +1,11 @@
 # main links
 main:
-  # - title: "About"
-  #   url: /404/
   - title: "CV"
     url: /CV-seongchang park.pdf
   # - title: "윤동주"
   #   url: /categories/윤동주/
-  # - title: "Category"
-  #   url: /categories/
-  # - title: "Tags"
-  #   url: /tags/
-  # - title: "Sitemap"
-  #   url: /sitemap/
 
+# doc links
 # docs:
 #   - title: 📂 C++ 프로그래밍
 #     children:
@@ -20,45 +13,3 @@ main:
 #         url: /categories/cpp
 #       - title: "Useful Code"
 #         url: /categories/cpp_useful
-
-#   - title: 📂 Python 프로그래밍
-#     children:
-#       # - title: "문법 기초"
-#       #   url: /categories/python
-#       - title: "Useful Code"
-#         url: /categories/python_useful
-
-#   - title: 📂 Point Cloud
-#     children:
-#       - title: "PCL 튜토리얼"
-#         url: /categories/pcl
-#       # - title: "Useful Code"
-#       #   url: /categories/pcl_useful
-
-#   - title: 📂 ROS 프로그래밍
-#     children:
-#       - title: "문법 기초"
-#         url: /categories/ros
-#       - title: "Useful Code"
-#         url: /categories/ros_useful
-
-#   - title: 📂 스터디/이론
-#     children:
-#       - title: "선형대수학"
-#         url: /categories/linalg
-#       - title: "로봇공학"
-#         url: /categories/robotics
-
-#   - title: 📂 리눅스
-#     children:
-#       - title: "기초 지식"
-#         url: /categories/linux
-
-#   - title: 📂 ETC
-#     children:
-#       - title: "에러 코드"
-#         url: /categories/error
-#       - title: "설치 방법 정리"
-#         url: /categories/install
-#       - title: "latex 문법 정리"
-#         url: /categories/latex
