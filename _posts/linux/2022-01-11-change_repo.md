@@ -15,7 +15,10 @@ tags: [우분투 저장소, repository, change, kakao, mirror, 저장소, linux,
 
 <br/>
 
+## 왜 필요한가? 
+
 리눅스를 처음 설치하고 sudo apt update 속도가 엄청 느린경우가 있다 <br/>
+따라서 저장소를 변경하는 이유는 바이너리 패키지에 접근하는 속도를 높이기 위해서다 <br/>
 아마 디폴트 값으로 kr.archive.ubuntu.com으로 연결되어 있는데, 빠른 한국 서버가 있으니 거기로 변경해주자 <br/>
 
 <br/>
