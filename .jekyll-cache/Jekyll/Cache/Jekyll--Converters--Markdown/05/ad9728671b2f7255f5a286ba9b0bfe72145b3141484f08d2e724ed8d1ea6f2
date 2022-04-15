@@ -1,0 +1,31 @@
+I"�<p>우분투, 리눅스 환경에서 화면 녹화하는 방법을 알아보자 <br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">화면 녹화</code>에는 여러가지 툴이 있지만<br />
+통상적으로 많이 사용하는 <strong>simplescreen recorder</strong> 설치 방법을 정리한다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="설치">설치</h2>
+
+<p>아래 명령어를 터미널에 입력한다<br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>simplescreenrecorder
+</code></pre></div></div>
+
+<h2 id="실행">실행</h2>
+
+<p>아래 두가지 방법 중 편한 방법으로 실행하면 된다 <br /></p>
+
+<ul>
+  <li>터미널 창에 <strong>simplecreenrecorder</strong> 입력하기
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>simplescreenrecorder
+</code></pre></div>    </div>
+  </li>
+  <li>윈도우 누르고 simplescreenrecorder 검색해서 실행하기
+<img src="/assets/img/install/2022-04-15/01.png" alt="" /></li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="프로그램-설명">프로그램 설명</h2>
+:ET

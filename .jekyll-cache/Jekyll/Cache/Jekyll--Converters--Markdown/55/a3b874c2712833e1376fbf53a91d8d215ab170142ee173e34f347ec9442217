@@ -1,0 +1,70 @@
+I"�<p>우분투, 리눅스 환경에서 화면 녹화하는 방법을 알아보자 <br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">화면 녹화</code>에는 여러가지 툴이 있지만<br />
+통상적으로 많이 사용하는 <strong>simplescreen recorder</strong> 설치 방법을 정리한다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="설치">설치</h2>
+
+<p>아래 명령어를 터미널에 입력한다<br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>simplescreenrecorder
+</code></pre></div></div>
+
+<h2 id="실행">실행</h2>
+
+<p>아래 두가지 방법 중 편한 방법으로 실행하면 된다 <br /></p>
+
+<ul>
+  <li>터미널 창에 <strong>simplecreenrecorder</strong> 입력하기
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>simplescreenrecorder
+</code></pre></div>    </div>
+  </li>
+  <li>윈도우 누르고 simplescreenrecorder 검색해서 실행하기
+<img src="/assets/img/install/2022-04-15/01.png" alt="" /></li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="프로그램-설명">프로그램 설명</h2>
+
+<h3 id="첫-화면">첫 화면</h3>
+
+<p>처음 실행했을 때 화면이다 <br />
+다음 단계를 위해 <strong>Continue</strong>를 눌러주자 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/02.png" alt="" /></p>
+
+<h3 id="video-input-audio-input">Video input/ Audio input</h3>
+
+<p>다음 페이지를 보면 <code class="language-plaintext highlighter-rouge">Video input</code>과 <code class="language-plaintext highlighter-rouge">Audio input</code>이 나눠져 있다 <br /></p>
+
+<p>Video input에서는 (모니터가 여러대일 경우) 녹화할 모니터를 선택할 수 있고, <br />
+전체화면, 고정된 사각형(조절 가능) 혹은 마우스 커서를 따라 녹화를 할지 설정 가능하다 <br />
+바로 밑에 있는 <strong>Frame rate</strong>은 동영상 프레임을 뜻한다 <br />
+이 값이 높을수록 영상이 부드럽지만 용량이 큰 동영상이 녹화될 수 있다 <br />
+경우에 따라서 오디오를 녹화하지 않을 수도 있다 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/03.png" alt="" /></p>
+
+<h3 id="녹화-경로-지정">녹화 경로 지정</h3>
+
+<p>녹화할 파일을 저장할 경로를 지정하는 부분이다 <br />
+컨테이너는 <strong>MP4</strong>로 해준다, 일반적인 동영상 포맷의 확장자다!<br />
+아래쪽 <strong>Codec</strong> 부분이 좀 중요한데.. <strong>H.264</strong>를 통상적으로 많이 사용한다 <br />
+이 코덱 부분을 잘못 건드리게 되면 동영상이 재생이 안 되거나 powerpoint에 삽입도 안 되는 불상사가 생기니 유의해서 설정하자 <br /></p>
+
+<p><img src="/assets/img/install/2022-04-15/04.png" alt="" /></p>
+
+<h2 id="녹화-시작">녹화 시작</h2>
+
+<p>맨 위쪽에 Start recording을 누르면 녹화가 시작된다 <br />
+이렇게 버튼을 눌러도 되고 <strong>hotkey(단축키)</strong>를 설정하여 녹화하여도 된다 <br />
+나는 <strong>Ctrl+Shift+R</strong>을 단축키로 설정하여서 녹화를 하는 편이다 <br />
+한번 누르면 녹화가 시작되고, 한번더 누르면 녹화가 중단된다 <br /></p>
+
+<p><br /></p>
+
+<p><strong>[중요]</strong> 이 때 녹화는 중단되는 것이지, 저장되는 것이 아니다 !!<br /></p>
+:ET
