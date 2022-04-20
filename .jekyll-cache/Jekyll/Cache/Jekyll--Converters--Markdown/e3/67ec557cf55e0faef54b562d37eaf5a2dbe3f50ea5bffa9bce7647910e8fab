@@ -1,0 +1,7 @@
+I"�<p>아주 간단한 ros publisher와 subscriber 를 만들어보자!<br /></p>
+
+<h2 id="rospy-설명">rospy 설명</h2>
+
+<p>rospy는 다른 C++로된 패키지와는 달리 <code class="language-plaintext highlighter-rouge">CMakeList.txt</code>나 <code class="language-plaintext highlighter-rouge">package.xml</code>을 작성하지 않아도 어느 경로에서든 ROS 라이브러리를 include 할 수 있고, 사용할 수 있다 <br /></p>
+
+:ET

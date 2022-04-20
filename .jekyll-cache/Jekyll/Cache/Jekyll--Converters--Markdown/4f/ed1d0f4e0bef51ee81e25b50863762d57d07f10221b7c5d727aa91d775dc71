@@ -1,0 +1,78 @@
+I"}<p>아주 간단한 ros publisher와 subscriber 를 만들어보자!<br /></p>
+
+<h2 id="rospy-설명">rospy 설명</h2>
+
+<p><strong>rospy</strong>는 다른 C++로된 패키지와는 달리 <code class="language-plaintext highlighter-rouge">CMakeList.txt</code>나 <code class="language-plaintext highlighter-rouge">package.xml</code>을 작성하지 않아도 어느 경로에서든 ROS 라이브러리를 include 할 수 있고, 사용할 수 있다 <br /></p>
+
+<p>사용하기 전에 환경변수를 설정해주자<br /></p>
+
+<h2 id="bash파일-수정">bash파일 수정</h2>
+
+<p>gedit으로 bash파일을 오픈해준다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+</code></pre></div></div>
+
+<p>아래 줄을 적고 저장 후 창을 닫는다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /opt/ros/melodic/setup.bash
+</code></pre></div></div>
+
+<p>아래 명령어로 수정된 bash파일을 적용해준다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="simple-ros-publishersubscriber">Simple ROS Publisher/Subscriber</h2>
+
+<h3 id="1-폴더-생성">1. 폴더 생성</h3>
+
+<p>파일을 만들 폴더를 하나 만들고 그 경로로 이동하자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> ~/rospy_tutorial
+<span class="nv">$ </span><span class="nb">cd</span> ~/rospy_tutorial
+</code></pre></div></div>
+
+<h3 id="2-publisherpy-파일-생성">2. Publisher.py 파일 생성</h3>
+
+<p>publisher를 만들기 위하여 아래와 같이 파일을 만들어준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit pub.py
+</code></pre></div></div>
+
+<h3 id="3-전체적인-코드">3. 전체적인 코드</h3>
+
+<p>전체적인 코드를 보고 하나하나 나눠서 보자 <br /></p>
+
+<p>In <code class="language-plaintext highlighter-rouge">pub.py</code>, <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /usr/bin/env python</span>
+import rospy
+from std_msgs.msg import String
+
+rospy.init_node<span class="o">(</span><span class="s1">'topic_pub_node'</span><span class="o">)</span>
+
+pub <span class="o">=</span> rospy.Publisher<span class="o">(</span><span class="s1">'bigbigpark'</span>, String, <span class="nv">queue_size</span><span class="o">=</span>1<span class="o">)</span>
+msg <span class="o">=</span> String<span class="o">()</span>
+r <span class="o">=</span> rospy.Rate<span class="o">(</span>1<span class="o">)</span>
+
+<span class="k">if </span>__name__ <span class="o">==</span> <span class="s1">'__main__'</span>:
+  msg <span class="o">=</span> <span class="s1">'Hi! My name is bigbigpark'</span>
+  
+  <span class="k">while </span>not rospy.is_shutdown<span class="o">()</span>:
+    pub.publish<span class="o">(</span>msg<span class="o">)</span>
+    r.sleep<span class="o">()</span>
+</code></pre></div></div>
+
+<p>여기까지만 보고도 코드의 구조가 이해되는 사람은 바로 5번으로 넘어가자 <br /></p>
+
+<h3 id="4-코드-나눠서-보기">4. 코드 나눠서 보기</h3>
+
+<p>파이썬 파일을 보다 보면 다음과 같은 문장이 제일 첫 줄에 적혀 있는 것을 볼 수 있다 <br />
+<strong>#!</strong>라고 시작하는 저 문장을 셔뱅(shebang)이라고 부른다 <br />
+운영체제(특히 유닉스 계열)에서는 코드가 짜여진 이 스크립트가 어떤 문법으로 짜여진 코드인지 알지 못한다 <br />
+따라서 어떤 문법으로 짜여져 있는지(interpreting) 정보를 주는 것이다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/env python
+</span></code></pre></div></div>
+:ET
