@@ -9,11 +9,11 @@ tags: [ros, python, rospy, publisher, subscriber]
 
 아주 간단한 ros subscriber 만들어보자!<br/>
 
-바로 직전 포스트인 ros publisher에 이은 글이니 잘 동작하지 않으면 직전 [포스트](https://bigbigpark.github.io/ros/rospy-tutorial/)를 참고하자 <br/>
+바로 직전 포스트인 ros subscriber 이은 글이니 잘 동작하지 않으면 직전 [포스트](https://bigbigpark.github.io/ros/rospy-tutorial/)를 참고하자 <br/>
 
 <br/>
 
-## Simple ROS Publisher/Subscriber
+## Simple ROS Subscriber
 
 ### 1. 폴더 생성
 
@@ -24,37 +24,34 @@ $ mkdir ~/rospy_tutorial
 $ cd ~/rospy_tutorial
 ~~~
 
-### 2. Publisher.py 파일 생성
+### 2. Subscriber.py 파일 생성
 
-publisher를 만들기 위하여 아래와 같이 파일을 만들어준다 <br/>
+Sublisher를 만들기 위하여 아래와 같이 파일을 만들어준다 <br/>
 
 ~~~bash
-$ gedit pub.py
+$ gedit sub.py
 ~~~
 
 ### 3. 전체적인 코드
 
 전체적인 코드를 보고 하나하나 나눠서 보자 <br/>
 
-In `pub.py`, <br/>
+In `sub.py`, <br/>
 
 ~~~bash
 #! /usr/bin/env python
+
 import rospy
 from std_msgs.msg import String
-
-rospy.init_node('topic_pub_node')
-
-pub = rospy.Publisher('bigbigpark', String, queue_size=1)
-msg = String()
-r = rospy.Rate(1)
-
-if __name__ == '__main__':
-  msg = 'Hi! My name is bigbigpark'
   
-  while not rospy.is_shutdown():
-    pub.publish(msg)
-    r.sleep()
+def msg_callback(msg):
+  print(msg)
+  
+if __name__ == '__main__':
+  rospy.init_node('topic_sub_node')
+  sub = rospy.Subscriber('/bigbigpark', String, msg_callback, queue_size=1)
+  
+  rospy.spin()
 ~~~
 
 여기까지만 보고도 코드의 구조가 이해되는 사람은 바로 5번으로 넘어가자 <br/>
@@ -79,55 +76,35 @@ from std_msgs.msg import String
 
 <br/>
 
-rospy에 관한 코드를 작성하기 전에 제일 먼저 수행되어야하는 `init_node`이다 <br/>
-이렇게 선언하면 `topic_pub_node`라는 이름의 노드를 사용하겠다는 뜻이다 <br/>
+callback은 다시 부른다? 이런 뉘앙스인데 말 그대로 특정 이벤트가 들어왔을 때 호출되는 함수 정도로만 알고 있자 <br/>
+함수의 뜻은 callback 함수가 호출되었을 때 수신된 메세지를 print하겠다는 뜻이다 <br/>
 
 ~~~python
-rospy.init_node('topic_pub_node')
+def msg_callback(msg):
+  print(msg)
 ~~~
 
 <br/>
 
-Publisher를 선언해준다 <br/>
-안에 들어가는 인자는 아래쪽에 나와있는 순서대로 **토픽명, 타입, 큐 사이즈** 이다<br/>
-다시 말해서 `bigbigpark`이라는 이름의 String 타입의 토픽을 publish하겠다는 것이고, 그 때 큐 사이즈는 1로 하겠다는 뜻이다 <br/>
+노드를 선언해준 후 Subscriber를 선언해준다 <br/>
+안에 들어가는 인자는 아래쪽에 나와있는 순서대로 **토픽명, 타입, 콜백함수, 큐 사이즈** 이다<br/>
+다시 말해서 `bigbigpark`이라는 이름의 `String` 타입의 토픽을 subscribe하겠다는 것이고, 그 때 큐 사이즈는 1로 하겠다는 뜻이다 <br/>
+특히 토픽이 수신될 때마다 `msg_callback`이라는 `콜백함수`를 실행하겠다는 의미다 <br/>
 이 글에서는 queue_size에 대한 자세한 내용은 다루지 않겠다 <br/>
 
 ~~~python
-pub = rospy.Publisher('bigbigpark', String, queue_size=1)
+rospy.init_node('topic_sub_node')
+sub = rospy.Subscriber('/bigbigpark', String, msg_callback, queue_size=1)
 ~~~
 
 <br/>
 
-Publisher를 선언했으면 거기 안에 담아줄 메세지를 선언해줘야 한다 <br/>
-이번 예제에서는 `String` 객체를 이용할 것이기 때문에 아래쪽과 같이 선언해준다 <br/>
-참고로 String 객체에 어떤 정보가 담겨 있느냐는 [std_msgs/String Message](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/String.html) 여기서도 확인할 수 있고, 터미널 창에서 `rosmsg info std_msgs/String` 으로도 확인 가능하다 <br/>
-추가로 메세지 발행 주기를 설정할 수 있는데 `1 Hz`로 설정해준다
+`rospy.spin()`은 현재까지 선언된 모든 subscriber에 대한 callback 함수를 동작시키겠다는 의미다 <br/>
+이 부분은 무한루프로 동작을 하니 이 선언 아래쪽에 있는 코드는 동작을 하지 않는다 <br/>
 
 ~~~python
-msg = String()
-r = rospy.Rate(1)
+rospy.spin()
 ~~~
-
-<br/>
-
-main문은 간단하게 작성을 했고 다음과 같이 동작한다 <br/>
-1. msg에 임의의 문자열을 저장 <br/>
-2. msg를 publish <br/>
-3. 1 Hz 마다 루프가 동작
-
-`rospy.is_shutdown()`은 노드 내부에서 예외가 떠서 비정상적으로 종료가 되거나 사용자가 `Ctrl+C`를 눌러서 종료할 수 있음을 의미한다 <br/>
-
-~~~python
-if __name__ == '__main__':
-  msg = 'Hi! My name is bigbigpark'
-  
-  while not rospy.is_shutdown():
-    pub.publish(msg)
-    r.sleep()
-~~~
-
-<br/>
 
 ### 5. 실행하기
 
@@ -136,30 +113,13 @@ if __name__ == '__main__':
 ~~~bash
 $ roscore
 $ python pub.py
+$ python sub.py
 ~~~
 
 <br/>
 
 ### 6. 결과
 
-아래 명령어로 현재 발행중인 topic을 볼 수 있다 <br/>
+성공적으로 수신됨을 확인했다 <br/>
 
-~~~bash
-$ rostopic list
-~~~
-
-아래쪽과 같이 `/bigbigpark`이라는 토픽명이 출력된다 <br/>
-
-~~~
-/bigbigpark
-/rosout
-/rosout_agg
-~~~
-
-`echo`명령어로 볼 때도 잘 됨을 확인할 수 있다 <br/>
-
-~~~bash
-$ rostopic echo /bigbigpark
-~~~
-
-![](/assets/img/ros/2022-04-20/01.png)
+![](/assets/img/ros/2022-04-20/02.png)

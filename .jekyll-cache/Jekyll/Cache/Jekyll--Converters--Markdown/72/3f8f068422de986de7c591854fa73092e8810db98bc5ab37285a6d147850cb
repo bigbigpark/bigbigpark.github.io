@@ -1,0 +1,146 @@
+I"#<p>아주 간단한 ros subscriber 만들어보자!<br /></p>
+
+<p>바로 직전 포스트인 ros subscriber 이은 글이니 잘 동작하지 않으면 직전 <a href="https://bigbigpark.github.io/ros/rospy-tutorial/">포스트</a>를 참고하자 <br /></p>
+
+<p><br /></p>
+
+<h2 id="simple-ros-subscriber">Simple ROS Subscriber</h2>
+
+<h3 id="1-폴더-생성">1. 폴더 생성</h3>
+
+<p>파일을 만들 폴더를 하나 만들고 그 경로로 이동하자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> ~/rospy_tutorial
+<span class="nv">$ </span><span class="nb">cd</span> ~/rospy_tutorial
+</code></pre></div></div>
+
+<h3 id="2-subscriberpy-파일-생성">2. Subscriber.py 파일 생성</h3>
+
+<p>Sublisher를 만들기 위하여 아래와 같이 파일을 만들어준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit sub.py
+</code></pre></div></div>
+
+<h3 id="3-전체적인-코드">3. 전체적인 코드</h3>
+
+<p>전체적인 코드를 보고 하나하나 나눠서 보자 <br /></p>
+
+<p>In <code class="language-plaintext highlighter-rouge">pub.py</code>, <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /usr/bin/env python</span>
+import rospy
+from std_msgs.msg import String
+
+rospy.init_node<span class="o">(</span><span class="s1">'topic_pub_node'</span><span class="o">)</span>
+
+pub <span class="o">=</span> rospy.Publisher<span class="o">(</span><span class="s1">'bigbigpark'</span>, String, <span class="nv">queue_size</span><span class="o">=</span>1<span class="o">)</span>
+msg <span class="o">=</span> String<span class="o">()</span>
+r <span class="o">=</span> rospy.Rate<span class="o">(</span>1<span class="o">)</span>
+
+<span class="k">if </span>__name__ <span class="o">==</span> <span class="s1">'__main__'</span>:
+  msg <span class="o">=</span> <span class="s1">'Hi! My name is bigbigpark'</span>
+  
+  <span class="k">while </span>not rospy.is_shutdown<span class="o">()</span>:
+    pub.publish<span class="o">(</span>msg<span class="o">)</span>
+    r.sleep<span class="o">()</span>
+</code></pre></div></div>
+
+<p>여기까지만 보고도 코드의 구조가 이해되는 사람은 바로 5번으로 넘어가자 <br /></p>
+
+<h3 id="4-코드-나눠서-보기">4. 코드 나눠서 보기</h3>
+
+<p>저 문장을 셔뱅이라고 부르는데 자세한 설명은 <a href="">여기</a>를 참조하자 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/env python
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">rospy</code> 라이브러리를 불러온다 <br />
+<code class="language-plaintext highlighter-rouge">std_msgs</code>라는 메세지 패키지에서 <code class="language-plaintext highlighter-rouge">String</code>이라는 헤더 파일을 불러온다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>rospy에 관한 코드를 작성하기 전에 제일 먼저 수행되어야하는 <code class="language-plaintext highlighter-rouge">init_node</code>이다 <br />
+이렇게 선언하면 <code class="language-plaintext highlighter-rouge">topic_pub_node</code>라는 이름의 노드를 사용하겠다는 뜻이다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'topic_pub_node'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>Publisher를 선언해준다 <br />
+안에 들어가는 인자는 아래쪽에 나와있는 순서대로 <strong>토픽명, 타입, 큐 사이즈</strong> 이다<br />
+다시 말해서 <code class="language-plaintext highlighter-rouge">bigbigpark</code>이라는 이름의 String 타입의 토픽을 publish하겠다는 것이고, 그 때 큐 사이즈는 1로 하겠다는 뜻이다 <br />
+이 글에서는 queue_size에 대한 자세한 내용은 다루지 않겠다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'bigbigpark'</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>Publisher를 선언했으면 거기 안에 담아줄 메세지를 선언해줘야 한다 <br />
+이번 예제에서는 <code class="language-plaintext highlighter-rouge">String</code> 객체를 이용할 것이기 때문에 아래쪽과 같이 선언해준다 <br />
+참고로 String 객체에 어떤 정보가 담겨 있느냐는 <a href="http://docs.ros.org/en/noetic/api/std_msgs/html/msg/String.html">std_msgs/String Message</a> 여기서도 확인할 수 있고, 터미널 창에서 <code class="language-plaintext highlighter-rouge">rosmsg info std_msgs/String</code> 으로도 확인 가능하다 <br />
+추가로 메세지 발행 주기를 설정할 수 있는데 <code class="language-plaintext highlighter-rouge">1 Hz</code>로 설정해준다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>main문은 간단하게 작성을 했고 다음과 같이 동작한다 <br /></p>
+<ol>
+  <li>msg에 임의의 문자열을 저장 <br /></li>
+  <li>msg를 publish <br /></li>
+  <li>1 Hz 마다 루프가 동작</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">rospy.is_shutdown()</code>은 노드 내부에서 예외가 떠서 비정상적으로 종료가 되거나 사용자가 <code class="language-plaintext highlighter-rouge">Ctrl+C</code>를 눌러서 종료할 수 있음을 의미한다 <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+  <span class="n">msg</span> <span class="o">=</span> <span class="s">'Hi! My name is bigbigpark'</span>
+  
+  <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="5-실행하기">5. 실행하기</h3>
+
+<p>파일은 저장하고 터미널 창에서 다음과 같이 실행해보자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roscore
+<span class="nv">$ </span>python pub.py
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="6-결과">6. 결과</h3>
+
+<p>아래 명령어로 현재 발행중인 topic을 볼 수 있다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rostopic list
+</code></pre></div></div>
+
+<p>아래쪽과 같이 <code class="language-plaintext highlighter-rouge">/bigbigpark</code>이라는 토픽명이 출력된다 <br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bigbigpark
+/rosout
+/rosout_agg
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">echo</code>명령어로 볼 때도 잘 됨을 확인할 수 있다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rostopic <span class="nb">echo</span> /bigbigpark
+</code></pre></div></div>
+
+<p><img src="/assets/img/ros/2022-04-20/01.png" alt="" /></p>
+:ET
