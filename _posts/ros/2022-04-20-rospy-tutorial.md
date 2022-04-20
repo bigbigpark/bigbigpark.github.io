@@ -35,7 +35,7 @@ $ source ~/.bashrc
 
 <br/>
 
-## Simple ROS Publisher/Subscriber
+## Simple ROS Publisher
 
 ### 1. 폴더 생성
 
