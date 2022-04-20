@@ -1,5 +1,5 @@
 ---
-title: "[ROS/Python] 간단한 Publisher와 Subscriber"
+title: "[ROS/Python] 간단한 Publisher"
 
 toc: true
 toc_sticky: true
@@ -7,7 +7,7 @@ category: ros
 tags: [ros, python, rospy, publisher, subscriber]
 ---
 
-아주 간단한 ros publisher와 subscriber 를 만들어보자!<br/>
+아주 간단한 ros publisher를 만들어보자!<br/>
 
 ## rospy 설명
 
@@ -148,3 +148,40 @@ if __name__ == '__main__':
     pub.publish(msg)
     r.sleep()
 ~~~
+
+<br/>
+
+## 5. 실행하기
+
+파일은 저장하고 터미널 창에서 다음과 같이 실행해보자 <br/>
+
+~~~bash
+$ roscore
+$ python pub.py
+~~~
+
+<br/>
+
+## 6. 결과
+
+아래 명령어로 현재 발행중인 topic을 볼 수 있다 <br/>
+
+~~~bash
+$ rostopic list
+~~~
+
+아래쪽과 같이 `/bigbigpark`이라는 토픽명이 출력된다 <br/>
+
+~~~
+/bigbigpark
+/rosout
+/rosout_agg
+~~~
+
+`echo`명령어로 볼 때도 잘 됨을 확인할 수 있다 <br/>
+
+~~~bash
+$ rostopic echo /bigbigpark
+~~~
+
+![](/assets/img/ros/2022-04-20/1)
