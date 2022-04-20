@@ -184,4 +184,4 @@ $ rostopic list
 $ rostopic echo /bigbigpark
 ~~~
 
-![](/assets/img/ros/2022-04-20/1)
+![](/assets/img/ros/2022-04-20/01.png)
