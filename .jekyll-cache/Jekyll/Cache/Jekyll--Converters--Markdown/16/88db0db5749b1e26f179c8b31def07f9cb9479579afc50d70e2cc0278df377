@@ -1,0 +1,74 @@
+I"�<p>리눅스 터미널에 칼라로 출력해보자!<br /></p>
+
+<h2 id="main-code">Main code</h2>
+
+<p>아래와 같이 코딩을 해보자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// test.cpp</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"A B C D E F G"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"가 나 다라 마 바 사"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"1 2 3 4 5 6 7"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="컴파일">컴파일</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>g++ <span class="nt">-o</span> <span class="nb">test </span>test.cpp
+</code></pre></div></div>
+
+<h3 id="실행">실행</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./test
+</code></pre></div></div>
+
+<h3 id="결과">결과</h3>
+
+<p><img src="/assets//img/cpp/2022-05-15/01.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>여기서 칼라로 출력해보자! <br />
+하는 방법은 간단하다 <br /></p>
+
+<h2 id="컬러로-출력하기">컬러로 출력하기</h2>
+
+<p>공통된 문장을 볼 수 있는데, <br />
+차이점은 봐서 알겠지만 30에서 37까지 숫자마다 컬러가 매핑되어 있다 <br />
+따라서 사용하고 싶은 색상을 사용하면 된다 <br /></p>
+
+<h3 id="소스코드">소스코드</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;30m"</span> <span class="o">&lt;&lt;</span> <span class="s">"black "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;31m"</span> <span class="o">&lt;&lt;</span> <span class="s">"red "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;32m"</span> <span class="o">&lt;&lt;</span> <span class="s">"green "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;33m"</span> <span class="o">&lt;&lt;</span> <span class="s">"yellow "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;34m"</span> <span class="o">&lt;&lt;</span> <span class="s">"blue "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;35m"</span> <span class="o">&lt;&lt;</span> <span class="s">"magenta "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;36m"</span> <span class="o">&lt;&lt;</span> <span class="s">"cyan "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[1;37m"</span> <span class="o">&lt;&lt;</span> <span class="s">"white "</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\033</span><span class="s">[0m"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="결과-1">결과</h3>
+
+<p><img src="/assets//img/cpp/2022-05-15/02.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="컬러-배치표">컬러 배치표</h3>
+
+<p>컬러 배치표는 아래 사진을 참고하자 <br /></p>
+
+<p><img src="/assets//img/cpp/2022-05-15/03.png" alt="" /></p>
+:ET
