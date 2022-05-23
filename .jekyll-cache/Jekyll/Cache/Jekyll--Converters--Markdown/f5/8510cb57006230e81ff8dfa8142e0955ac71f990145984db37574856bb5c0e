@@ -1,0 +1,69 @@
+I"�<p>OSQP C버전, Python버전을 설치해보자 ! <br /></p>
+
+<h2 id="python-버전">Python 버전</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone <span class="nt">--recurse-submodules</span> https://github.com/osqp/osqp-python
+<span class="nv">$ </span><span class="nb">cd </span>osqp-python
+<span class="nv">$ </span>python setup.py <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="c-버전-binary">C 버전 (Binary)</h2>
+
+<p>두 가지 패키지를 다운받아준다</p>
+
+<h3 id="1-download-osqp-cpp">1. Download OSQP-cpp</h3>
+
+<p>Git에서 패키지를 다운로드 해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/google/osqp-cpp.git
+</code></pre></div></div>
+
+<p>빌드 &amp; 설치 해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>build<span class="p">;</span> <span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="2-download-abseil-cpp">2. Download abseil-cpp</h3>
+
+<p>Git에서 패키지를 다운로드 해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/abseil/abseil-cpp.git
+</code></pre></div></div>
+
+<p>빌드 &amp; 설치 해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>build<span class="p">;</span> <span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<p>파이썬은 그냥 import 해서 사용하면 된다<br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">osqp</span>
+</code></pre></div></div>
+
+<p>CMakeLists.txt를 수정해주자</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Find OSQP library and headers</span>
+<span class="nb">find_package</span><span class="p">(</span>osqp REQUIRED<span class="p">)</span>
+
+<span class="c1"># Link the OSQP shared library</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>yourTarget PRIVATE osqp::osqp<span class="p">)</span>
+
+<span class="c1"># or...</span>
+
+<span class="c1"># Link the OSQP static library</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>yourTarget PRIVATE osqp::osqpstatic<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://osqp.org/docs/get_started/python.html">“Get started : Python”</a></li>
+</ul>
+:ET
