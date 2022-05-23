@@ -1,0 +1,28 @@
+I"z<p>Open3d 라이브러리를 설치해보자 <br /></p>
+
+<h2 id="clone-open3d">Clone Open3D</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/isl-org/Open3D
+</code></pre></div></div>
+
+<p>Dependencies를 설치하자 <br /></p>
+
+<h2 id="install-dependencies">Install dependencies</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>util/install_deps_ubuntu.sh
+</code></pre></div></div>
+
+<h2 id="config-and-build">Config and build</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make <span class="nt">-j</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://www.open3d.org/docs/release/compilation.html#install-dependencies">Open3d</a></li>
+</ul>
+:ET
