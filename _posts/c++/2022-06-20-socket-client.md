@@ -1,13 +1,15 @@
 ---
-title: "[C++] Socket server"
+title: "[C++] Socket client"
 
 toc: true
 toc_sticky: true
 category: cpp_useful
-tags: [ros, socket, server, client, communication]
+tags: [ros, socket, server, client, communication, linux, ubuntu]
 ---
 
 C++ 아니고 C로 소켓통신 작성하기! <br/>
+소켓통신 클라이언트 코드 짜기 <br/>
+
 
 ## 문제 정의
 
