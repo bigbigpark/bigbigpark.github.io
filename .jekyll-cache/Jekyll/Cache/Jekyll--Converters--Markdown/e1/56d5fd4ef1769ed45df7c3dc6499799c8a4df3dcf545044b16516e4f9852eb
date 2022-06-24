@@ -1,0 +1,26 @@
+I"<p>tf 정보를 브로드캐스팅 해보자! <br /></p>
+
+<h2 id="소스코드">소스코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;tf/transform_broadcaster.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="n">tf</span><span class="o">::</span><span class="n">TransformBroadcaster</span> <span class="n">br_</span><span class="p">;</span>
+  <span class="n">tf</span><span class="o">::</span><span class="n">Transform</span> <span class="n">transform</span><span class="p">;</span>
+  <span class="n">tf</span><span class="o">::</span><span class="n">Quaternion</span> <span class="n">q</span><span class="p">;</span>
+  <span class="n">transform</span><span class="p">.</span><span class="n">setOrigin</span><span class="p">(</span><span class="n">tf</span><span class="o">::</span><span class="n">Vector3</span><span class="p">(</span><span class="n">mid_x</span><span class="p">,</span> <span class="n">mid_y</span><span class="p">,</span> <span class="n">mid_z</span><span class="p">));</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">setW</span><span class="p">(</span><span class="n">mid_qw</span><span class="p">);</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">mid_qx</span><span class="p">);</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">setY</span><span class="p">(</span><span class="n">mid_qy</span><span class="p">);</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">setZ</span><span class="p">(</span><span class="n">mid_qz</span><span class="p">);</span>
+  <span class="n">transform</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+  <span class="n">br_</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">tf</span><span class="o">::</span><span class="n">StampedTransform</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">(),</span> <span class="s">"map"</span><span class="p">,</span> <span class="s">"base_link"</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://wiki.ros.org/tf/Tutorials/Writing%20a%20tf%20broadcaster%20%28C%2B%2B%29">Writing a tf broadcaster (C++)</a></li>
+</ul>
+:ET

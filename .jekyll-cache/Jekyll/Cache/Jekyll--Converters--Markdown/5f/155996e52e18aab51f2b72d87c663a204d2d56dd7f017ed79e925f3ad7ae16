@@ -1,0 +1,23 @@
+I"M<p>lz4에러를 해결해보자!</p>
+
+<h2 id="환경-및-원인">환경 및 원인</h2>
+
+<p>System: Ubuntu 18.04 <br />
+ROS: melodic <br />
+Reason: /usr/include/lz4.h conflict with /usr/include/flann/ext/lz4.h <br /></p>
+
+<p>다음 ROS Release(noetic)에서는 이런 문제가 해결된다고 한다<br />
+아래와 같이 터미널에 입력하면 현재 버전에서는 해결 가능하다고 한다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mv</span> /usr/include/flann/ext/lz4.h /usr/include/flann/ext/lz4.h.bak
+<span class="nb">sudo mv</span> /usr/include/flann/ext/lz4hc.h /usr/include/flann/ext/lz4.h.bak
+
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/include/lz4.h /usr/include/flann/ext/lz4.h
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/include/lz4hc.h /usr/include/flann/ext/lz4hc.h
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://github.com/ethz-asl/lidar_align/issues/16">Building error with catkin build</a></li>
+</ul>
+:ET

@@ -1,0 +1,7 @@
+I"«<p>~~~c++
+int dx =  abs(x1 - x0), sx = x0 &lt; x1 ? 1 : -1;
+int dy = -abs(y1 - y0), sy = y0 &lt; y1 ? 1 : -1;
+int err = dx + dy, e2;
+int xp = x0, yp = y0;
+int tx, ty;</p>
+:ET

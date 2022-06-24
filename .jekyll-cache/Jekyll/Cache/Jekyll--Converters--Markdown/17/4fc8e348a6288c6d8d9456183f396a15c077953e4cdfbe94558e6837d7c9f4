@@ -1,0 +1,136 @@
+I"=4<p>Basic code for the GPS test <br /></p>
+
+<h2 id="code">Code</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1">#from sensor_msgs.msg import Imu
+</span><span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatFix</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">PoseStamped</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">transform</span>
+<span class="c1">#from tf.transformations import euler_from_quaternion, quaternion_from_euler
+</span><span class="kn">import</span> <span class="nn">math</span>
+
+
+
+
+<span class="c1"># Definition of Projection
+# WGS84
+</span><span class="n">proj_WGS84</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s">'epsg:4326'</span><span class="p">)</span> <span class="c1"># WGS84 long, lat, GPS earth coordinate
+</span>
+<span class="s">'''
+*WGS84 경위도: GPS가 사용하는 좌표계
+EPSG:4326, EPSG:4166 (Korean 1995)
++proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs 
+
+*Bessel 1841 경위도: 한국과 일본에 잘 맞는 지역타원체를 사용한 좌표계
+EPSG:4004, EPSG:4162 (Korean 1985)
++proj=longlat +ellps=bessel +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43
+
+*GRS80 경위도: WGS84와 거의 유사
+EPSG:4019, EPSG:4737 (Korean 2000)
++proj=longlat +ellps=GRS80 +no_defs
+
+*Google Mercator: 구글지도/빙지도/야후지도/OSM 등 에서 사용중인 좌표계
+EPSG:3857(공식), EPSG:900913(통칭)
++proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs
+
+'''</span>
+
+<span class="c1"># UTM 52N
+</span><span class="n">proj_UTM52N</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s">'epsg:32651'</span><span class="p">)</span> <span class="c1"># UTM-K (Bassel)
+</span>
+
+<span class="s">'''
+*UTM52N (WGS84): 경도 120~126도 사이에서 사용
+EPSG:32652
++proj=utm +zone=52 +ellps=WGS84 +datum=WGS84 +units=m +no_defs 
+
+*UTM51N (WGS84): 경도 126~132도 사이에서 사용
+EPSG:32651
++proj=utm +zone=51 +ellps=WGS84 +datum=WGS84 +units=m +no_defs 
+'''</span>
+
+<span class="c1"># origin
+</span><span class="n">ori_x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ori_y</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">callback_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+  <span class="k">global</span> <span class="n">count</span><span class="p">,</span> <span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span>
+  <span class="k">global</span> <span class="n">path</span>
+  <span class="k">global</span> <span class="n">callback_cnt</span>
+  
+  <span class="n">callback_cnt</span> <span class="o">+=</span><span class="mi">1</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n\n</span><span class="s">  === Callback count : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">callback_cnt</span><span class="p">))</span>
+  
+  <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'----[GPS Data]'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' frame_id    : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' seq         : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">seq</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' status      : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">status</span><span class="p">.</span><span class="n">status</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    NO_FIX    = -1'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    FIX       =  0'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    SBAS_FIX  =  1'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    GBAS_FIX  =  2'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' service     : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">status</span><span class="p">.</span><span class="n">service</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    GPS       =  1'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    GLONASS   =  2'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    COMPASS   =  4'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'    GALILEO   =  8'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' latitude    : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">latitude</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' longitude   : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">longitude</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' altitude    : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">altitude</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' position_cov: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">position_covariance</span><span class="p">))</span>
+  
+  <span class="c1"># Lat Lon to Meter using pyproj
+</span>  <span class="n">utm_x</span><span class="p">,</span> <span class="n">utm_y</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">proj_WGS84</span><span class="p">,</span> <span class="n">proj_UTM52N</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">longitude</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">--- UTM'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">utm_x</span><span class="p">,</span> <span class="n">utm_y</span><span class="p">)</span>
+  
+<span class="c1">#  utm_x *= 10^6
+#  utm_y *= 10^6
+</span>  
+  <span class="c1"># Set origin
+</span>  <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ori_x</span> <span class="o">=</span> <span class="n">utm_x</span>
+    <span class="n">ori_y</span> <span class="o">=</span> <span class="n">utm_y</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">2</span>
+  
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">--- Origin'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">)</span>
+  
+  <span class="c1"># Curr position
+</span>  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">--- Curr position'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'  x  : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">((</span><span class="n">ori_x</span> <span class="o">-</span> <span class="n">utm_x</span><span class="p">)))</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'  y  : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">((</span><span class="n">ori_y</span> <span class="o">-</span> <span class="n">utm_y</span><span class="p">)))</span>
+  
+  <span class="c1"># Pose
+</span>  <span class="n">pose</span> <span class="o">=</span> <span class="n">PoseStamped</span><span class="p">()</span>
+  <span class="n">pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">'camera_init'</span>
+  
+  <span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">ori_x</span> <span class="o">-</span> <span class="n">utm_x</span>
+  <span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">ori_y</span> <span class="o">-</span> <span class="n">utm_y</span>
+  
+  <span class="n">path</span><span class="p">.</span><span class="n">poses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+  
+  <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+  
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'get_imu_data_node'</span><span class="p">)</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'gps_data'</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'gps_path'</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span>
+<span class="n">path</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">'camera_init'</span>
+<span class="n">path</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</code></pre></div></div>
+:ET

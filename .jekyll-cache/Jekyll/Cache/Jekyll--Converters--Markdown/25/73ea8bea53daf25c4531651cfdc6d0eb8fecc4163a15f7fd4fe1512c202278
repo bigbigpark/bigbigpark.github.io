@@ -1,0 +1,50 @@
+I"�
+<p><code class="language-plaintext highlighter-rouge">sensor_msgs/PointCloud2</code>에서 <code class="language-plaintext highlighter-rouge">sensor_msgs/LaserScan</code>로 변환하자 <br /></p>
+
+<h2 id="설명">설명</h2>
+
+<p>간단하다 <br />
+launch 파일 하나만 작성하면 됨! <br /></p>
+
+<h2 id="코드">코드</h2>
+
+<p>remap 하는 부분에서 <code class="language-plaintext highlighter-rouge">cloud_in</code>에 PointCloud2 토픽이름을 넣어주고, <br />
+<code class="language-plaintext highlighter-rouge">scan</code>부분에 publish될 토픽 이름을 넣어준다! <br /></p>
+
+<p>그 외에 <code class="language-plaintext highlighter-rouge">rosparam</code> 같은 경우 게시글 제일 하단 ros wiki 레퍼런스를 참조하여 수정해주자!</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;launch&gt;</span>
+  <span class="c">&lt;!-- Run pointcloud_to_laser node --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"pointcloud_to_laserscan"</span> <span class="na">type=</span><span class="s">"pointcloud_to_laserscan_node"</span> <span class="na">name=</span><span class="s">"pointcloud_to_laserscan"</span>  <span class="nt">&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"cloud_in"</span> <span class="na">to=</span><span class="s">"keypoints_cloud"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"scan"</span> <span class="na">to=</span><span class="s">"keypoints/scan"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;rosparam&gt;</span>
+      target_frame: base_link # Leave disabled to output scan in pointcloud frame
+      transform_tolerance: 0.01
+      min_height: -10.0
+      max_height: 10.0
+
+      angle_min: -3.141591 # -M_PI
+      angle_max: 3.141591  # M_PI
+      angle_increment: 0.0087 # M_PI/360.0 (every degreee)
+      scan_time: 1.0
+      range_min: 0.3
+      range_max: 100.0
+      use_inf: true
+
+      # Concurrency level, affects number of poinclouds queued for processing and number of threads used
+      # 0: Detect Number of cored
+      # 1: Single threaded
+      # 2-&gt;inf : Parallelism level
+      concurrency_level: 1
+    <span class="nt">&lt;/rosparam&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://wiki.ros.org/pointcloud_to_laserscan">pointcloud_to_laserscan</a></li>
+  <li><a href="https://www.youtube.com/watch?v=IFNikTHN1pk">[ROS Q&amp;A] 120 - How To Convert a PointCloud Into a Laser Scan</a></li>
+</ul>
+:ET

@@ -1,0 +1,73 @@
+I"�<p>C++ 아니고 C로 소켓통신 작성하기! <br /></p>
+
+<h2 id="문제-정의">문제 정의</h2>
+
+<p>서버 역할: <code class="language-plaintext highlighter-rouge">read</code> <br />
+원하는 메세지를 read 해보자 <br /></p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">error_handling</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">fputs</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+  <span class="n">fputc</span><span class="p">(</span><span class="sc">'\n'</span><span class="p">,</span> <span class="n">stderr</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">serv_sock</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="c1">// 소켓 FD 생성</span>
+  <span class="n">serv_sock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">serv_sock</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">error_handling</span><span class="p">(</span><span class="s">"socket() error"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 주소 정보 초기화</span>
+  <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">,</span> <span class="n">clnt_addr</span><span class="p">;</span>
+  <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
+  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="n">ip</span><span class="p">);</span>
+  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+
+
+  <span class="c1">// 소켓에 위에서 생성한 주소 정보를 할당</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">error_handling</span><span class="p">(</span><span class="s">"bind() error"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 클라이언트가 연결 요청이 가능하도록 5크기의 대기실 생성</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">error_handling</span><span class="p">(</span><span class="s">"listen() error"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// accept() 함수 호출을 해서 실제 데이터를 보낼 수 있는 소켓을 생성</span>
+  <span class="n">socklen_t</span> <span class="n">clnt_addr_size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">clnt_addr</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">clnt_sock</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">serv_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span> <span class="n">clnt_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clnt_addr_size</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">clnt_sock</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">error_handling</span><span class="p">(</span><span class="s">"accept() error"</span><span class="p">);</span>
+  <span class="p">}</span>    
+
+  <span class="c1">// 성공적으로 서버에게서 메시지를 받아오면</span>
+  <span class="c1">// 0을 반환하고 실패하면 -1을 반환한다.</span>
+  <span class="kt">char</span> <span class="n">message</span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">str_len</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">str_len</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">clnt_sock</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Send message to server: %s </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://const-human.tistory.com/12">“[Linux]TCP 서버/클라이언트 구현”</a></li>
+</ul>
+:ET

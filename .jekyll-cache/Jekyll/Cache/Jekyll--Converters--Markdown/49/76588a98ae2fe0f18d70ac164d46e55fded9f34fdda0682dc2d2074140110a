@@ -1,0 +1,52 @@
+I"ß<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">dx</span> <span class="o">=</span>  <span class="n">abs</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">),</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">&lt;</span> <span class="n">x1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">dy</span> <span class="o">=</span> <span class="o">-</span><span class="n">abs</span><span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">),</span> <span class="n">sy</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">&lt;</span> <span class="n">y1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">err</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">e2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">xp</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span> <span class="n">yp</span> <span class="o">=</span> <span class="n">y0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">r0_sq</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="n">r1_sq</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">r1_sq</span> <span class="o">=</span> <span class="p">(</span><span class="n">xp</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xp</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">yp</span><span class="o">-</span><span class="n">y0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">yp</span><span class="o">-</span><span class="n">y0</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">xp</span> <span class="o">==</span> <span class="n">x1</span> <span class="o">&amp;&amp;</span> <span class="n">yp</span> <span class="o">==</span> <span class="n">y1</span><span class="p">)</span> <span class="o">||</span> <span class="n">r1_sq</span> <span class="o">&gt;=</span> <span class="n">r0_sq</span> <span class="o">||</span> <span class="o">!</span><span class="n">isInside</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">)</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">tx</span> <span class="o">=</span> <span class="n">xp</span><span class="p">;</span>
+    <span class="n">ty</span> <span class="o">=</span> <span class="n">yp</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">grid_map</span><span class="p">[</span><span class="n">xp</span><span class="p">][</span><span class="n">yp</span><span class="p">]</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">tx</span> <span class="o">=</span> <span class="n">xp</span><span class="p">;</span>
+    <span class="n">ty</span> <span class="o">=</span> <span class="n">yp</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Last point in the one scan</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">temp_count</span> <span class="o">==</span> <span class="n">index</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">trace</span><span class="p">(</span><span class="s">"(xp, yp): ({}, {})"</span><span class="p">,</span> <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span> <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Plot</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isInside</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="c1">// if (temp_count == index)</span>
+    <span class="p">{</span>
+      <span class="n">grid_map</span><span class="p">[</span><span class="n">xp</span><span class="p">][</span><span class="n">yp</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">sensor_model_l_free_</span> <span class="o">-</span> <span class="n">sensor_model_l_prior_</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">e2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">err</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e2</span> <span class="o">&gt;=</span> <span class="n">dy</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">err</span> <span class="o">+=</span> <span class="n">dy</span><span class="p">;</span>
+    <span class="n">xp</span> <span class="o">+=</span> <span class="n">sx</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e2</span> <span class="o">&lt;=</span> <span class="n">dx</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">err</span> <span class="o">+=</span> <span class="n">dx</span><span class="p">;</span>
+    <span class="n">yp</span> <span class="o">+=</span> <span class="n">sy</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

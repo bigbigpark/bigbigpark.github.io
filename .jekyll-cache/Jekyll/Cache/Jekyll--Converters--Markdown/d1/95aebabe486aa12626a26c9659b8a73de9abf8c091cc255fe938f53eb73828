@@ -1,0 +1,52 @@
+I"b<p>Octomap 설치하기 ! <br /></p>
+
+<h2 id="octomap이란">Octomap이란?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Octomap libarary</code>는 3D occupancy grid mapping 라이브러리다 <br />
+<strong>C++</strong>로 구현되어 있고, 전용 자료 구조와 맵핑 알고리즘을 탑재하고 있다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="장점">장점</h2>
+<ul>
+  <li>Full 3D model</li>
+  <li>Updatable</li>
+  <li>Flexible</li>
+  <li>Compact</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="binary-ros에서-설치하기">[Binary] ROS에서 설치하기</h2>
+
+<p>소스로 빌드해서 설치해도 되지만 패키지 링크하기 귀찮아서.. 바이너리로 설치해주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>ros-melodic-octomap
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="cmakeliststxt-작성하기">CMakeLists.txt 작성하기</h2>
+
+<p>CMakeLitst.txt와 package.xml을 작성해보장 <br /></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>octomap REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OCTOMAP_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="si">${</span><span class="nv">OCTOMAP_LIBRARIES</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build_depend&gt;</span>octomap<span class="nt">&lt;/build_depend&gt;</span>
+<span class="nt">&lt;run_depend&gt;</span>octomap<span class="nt">&lt;/run_depend&gt;</span>
+</code></pre></div></div>
+
+<p>끝!</p>
+
+<p><br /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://octomap.github.io/">Octomap</a></li>
+</ul>
+:ET

@@ -1,0 +1,43 @@
+I"â<p>Basic code for the IMU test <br /></p>
+
+<h2 id="code">Code</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Imu</span>
+<span class="kn">from</span> <span class="nn">tf.transformations</span> <span class="kn">import</span> <span class="n">euler_from_quaternion</span><span class="p">,</span> <span class="n">quaternion_from_euler</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'----'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"[Quaternion]"</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">[Angular velocity]'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">angular_velocity</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">angular_velocity</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">angular_velocity</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">[Linear Acceleration]'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">linear_acceleration</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">linear_acceleration</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">linear_acceleration</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">[Euler]"</span><span class="p">)</span>
+  <span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">]</span>
+  <span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span> <span class="o">=</span> <span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">yaw</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'get_imu_data_node'</span><span class="p">)</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'imu_data'</span><span class="p">,</span> <span class="n">Imu</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</code></pre></div></div>
+:ET

@@ -19,7 +19,7 @@ C++ 아니고 C로 소켓통신 작성하기! <br/>
 
 ## 코드
 
-~~~c
+~~~c++
 // C++ TCP 클라이언트 프로그램
 #include <stdio.h>
 #include <stdlib.h>
