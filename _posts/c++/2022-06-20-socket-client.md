@@ -8,17 +8,18 @@ tags: [ros, socket, server, client, communication, linux, ubuntu]
 ---
 
 C++ 아니고 C로 소켓통신 작성하기! <br/>
+
 소켓통신 클라이언트 코드 짜기 <br/>
 
 
 ## 문제 정의
 
 클라이언트 역할: `write` <br/>
-원하는 메세지를 write 해보자
+원하는 메세지를 write 해보자 !!
 
 ## 코드
 
-~~~C
+~~~c
 // C++ TCP 클라이언트 프로그램
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,9 +65,7 @@ int main(int argc, char* argv[])
   close(sock);
   return 0;
 }
-
 ~~~
-
 
 ## Reference
 * ["[Linux]TCP 서버/클라이언트 구현"](https://const-human.tistory.com/12)
