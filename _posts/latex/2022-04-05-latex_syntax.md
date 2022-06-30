@@ -10,6 +10,11 @@ tags: [latex, 레이텍, syntax, 문법, 정리]
 간간히 Overleaf로 CV나 논문 쓰면서 문법 정리하는 글 <br/>
 자주 사용하지는 않아 까먹을 때마다 메모중! <br/>
 
+사실 정리하다가 ... ㅠㅠ 다 정리할 수 없을 거 같아서 링크 하나 딴다 <br/>
+[위키백과:TeX 문법](https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:TeX_%EB%AC%B8%EB%B2%95)
+
+<br/>
+
 ## 마크다운 문법
 
 기본적으로 `$$ $$`으로 시작함 <br/>
