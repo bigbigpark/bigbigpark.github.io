@@ -1,0 +1,75 @@
+I"�<p>우분투 18.04에 아나콘다를 설치해보자! <br /></p>
+
+<h2 id="아나콘다란">아나콘다란?</h2>
+
+<p>이번에 찾아보면서 좀 알게 되었다 <br />
+파이썬 기반의 데이터 과학 및 머신러닝 플랫폼이다 <br />
+주로 대규모 데이터 처리, 예측 분석 및 과학 컴퓨팅에 사용되는 있기있는 플랫폼 중 하나! <br /></p>
+
+<p>1,000개 이상의 데이터 패키지, 콘다 명령줄 도구 및 아나콘다 네비게이터라는 데스크톱 GUI가 함께 제공된다<br /></p>
+
+<p><br /></p>
+
+<p>거두절미하고.. 그냥 설치에 바로 가자 <br /></p>
+
+<h2 id="설치하기">설치하기</h2>
+
+<p>아래 명령어를 입력하게 되면 현재 경로를 시준으로 다운로드가 된다 <br />
+아나콘다 버전을 다르게 설치하고 싶으면 <a href="https://www.anaconda.com/products/distribution">아나콘다</a> 여기를 참조해주자! <br />
+하지만 <code class="language-plaintext highlighter-rouge">conda update conda</code>도 있으니 참고하자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="설치-스크립트-실행">설치 스크립트 실행</h2>
+
+<p>아래 명령어를 입력하면 <code class="language-plaintext highlighter-rouge">Enter</code>랑 <code class="language-plaintext highlighter-rouge">Yes</code>를 치라는 안내 문구가 나오는데 <br />
+경로를 바꾸고 싶지 않고 원래 제공하는 default값으로 설치하고 싶으면 죄다 해당 단어를 입력해주자! <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="소싱하기">소싱하기</h2>
+
+<p>설치 스크립트 끝 줄에 환경변수 파일인 <code class="language-plaintext highlighter-rouge">~/.bashrc</code> 파일에 쓸 거냐고 물어본다 <br />
+<code class="language-plaintext highlighter-rouge">yes</code>라고 눌렀다면 아래 명령어로 파일을 소싱해주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="conda-간단한-명령어-정리">conda 간단한 명령어 정리</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">conda info</code> : 현재 콘다 설치 유형에 대한 정보 표기</li>
+  <li><code class="language-plaintext highlighter-rouge">conda update conda</code> : 콘다 도구를 업데이트</li>
+  <li><code class="language-plaintext highlighter-rouge">conda update anaconda</code> : 위의 <code class="language-plaintext highlighter-rouge">conda</code>를 업데이트 후 실행해야 아나콘다 업데이트가 수행됨</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="가상-환경-구축">가상 환경 구축</h2>
+
+<p><code class="language-plaintext highlighter-rouge">bigbigpark</code>이라는 이름의 가상환경을 가지는 python 3.6 기반 환경 구축 <br /></p>
+
+<ul>
+  <li>설치 : <code class="language-plaintext highlighter-rouge">conda create -n bigbigpark python=3.6</code></li>
+  <li>제거 : <code class="language-plaintext highlighter-rouge">conda env remove -n bigbigpark</code></li>
+  <li>환경확인 : <code class="language-plaintext highlighter-rouge">conda info --envs</code> or <code class="language-plaintext highlighter-rouge">conda env list</code></li>
+  <li>실행 : <code class="language-plaintext highlighter-rouge">conda activate bigbigpark</code></li>
+  <li>종료 : <code class="language-plaintext highlighter-rouge">conda deactivate</code></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li><a href="https://jjeongil.tistory.com/1326">Ubuntu 18.04 : Anaconda 설치하는 방법, 예제, 명령어</a></li>
+  <li><a href="https://choice-life.tistory.com/7">우분투 18.04 아나콘다 설치 (Ubuntu 18.04 Anaconda Install) 우분투 18.04 가상환경 설정 (Ubuntu 18.04 virtual environments)</a></li>
+</ul>
+:ET

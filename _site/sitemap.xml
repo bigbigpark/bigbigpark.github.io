@@ -341,6 +341,14 @@
 <lastmod>2022-06-20T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/cpp_useful/current_time/</loc>
+<lastmod>2022-06-27T00:00:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/install/install-anaconda/</loc>
+<lastmod>2022-06-30T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -450,6 +458,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/page17/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page18/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/CV-seongchang%20park.pdf</loc>

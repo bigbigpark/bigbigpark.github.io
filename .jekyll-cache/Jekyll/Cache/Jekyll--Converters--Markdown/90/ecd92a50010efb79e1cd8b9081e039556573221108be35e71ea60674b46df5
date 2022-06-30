@@ -1,0 +1,33 @@
+I"�<p>우분투 18.04에 아나콘다를 설치해보자! <br /></p>
+
+<h2 id="아나콘다란">아나콘다란?</h2>
+
+<p>이번에 찾아보면서 좀 알게 되었다 <br />
+파이썬 기반의 데이터 과학 및 머신러닝 플랫폼이다 <br />
+주로 대규모 데이터 처리, 예측 분석 및 과학 컴퓨팅에 사용되는 있기있는 플랫폼 중 하나! <br /></p>
+
+<p>1,000개 이상의 데이터 패키지, 콘다 명령줄 도구 및 아나콘다 네비게이터라는 데스크톱 GUI가 함께 제공된다<br /></p>
+
+<p><br /></p>
+
+<p>거두절미하고.. 그냥 설치에 바로 가자 <br /></p>
+
+<h2 id="설치하기">설치하기</h2>
+
+<p>아래 명령어를 입력하게 되면 현재 경로를 시준으로 다운로드가 된다 <br />
+아나콘다 버전을 다르게 설치하고 싶으면 <a href="https://www.anaconda.com/products/distribution">아나콘다</a> 여기를 참조해주자! <br />
+하지만 <code class="language-plaintext highlighter-rouge">conda update conda</code>도 있으니 참고하자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+</code></pre></div></div>
+
+<h2 id="설치-스크립트-실행">설치 스크립트 실행</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bash https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+</code></pre></div></div>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li><a href="https://jjeongil.tistory.com/1326">Ubuntu 18.04 : Anaconda 설치하는 방법, 예제, 명령어</a></li>
+</ul>
+:ET
