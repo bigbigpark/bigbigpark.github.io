@@ -1,0 +1,11 @@
+I"d<p>point cloud 뷰어인 cloudcompare를 설치해보자 <br /></p>
+
+<p>정말 간단하다</p>
+
+<h2 id="설치방법">설치방법</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>snap <span class="nb">install </span>cloudcompare
+</code></pre></div></div>
+
+<p>끝!<br /></p>
+:ET

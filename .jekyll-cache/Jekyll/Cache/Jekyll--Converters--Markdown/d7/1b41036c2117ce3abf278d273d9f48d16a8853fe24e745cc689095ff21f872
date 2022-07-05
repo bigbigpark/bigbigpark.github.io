@@ -1,0 +1,141 @@
+I"�#<p>python3 기준으로 pcd파일을 bin파일로 변환하기 <br /></p>
+
+<p><br /></p>
+
+<h2 id="미리-설치해야할-거">미리 설치해야할 거</h2>
+
+<p><code class="language-plaintext highlighter-rouge">numpy</code> <br />
+<code class="language-plaintext highlighter-rouge">argparse</code> <br />
+<code class="language-plaintext highlighter-rouge">pypcd</code> <br /></p>
+
+<p><br /></p>
+
+<h2 id="pypcd-설치">pypcd 설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> git+https://github.com/klintan/pypcd.git
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">#! /usr/bin/env python3</span>
+<span class="c">#</span>
+<span class="c"># Module:       pcd2bin.py</span>
+<span class="c"># Description:  .pcd to .bin converter</span>
+<span class="c">#</span>
+<span class="c"># Author:       Yuseung Na (ys.na0220@gmail.com)</span>
+<span class="c"># Version:      1.0</span>
+<span class="c">#</span>
+<span class="c"># Revision History</span>
+<span class="c">#       January 19, 2021: Yuseung Na, Created</span>
+<span class="c">#</span>
+
+import numpy as np
+import os
+import argparse
+from pypcd import pypcd
+import csv
+from tqdm import tqdm
+
+def main<span class="o">()</span>:
+    <span class="c">## Add parser</span>
+    parser <span class="o">=</span> argparse.ArgumentParser<span class="o">(</span><span class="nv">description</span><span class="o">=</span><span class="s2">"Convert .pcd to .bin"</span><span class="o">)</span>
+    parser.add_argument<span class="o">(</span>
+        <span class="s2">"--pcd_path"</span>,
+        <span class="nb">help</span><span class="o">=</span><span class="s2">".pcd file path."</span>,
+        <span class="nb">type</span><span class="o">=</span>str,
+        <span class="nv">default</span><span class="o">=</span><span class="s2">"/home/scpark/bag/sch/pcd"</span>
+    <span class="o">)</span>
+    parser.add_argument<span class="o">(</span>
+        <span class="s2">"--bin_path"</span>,
+        <span class="nb">help</span><span class="o">=</span><span class="s2">".bin file path."</span>,
+        <span class="nb">type</span><span class="o">=</span>str,
+        <span class="nv">default</span><span class="o">=</span><span class="s2">"/home/scpark/bag/sch/bin"</span>
+    <span class="o">)</span>
+    parser.add_argument<span class="o">(</span>
+        <span class="s2">"--file_name"</span>,
+        <span class="nb">help</span><span class="o">=</span><span class="s2">"File name."</span>,
+        <span class="nb">type</span><span class="o">=</span>str,
+        <span class="nv">default</span><span class="o">=</span><span class="s2">"file_name"</span>
+    <span class="o">)</span>
+    args <span class="o">=</span> parser.parse_args<span class="o">()</span>
+
+    <span class="c">## Find all pcd files</span>
+    pcd_files <span class="o">=</span> <span class="o">[]</span>
+    <span class="k">for</span> <span class="o">(</span>path, <span class="nb">dir</span>, files<span class="o">)</span> <span class="k">in </span>os.walk<span class="o">(</span>args.pcd_path<span class="o">)</span>:
+        <span class="k">for </span>filename <span class="k">in </span>files:
+            <span class="c"># print(filename)</span>
+            ext <span class="o">=</span> os.path.splitext<span class="o">(</span>filename<span class="o">)[</span><span class="nt">-1</span><span class="o">]</span>
+            <span class="k">if </span>ext <span class="o">==</span> <span class="s1">'.pcd'</span>:
+                pcd_files.append<span class="o">(</span>path + <span class="s2">"/"</span> + filename<span class="o">)</span>
+
+    <span class="c">## Sort pcd files by file name</span>
+    pcd_files.sort<span class="o">()</span>   
+    print<span class="o">(</span><span class="s2">"Finish to load point clouds!"</span><span class="o">)</span>
+
+    <span class="c">## Make bin_path directory</span>
+    try:
+        <span class="k">if </span>not <span class="o">(</span>os.path.isdir<span class="o">(</span>args.bin_path<span class="o">))</span>:
+            os.makedirs<span class="o">(</span>os.path.join<span class="o">(</span>args.bin_path<span class="o">))</span>
+    except OSError as e:
+        <span class="k">if </span>e.errno <span class="o">!=</span> errno.EEXIST:
+            print <span class="o">(</span><span class="s2">"Failed to create directory!!!!!"</span><span class="o">)</span>
+            raise
+
+    <span class="c">## Generate csv meta file</span>
+    csv_file_path <span class="o">=</span> os.path.join<span class="o">(</span>args.bin_path, <span class="s2">"meta.csv"</span><span class="o">)</span>
+    csv_file <span class="o">=</span> open<span class="o">(</span>csv_file_path, <span class="s2">"w"</span><span class="o">)</span>
+    meta_file <span class="o">=</span> csv.writer<span class="o">(</span>
+        csv_file, <span class="nv">delimiter</span><span class="o">=</span><span class="s2">","</span>, <span class="nv">quotechar</span><span class="o">=</span><span class="s2">"|"</span>, <span class="nv">quoting</span><span class="o">=</span>csv.QUOTE_MINIMAL
+    <span class="o">)</span>
+    <span class="c">## Write csv meta file header</span>
+    meta_file.writerow<span class="o">(</span>
+        <span class="o">[</span>
+            <span class="s2">"pcd file name"</span>,
+            <span class="s2">"bin file name"</span>,
+        <span class="o">]</span>
+    <span class="o">)</span>
+    print<span class="o">(</span><span class="s2">"Finish to generate csv meta file"</span><span class="o">)</span>
+
+    <span class="c">## Converting Process</span>
+    print<span class="o">(</span><span class="s2">"Converting Start!"</span><span class="o">)</span>
+    <span class="nb">seq</span> <span class="o">=</span> 0
+<span class="c">#    for pcd_file in tqdm(pcd_files):</span>
+<span class="c">#      print(pcd_file)</span>
+    
+    
+    <span class="k">for </span>pcd_file <span class="k">in </span>tqdm<span class="o">(</span>pcd_files<span class="o">)</span>:
+        <span class="c">## Get pcd file</span>
+        pc <span class="o">=</span> pypcd.PointCloud.from_path<span class="o">(</span>pcd_file<span class="o">)</span>
+
+        <span class="c">## Generate bin file name</span>
+        bin_file_name <span class="o">=</span> <span class="s2">"{:06d}.bin"</span>.format<span class="o">(</span><span class="nb">seq</span><span class="o">)</span>
+        bin_file_path <span class="o">=</span> os.path.join<span class="o">(</span>args.bin_path, bin_file_name<span class="o">)</span>
+        print<span class="o">(</span><span class="s1">'bin_file_name: {}'</span>.format<span class="o">(</span>bin_file_name<span class="o">))</span>
+        
+        <span class="c">## Get data from pcd (x, y, z, intensity, ring, time)</span>
+        np_x <span class="o">=</span> <span class="o">(</span>np.array<span class="o">(</span>pc.pc_data[<span class="s1">'x'</span><span class="o">]</span>, <span class="nv">dtype</span><span class="o">=</span>np.float32<span class="o">))</span>.astype<span class="o">(</span>np.float32<span class="o">)</span>
+        np_y <span class="o">=</span> <span class="o">(</span>np.array<span class="o">(</span>pc.pc_data[<span class="s1">'y'</span><span class="o">]</span>, <span class="nv">dtype</span><span class="o">=</span>np.float32<span class="o">))</span>.astype<span class="o">(</span>np.float32<span class="o">)</span>
+        np_z <span class="o">=</span> <span class="o">(</span>np.array<span class="o">(</span>pc.pc_data[<span class="s1">'z'</span><span class="o">]</span>, <span class="nv">dtype</span><span class="o">=</span>np.float32<span class="o">))</span>.astype<span class="o">(</span>np.float32<span class="o">)</span>
+        np_i <span class="o">=</span> <span class="o">(</span>np.array<span class="o">(</span>pc.pc_data[<span class="s1">'intensity'</span><span class="o">]</span>, <span class="nv">dtype</span><span class="o">=</span>np.float32<span class="o">))</span>.astype<span class="o">(</span>np.float32<span class="o">)</span>/256
+        <span class="c"># np_r = (np.array(pc.pc_data['ring'], dtype=np.float32)).astype(np.float32)</span>
+        <span class="c"># np_t = (np.array(pc.pc_data['time'], dtype=np.float32)).astype(np.float32)</span>
+
+        <span class="c">## Stack all data    </span>
+        points_32 <span class="o">=</span> np.transpose<span class="o">(</span>np.vstack<span class="o">((</span>np_x, np_y, np_z, np_i<span class="o">)))</span>
+        <span class="nb">seq</span> <span class="o">=</span> <span class="nb">seq</span> + 1
+<span class="s1">'''
+        ## Save bin file                                    
+        points_32.tofile(bin_file_path)
+
+        ## Write csv meta file
+        meta_file.writerow(
+            [os.path.split(pcd_file)[-1], bin_file_name]
+        )
+'''</span>
+<span class="k">if </span>__name__ <span class="o">==</span> <span class="s2">"__main__"</span>:
+    main<span class="o">()</span>
+</code></pre></div></div>
+:ET
