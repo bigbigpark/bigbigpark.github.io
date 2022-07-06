@@ -1,0 +1,77 @@
+I"�<p>내 컴퓨터에 맞는 CUDA를 설치해보자 <br /></p>
+
+<p>정말 간단하다 <br /></p>
+
+<p>nvidia driver가 설치되어 있던 아니면 전부 적용 가능하다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="nvidia-driver-version-확인">Nvidia driver version 확인</h2>
+
+<p>이 명령어를 입력해주자 <br />
+가운데 출력되는 <code class="language-plaintext highlighter-rouge">Driver Version</code> 값이 현재 PC에 설치된 nvidia driver 버전이다 <br />
+나의 경우에는 <code class="language-plaintext highlighter-rouge">nvidia-driver-515</code>가 설치되어 있다 <br />
+오른쪽에 뜨는 <code class="language-plaintext highlighter-rouge">CUDA Version</code>은 내 PC에 설치된 드라이버에서 최대로 설치할 수 있는 CUDA 버전이다 <br />
+근데 보통은 맞게 설치하기 때문에 거기 적혀있는 대로 설치하자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nvidia-smi
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="내-pc-환경">내 PC 환경</h3>
+
+<p>GPU: Nvidia RTX 3070 <br />
+드라이버: nvidia-driver-515 <br />
+CUDA: cuda11.7 <br /></p>
+
+<p>위와 같이 설치해 줄 예정이다</p>
+
+<h2 id="설치방법">설치방법</h2>
+
+<p><a href="https://developer.nvidia.com/cuda-toolkit-archive">“CUDA Toolkit Archive”</a> 여기에 들어가서 해당되는 것을 선택하자 <br />
+나의 경우 제일 위에 있는 CUDA 11.7을 선택하였다 <br /></p>
+
+<p><img src="/assets/img/install/2022-07-06/01.png" alt="" /> <br /></p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Installer Type</code>은 아래 두 가지 방법을 추천한다 <br /></p>
+<ul>
+  <li>deb (local)</li>
+  <li>runfile (local)</li>
+</ul>
+
+<p><br /></p>
+
+<p>나는 runfile로 설치할 예정이다 <br />
+아래와 같이 선택을 해주면, <br /></p>
+
+<p><img src="/assets/img/install/2022-07-06/02.png" alt="" /> <br /></p>
+
+<p><br /></p>
+
+<p>아래와 같이 어떻게 설치하면 되는지 명령어를 다 알려준다 ! <br /></p>
+
+<p><img src="/assets/img/install/2022-07-06/03.png" alt="" /> <br /></p>
+
+<p><br /></p>
+
+<p>아래 명령어를 따라 설치해주자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda_11.7.0_515.43.04_linux.run
+<span class="nv">$ </span><span class="nb">sudo </span>sh cuda_11.7.0_515.43.04_linux.run
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="설치-내용">설치 내용</h2>
+
+<p>처음에 설치하면 EURA 같은게 뜨는데 라이센스 약관에 동의한다는 내용이다 <br />
+<code class="language-plaintext highlighter-rouge">accept</code>를 입력하자 <br /></p>
+
+<p>그 후에 내가 설치해야하는 것에 <code class="language-plaintext highlighter-rouge">X</code>표시가 마킹되어 있는데, <br />
+이 때 그래픽 드라이버가 없으면 그래픽 드라이버에도 표시해주고, 이미 그게 설치가 되어 있으면 체크 해제를 하자 ! <br /></p>
+
+<p>끝!<br /></p>
+:ET

@@ -1,9 +1,0 @@
-I"�<p>쿼터니언을 회전행렬도 바꿔보자 ! <br /></p>
-
-<p>수식으로 구해보자 <br /></p>
-
-\[R(Q) = 
-\begin{bmatrix}
-2(q_0^2) &amp; 1 &amp; 1
-\end{bmatrix}\]
-:ET

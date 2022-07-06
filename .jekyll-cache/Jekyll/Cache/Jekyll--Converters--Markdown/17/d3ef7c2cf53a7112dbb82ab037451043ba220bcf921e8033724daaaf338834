@@ -1,0 +1,24 @@
+I"�<p>Eigen::Quaternion을 Eigen::Matrix3f로 바꿔보자 <br /></p>
+
+<p>물론 수식으로 바꿀 수는 있지만 라이브러리가 numerical error가 적으니 .. ㅎ_ㅎ <br /></p>
+
+<h2 id="quaternion-to-matrix3f">Quaternion to Matrix3f</h2>
+
+<p>이미 쿼터니언이 있어야 함 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span> <span class="n">q</span><span class="p">;</span>
+
+<span class="k">auto</span> <span class="n">R</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">normalized</span><span class="p">().</span><span class="n">toRotationMatrix</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="matrix3f-to-quaternion">Matrix3f to Quaternion</h2>
+
+<p>Eigen::Matrix3f로 선언된 R이 있어야 함 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span> <span class="nf">q</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+:ET
