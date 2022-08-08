@@ -1,0 +1,39 @@
+I"G<h2 id="geometry_msgspose---eigenmatrix4d">Geometry_msgs/Pose -&gt; Eigen::Matrix4d</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Input : (geometry_msgs::Pose pose)</span>
+<span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix4f</span><span class="o">::</span><span class="n">Identity</span> <span class="n">xpose</span><span class="p">;</span>
+
+<span class="n">xpose</span><span class="p">.</span><span class="n">block</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">=</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span><span class="p">(</span><span class="n">quat</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">quat</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">quat</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">quat</span><span class="p">.</span><span class="n">z</span><span class="p">).</span><span class="n">toRotationMatrix</span><span class="p">;</span>
+
+<span class="n">xpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span> <span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="n">xpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span> <span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="n">xpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span> <span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>반대로 <br /></p>
+
+<p><br /></p>
+
+<h2 id="eigenmatrix4d---geometry_msgspose">Eigen::Matrix4d -&gt; geometry_msgs/Pose</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Input : Eigen::Matrix4d xpose)</span>
+<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose</span> <span class="n">pose</span><span class="p">;</span>
+
+<span class="n">Eigen</span><span class="o">::</span><span class="n">Quaterniond</span> <span class="nf">q</span><span class="p">(</span><span class="n">xpose</span><span class="p">.</span><span class="n">block</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">();</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">();</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">();</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">w</span><span class="p">();</span>
+
+<span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">xpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">xpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">xpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://github.com/LimHyungTae/Eigen_for_Robotics">“Pose Conversion Package for ROS”</a></li>
+</ul>
+:ET

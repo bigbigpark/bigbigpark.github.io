@@ -1,0 +1,25 @@
+I"�<p>직각 삼각형의 빗변의 길이를 구해보자 <br /></p>
+
+<h2 id="피타고라스-법칙">피타고라스 법칙</h2>
+
+<p>중학교 때 나오는 공식 <br /></p>
+
+<p>직각을 낀 변 a, b가 있을 때 직각과 마주보는 빗변의 길이는 피타고라스 공식으로 아래와 같이 구할 수 있다 <br /></p>
+
+\[c^2 = a^2 + b^2\]
+
+<p>코드로 보면,</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="eazy-way">EAZY WAY</h2>
+
+<p>근데 더 쉬운 방법을 찾았다 <br /></p>
+
+<p><br /></p>
+:ET
