@@ -1,0 +1,57 @@
+I"Z<p>ROS에서 포인트 클라우드를 회전시켜 보자 ! <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/point_cloud.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/conversions.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl_ros/point_cloud.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/common/transforms.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sensor_msgs/PointCloud2.h&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">cloud_pub</span><span class="p">;</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">cloud_sub</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">cloudCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">cloud_ptr</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;</span><span class="p">());</span>
+
+  <span class="n">pcl</span><span class="o">::</span><span class="n">fromROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">cloud_ptr</span><span class="p">);</span>
+  
+  <span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3f</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3f</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
+
+  <span class="c1">// Define a translation vector</span>
+  <span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
+  
+  <span class="kt">float</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">M_PI</span><span class="p">;</span>
+
+  <span class="c1">// Define a rotation matrix</span>
+  <span class="n">transform</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">Eigen</span><span class="o">::</span><span class="n">AngleAxisf</span> <span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3f</span><span class="o">::</span><span class="n">UnitZ</span><span class="p">()));</span>
+
+  <span class="c1">// Executing transformation</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">tf_cloud_ptr</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;</span><span class="p">());</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">transformPointCloud</span> <span class="p">(</span><span class="o">*</span><span class="n">cloud_ptr</span><span class="p">,</span> <span class="o">*</span><span class="n">tf_cloud_ptr</span><span class="p">,</span> <span class="n">transform</span><span class="p">);</span>
+
+  <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span> <span class="n">ros_cloud</span><span class="p">;</span>
+  <span class="n">pcl</span><span class="o">::</span><span class="n">toROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">tf_cloud_ptr</span><span class="p">,</span> <span class="n">ros_cloud</span><span class="p">);</span>
+  <span class="n">ros_cloud</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">;</span>
+
+  <span class="n">cloud_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">ros_cloud</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"transform_cloud_node"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+  <span class="n">cloud_pub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"/lidar_data2"</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">cloud_sub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">"/lidar_data"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cloudCallback</span><span class="p">);</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

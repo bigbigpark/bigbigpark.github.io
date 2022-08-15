@@ -1,0 +1,24 @@
+I"x<p>PCL 라이브러리와 ROS 빠르게 써보기 <br /></p>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>PCL REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="si">${</span><span class="nv">PCL_INCLUDE_DIRS</span><span class="si">}</span>
+<span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span>main src/main.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>main
+  <span class="si">${</span><span class="nv">PCL_LIBRARIES</span><span class="si">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="소스코드-안에서">소스코드 안에서</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;pcl/conversions.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/point_types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl_conversions/pcl_conversions.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;pcl/PCLPointCloud2.h&gt;</span><span class="cp">
+</span></code></pre></div></div>
+:ET

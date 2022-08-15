@@ -1,0 +1,106 @@
+I"�<p>Ubuntu 20.04에 삼바를 설치해서 윈도우 PC에서 받아보자! <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>리눅스에서 작업하고 데이터, 사진, 비디오 같은 것들을 이메일이나 외장하드로 옮기는 귀찮은 과정은 그만하자 ^_^ <br /></p>
+
+<p>Ubuntu 20.04에서 삼바를 구축하고, 동일 네트워크 아래 다른 윈도우 PC에서 접근 하는 방법을 해보자 <br /></p>
+
+<p><br /></p>
+
+<h2 id="설치">설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>samba
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="환경-구축">환경 구축</h2>
+
+<h3 id="1-사용자-확인">1. 사용자 확인</h3>
+
+<p>터미널을 열고 사용자 이름을 확인해준다 <br />
+필자의 경우 <code class="language-plaintext highlighter-rouge">scpark</code>. <br /></p>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_001.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="2-사용자-등록">2. 사용자 등록</h3>
+
+<p>위의 이름을 samba 시스템에 추가해준다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>adduser scpark
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>아래의 명령어로 삼바 비밀번호를 설정해준다. <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> <span class="k">${</span><span class="nv">USER_NAME</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p>결과 사진!</p>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_002.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="3-삼바-환경설정-수정">3. 삼바 환경설정 수정</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>vim /etc/samba/smb.conf
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>위의 명령어를 입력하면 아래와 같은 화면이 나온다 <br /></p>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_003.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>스크롤을 쭉 내려서 제일 아래쪽에 아래와 같이 입력해준다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>scpark]
+comment <span class="o">=</span> scpark ubuntu 20.04 server
+<span class="nv">path</span><span class="o">=</span>/home/scpark
+browsable <span class="o">=</span><span class="nb">yes
+</span>create mask <span class="o">=</span> 0660
+directory mask <span class="o">=</span> 0771
+writable <span class="o">=</span> <span class="nb">yes
+</span>guest ok <span class="o">=</span> <span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>여기서 대괄호에 들어가는 것은 1번에서 등록했던 사용자 이름과 동일하게 해준다. <br />
+그 외에 나머지 <code class="language-plaintext highlighter-rouge">comment</code>, <code class="language-plaintext highlighter-rouge">path</code> 등은 삼바 옵션이므로 자세한 정보는 구글링을 통해 알 수 있다. <br />
+이번에는 삼바를 구축하고 윈도우에서 read-only로 읽을 것이기 때문에 위와 같이 입력해준다. <br />
+최종 화면은 아래 사진과 같다. <br /></p>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_004.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="4-ip-주소-확인">4. ip 주소 확인</h3>
+
+<p>접속 대상이 되는 Ubuntu 머신의 ip를 확인하고 외운다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ifconfig
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="윈도우에서-접속">윈도우에서 접속</h2>
+
+<p>실행창(윈도우+R)을 열고 아까 ip주소를 아래와 같이 입력해본다. <br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">\\192.168.0.2</code> <br /></p>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_004.png" alt="" /></p>
+
+<p>성공적으로 접속됨을 알 수 있다 ! <br /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://itlearningcenter.tistory.com/entry/%E3%80%90Ubuntu-2004-LTS%E3%80%91SAMBA-%EC%84%A4%EC%B9%98">“【Ubuntu 20.04 LTS】SAMBA 설치”</a></li>
+</ul>
+:ET
