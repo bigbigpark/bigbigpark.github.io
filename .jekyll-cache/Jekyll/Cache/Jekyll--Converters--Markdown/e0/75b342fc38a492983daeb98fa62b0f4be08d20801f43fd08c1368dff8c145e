@@ -1,4 +1,4 @@
-I"�<p>Ubuntu 20.04에 삼바를 설치해서 윈도우 PC에서 받아보자! <br /></p>
+I"�<p>Ubuntu 20.04에 삼바를 설치해서 윈도우 PC에서 받아보자! <br /></p>
 
 <h2 id="개요">개요</h2>
 
@@ -37,10 +37,10 @@
 
 <p>아래의 명령어로 삼바 비밀번호를 설정해준다. <br /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> <span class="k">${</span><span class="nv">USER_NAME</span><span class="k">}</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> <span class="k">${</span><span class="nv">USER_NAME</span><span class="k">}</span>
 </code></pre></div></div>
 
-<p>관련 사진처럼 비밀번호를 하나 설정해준다 <br /></p>
+<p>결과 사진!</p>
 
 <p><img src="/assets/img/linux/2022-08-15/Selection_002.png" alt="" /></p>
 
@@ -89,13 +89,33 @@ writable <span class="o">=</span> <span class="nb">yes
 
 <p><br /></p>
 
+<h2 id="삼바-서비스-재시작">삼바 서비스 재시작</h2>
+
+<p>아래 명령어로 삼바 서비스를 재시작 해준다.<br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service smbd restart
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이외에도 아래 명령어를 사용할 수 있다. <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 멈추고 싶을때</span>
+<span class="nv">$ </span><span class="nb">sudo </span>service smbd stop
+
+<span class="c"># 다시 시작하고 싶을때</span>
+<span class="nv">$ </span><span class="nb">sudo </span>service smbd restart
+</code></pre></div></div>
+
+<p><br /></p>
+
 <h2 id="윈도우에서-접속">윈도우에서 접속</h2>
+
+<p><img src="/assets/img/linux/2022-08-15/Selection_005.png" alt="" /></p>
 
 <p>실행창(윈도우+R)을 열고 아까 ip주소를 아래와 같이 입력해본다. <br /></p>
 
 <p><code class="language-plaintext highlighter-rouge">\\192.168.0.2</code> <br /></p>
-
-<p><img src="/assets/img/linux/2022-08-15/Selection_004.png" alt="" /></p>
 
 <p>성공적으로 접속됨을 알 수 있다 ! <br /></p>
 

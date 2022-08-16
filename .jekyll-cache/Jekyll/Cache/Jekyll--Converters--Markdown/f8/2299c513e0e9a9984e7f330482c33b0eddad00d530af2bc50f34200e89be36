@@ -1,0 +1,5 @@
+I"/<p>PCL 버전을 확인해보자! <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>dpkg <span class="nt">-s</span> libpcl-dev | <span class="nb">grep</span> <span class="s1">'Version'</span>
+</code></pre></div></div>
+:ET

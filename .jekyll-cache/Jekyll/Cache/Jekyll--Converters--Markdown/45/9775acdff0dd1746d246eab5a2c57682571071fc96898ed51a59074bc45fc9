@@ -1,0 +1,32 @@
+I"�<p>PCL 기존에 설치되어 있는 것들을 완전히 제거해보자! <br /></p>
+
+<h2 id="기존-삭제되어-있는-것-삭제">기존 삭제되어 있는 것 삭제</h2>
+
+<h3 id="1-libpcl-dev-제거">1. <code class="language-plaintext highlighter-rouge">libpcl-dev</code> 제거</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt purge libpcl-dev
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="2-libraries-제거">2. libraries 제거</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /usr/lib/x86_64-linux-gnu
+<span class="nv">$ </span><span class="nb">sudo rm </span>libpcl<span class="k">*</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="3-headers-삭제">3. headers 삭제</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /usr/include
+<span class="nv">$ </span><span class="nb">sudo rm</span> <span class="nt">-r</span> pcl-1.7 <span class="c"># 여기는 본인이 설치되어 있는 버전</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://gist.github.com/zhenzhenxiang/c2127ee7ad54a2e99ba7a4fdc0cf7147">“Upgrade PCL from 1.7 to 1.8 on Ubuntu 16.04”</a></li>
+</ul>
+:ET
