@@ -4,7 +4,7 @@ title: "[ERROR] 한번에 두 가지 버전의 ROS를 설치하려 할 때 "
 toc: true
 toc_sticky: true
 category: error
-tags: [ros, ros2, foxy, melodic, kinetic, noetic, mix, version, 설치, 동시]
+tags: [ros, ros2, distribution, foxy, melodic, kinetic, noetic, mix, version, 설치, 동시]
 ---
 
 ROS_DISTRO was set to 'foxy' before. Please make sure that the environment does not mix paths from different distributions 라는 메세지가 뜰 때 어떻게 해야 할까 ? <br/>
