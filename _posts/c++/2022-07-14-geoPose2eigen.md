@@ -7,17 +7,20 @@ category: cpp_useful
 tags: [c++, cpp, matrix, eigen, rotation, quaternion]
 ---
 
+C++로 수학적 표현을 다루다보면 행렬 표현을 피할 수 없다 <br/>
+보통 Eigen 라이브러리를 이용하여 많이들 표현하는데, 이 때 Rotation과 Translation이 담긴 Transformation matrix를 많이 사용한다. <br/>
+기본적으로 4x4 행렬이며 상호 변환해서 사용하는 법을 알아보자 <br/>
+더불어 Eigen의 block 기능을 이용하여 구현해본다 <br/>
+
+<br/>
+
 ## Geometry_msgs/Pose -> Eigen::Matrix4d
 
 ~~~c++
 // Input : (geometry_msgs::Pose pose)
-Eigen::Matrix4f::Identity xpose;
-
-xpose.block<3,3>(0,0) = Eigen::Quaterniond(quat.w, quat.x, quat.y, quat.z).toRotationMatrix;
-
-xpose(0,3)= pose.position.x;
-xpose(1,3)= pose.position.y;
-xpose(2,3)= pose.position.z;
+Eigen::Matrix4d xpose = Eigen::Matrix4d::Identity();
+xpose.block<3,3>(0,0) = Eigen::Quaterniond(quat.w(), quat.x(), quat.y(), quat.z()).normalized().toRotationMatrix();
+xpose.block<3,1>(0,3) = Eigen::Vector3d(pose.position.x, pose.position.y, pose.position.z);
 ~~~
 
 <br/>
