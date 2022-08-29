@@ -1,5 +1,5 @@
 ---
-title: "[ROS] Static Transform Publisher"
+title: "[ROS] TF 만들기(Static Transform Publisher)"
 
 toc: true
 toc_sticky: true
@@ -7,13 +7,12 @@ category: ros
 tags: [ros, tf, transform, publisher, static]
 ---
 
+ROS에서 TF 메세지를 빠르게 만들어보자 <br/>
 ROS에서 static transform publisher를 해보자! (명령어 하나) <br/>
 
 ## 코드
 
-~~~bash
-Usage: static_transform_publisher x y z yaw pitch roll frame_id child_frame_id  period (milliseconds)
-~~~
+아래 명령어를 .launch 파일 안에 추가하여 사용하면 된다 <br/>
 
 ~~~xml
 <launch>
