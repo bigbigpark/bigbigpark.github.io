@@ -11,21 +11,6 @@ tags: [ros, ros2, PX2, autopilot, SITL, gazebo, control, offboard]
 
 <br/>
 
-## ROS2를 이용해서 PX4 SITL 돌려보기
-
-3가지 터미널에서 아래 명령어를 각각 입력해보자 <br/>
-~~~bash
-$ make px4_sitl_rtps gazebo
-~~~
-~~~bash
-$ micrortps_agent -t UDP
-~~~
-~~~bash
-$ ros2 run px4_ros_com offboard_control
-~~~
-
-<br/>
-
 ## 에러 발생
 
 다음과 같은 에러가 발생하는 경우가 있다 <br/>
