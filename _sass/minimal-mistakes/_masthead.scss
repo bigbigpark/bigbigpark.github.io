@@ -15,7 +15,7 @@
     @include clearfix;
     margin-left: auto;
     margin-right: auto;
-    padding: 0.4em;
+    padding: 0.8em;
     max-width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -28,7 +28,7 @@
     font-size: $type-size-4;
     font-weight: bold;
 
-    @include breakpoint($x-large) {
+    @include breakpoint($x-large) { // 
       max-width: $max-width;
     }
 
@@ -43,7 +43,7 @@
 }
 
 .site-logo img {
-  max-height: 2rem;
+  max-height: 2rem; // 2rem
 }
 
 .site-title {
