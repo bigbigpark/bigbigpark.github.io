@@ -15,11 +15,11 @@ $indent-var: 0.4em !default; // v0.4em
 /* system typefaces */
 $serif      : Georgia, Times, serif;
 $sans-serif : 'Noto Sans KR',"Nanum Gothic", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace  : 'Open Sans', 'Noto Sans Mono', Monaco, "Lucida Console", monospace;
+$monospace  : 'Noto Sans Mono', Monaco, "Lucida Console", monospace;
 
 /* sans serif typefaces */
 $sans-serif-narrow: $sans-serif !default;
-$helvetica: Arial, Helvetica, "Helvetica Neue", sans-serif !default;
+$helvetica: Helvetica, "Helvetica Neue", sans-serif !default;
 
 /* serif typefaces */
 $georgia: Georgia, serif !default;
