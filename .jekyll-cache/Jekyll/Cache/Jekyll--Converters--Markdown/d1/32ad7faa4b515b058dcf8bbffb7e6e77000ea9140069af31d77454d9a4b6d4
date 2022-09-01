@@ -1,0 +1,43 @@
+I"�<p>PX4와 ROS2 예제를 돌리던 중 <code class="language-plaintext highlighter-rouge">[PreFlightCheck] mode not suitable for takeoff</code> 라는 문구와 함께 컨트롤이 되지 않는 경우에 해결해보자! <br /></p>
+
+<p><br /></p>
+
+<h2 id="ros2를-이용해서-px4-sitl-돌려보기">ROS2를 이용해서 PX4 SITL 돌려보기</h2>
+
+<p>3가지 터미널에서 아래 명령어를 각각 입력해보자 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make px4_sitl_rtps gazebo
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>micrortps_agent <span class="nt">-t</span> UDP
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ros2 run px4_ros_com offboard_control
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="에러-발생">에러 발생</h2>
+
+<p>다음과 같은 에러가 첫 번째 터미널에서 발생하는 경우가 있다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO  <span class="o">[</span>commander] Failsafe mode activated	
+WARN  <span class="o">[</span>PreFlightCheck] Mode not suitable <span class="k">for </span>takeoff
+INFO  <span class="o">[</span>commander] Failsafe mode deactivated	
+INFO  <span class="o">[</span>tone_alarm] notify negative
+</code></pre></div></div>
+
+<p>이 때는 파라미터 설정이 잘못된 것이므로 다음과 같이 해결해주자 <br /></p>
+
+<p><br /></p>
+
+<h2 id="해결">해결!</h2>
+
+<p>첫 번째 터미널에 다음을 입력해준다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>param <span class="nb">set </span>COM_RCL_EXCEPT 4
+param <span class="nb">set </span>NAV_DLL_ACT 0
+param <span class="nb">set </span>NAV_RCL_ACT 0
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://github.com/PX4/PX4-Autopilot/issues/19919">Not able to take off from offboard control mode (failsafe mode activated, [PreFlightCheck] mode not suitable for takeoff) </a></li>
+</ul>
+:ET

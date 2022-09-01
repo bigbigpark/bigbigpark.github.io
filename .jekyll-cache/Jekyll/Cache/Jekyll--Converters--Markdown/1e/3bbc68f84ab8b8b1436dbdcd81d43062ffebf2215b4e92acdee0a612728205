@@ -1,0 +1,17 @@
+I"�<p>ROS에서 TF 메세지를 빠르게 만들어보자 <br />
+ROS에서 static transform publisher를 해보자! (명령어 하나) <br /></p>
+
+<h2 id="코드">코드</h2>
+
+<p>아래 명령어를 .launch 파일 안에 추가하여 사용하면 된다 <br /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;launch&gt;</span>
+ <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"tf"</span> <span class="na">type=</span><span class="s">"static_transform_publisher"</span> <span class="na">name=</span><span class="s">"tf"</span> <span class="na">args=</span><span class="s">"x y z roll pitch yaw frame_id child_frame_id peroid[ms]"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://answers.ros.org/question/208002/static-transformation-publisher/">static transformation publisher</a></li>
+</ul>
+:ET

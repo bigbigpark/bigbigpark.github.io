@@ -1,0 +1,16 @@
+I"�<p>VTK 8.2.0 버전을 설치해보자!<br /></p>
+
+<h2 id="how-to-install-vtk">How to install VTK</h2>
+
+<p>Download source file from <a href="https://vtk.org/download/">here</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xf</span> VTK-8.2.0.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>VTK-8.2.0 <span class="o">&amp;&amp;</span> <span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make                                                                   
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>
+<span class="nv">$ </span><span class="nb">sudo </span>ldconfig
+</code></pre></div></div>
+
+<p><br /></p>
+:ET

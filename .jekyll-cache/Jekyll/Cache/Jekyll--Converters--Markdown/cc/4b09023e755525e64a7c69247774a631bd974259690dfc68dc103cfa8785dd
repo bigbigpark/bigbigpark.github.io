@@ -1,0 +1,129 @@
+I"M.<p>C++로 Linux(Ubuntu)환경에서 시리얼 통신으로 센서 값을 읽어보자! <br /></p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sys/poll.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;termios.h&gt;</span><span class="c1">                   // B115200, CS8 등 상수 정의</span><span class="cp">
+#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">IMU_Receiver</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+  <span class="n">IMU_Receiver</span><span class="p">()</span>
+  <span class="p">{</span>
+    
+  <span class="p">}</span>
+  <span class="o">~</span><span class="n">IMU_Receiver</span><span class="p">()</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+
+  <span class="kt">bool</span> <span class="n">init</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Open the device</span>
+    <span class="n">fd_</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">"/dev/ttyUSB0"</span><span class="p">,</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_NOCTTY</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fd_</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Cannot open the port"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Port environment configuration</span>
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">newtio_</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">newtio_</span><span class="p">));</span>
+    <span class="n">newtio_</span><span class="p">.</span><span class="n">c_cflag</span>     <span class="o">=</span>   <span class="n">B115200</span> <span class="o">|</span> <span class="n">CS8</span> <span class="o">|</span> <span class="n">CLOCAL</span> <span class="o">|</span> <span class="n">CREAD</span><span class="p">;</span>
+    <span class="n">newtio_</span><span class="p">.</span><span class="n">c_oflag</span>       <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">newtio_</span><span class="p">.</span><span class="n">c_lflag</span>       <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">newtio_</span><span class="p">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VTIME</span><span class="p">]</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">newtio_</span><span class="p">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VMIN</span><span class="p">]</span>    <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">tcflush</span><span class="p">(</span><span class="n">fd_</span><span class="p">,</span> <span class="n">TCIFLUSH</span><span class="p">);</span>
+    <span class="n">tcsetattr</span><span class="p">(</span><span class="n">fd_</span><span class="p">,</span> <span class="n">TCSANOW</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">newtio_</span><span class="p">);</span>
+    <span class="n">fcntl</span><span class="p">(</span><span class="n">fd_</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">FNDELAY</span><span class="p">);</span> 
+
+    <span class="c1">// Ready to poll event</span>
+    <span class="n">poll_events_</span><span class="p">.</span><span class="n">fd</span>        <span class="o">=</span> <span class="n">fd_</span><span class="p">;</span>
+    <span class="n">poll_events_</span><span class="p">.</span><span class="n">events</span>    <span class="o">=</span> <span class="n">POLLIN</span> <span class="o">|</span> <span class="n">POLLERR</span><span class="p">;</span>          <span class="c1">// 수신된 자료가 있는지, 에러가 있는지</span>
+    <span class="n">poll_events_</span><span class="p">.</span><span class="n">revents</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">communicate</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="cm">/**
+       * @brief poll()을 호출하여 event 발생 여부 확인 
+       * event 등록 변수
+       * 체크할 pollfd 개수
+       * time out 시간
+       */</span>
+      <span class="n">poll_state_</span> <span class="o">=</span> <span class="n">poll</span><span class="p">(</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">pollfd</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">poll_events_</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+       <span class="c1">// 발생한 event 가 있음</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">poll_state_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">// event 가 자료 수신?</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">poll_events_</span><span class="p">.</span><span class="n">revents</span> <span class="o">&amp;</span> <span class="n">POLLIN</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="n">cnt_</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span> <span class="n">fd_</span><span class="p">,</span> <span class="n">buf_</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+
+          <span class="c1">// serial write test</span>
+          <span class="n">write</span><span class="p">(</span> <span class="n">fd_</span><span class="p">,</span> <span class="n">buf_</span><span class="p">,</span> <span class="n">cnt_</span><span class="p">);</span> 
+          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"data received ["</span> <span class="o">&lt;&lt;</span> <span class="n">cnt_</span> <span class="o">&lt;&lt;</span> <span class="s">"] bytes: "</span> <span class="o">&lt;&lt;</span> <span class="n">buf_</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// event 가 에러?</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">poll_events_</span><span class="p">.</span><span class="n">revents</span> <span class="o">&amp;</span> <span class="n">POLLERR</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Error on communication line, process died"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+          <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">poll_state_</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"critical error !!! "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">poll_state_</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"wait...."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="nl">private:</span>
+  <span class="kt">int</span> <span class="n">fd_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">ndx_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">cnt_</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">buf_</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+  <span class="k">struct</span> <span class="nc">termios</span> <span class="n">newtio_</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="nc">pollfd</span> <span class="n">poll_events_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">poll_state_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">IMU_Receiver</span> <span class="n">IR</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">IR</span><span class="p">.</span><span class="n">init</span><span class="p">())</span> <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"[main.cpp] cannot create IMU_Recevier object... "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">IR</span><span class="p">.</span><span class="n">communicate</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://imsoftpro.tistory.com/48">시리얼 통신 (feat. polling based c++)</a></li>
+</ul>
+
+<p><br /></p>
+:ET

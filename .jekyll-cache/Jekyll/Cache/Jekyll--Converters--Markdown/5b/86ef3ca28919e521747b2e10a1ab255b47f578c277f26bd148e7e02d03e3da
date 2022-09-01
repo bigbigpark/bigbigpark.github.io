@@ -1,0 +1,20 @@
+I"&<p>PointCloud를 각 축별로 회전 시켜보자 <br />
+본 예제는 Z 축을 기준으로 회전하는 예제다 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="nf">cloud_ptr</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3f</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3f</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
+
+<span class="c1">// Define a translation vector</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">M_PI</span><span class="p">;</span>
+
+<span class="c1">// Define a rotation matrix</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">Eigen</span><span class="o">::</span><span class="n">AngleAxisf</span> <span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3f</span><span class="o">::</span><span class="n">UnitZ</span><span class="p">()));</span>
+
+<span class="c1">// Executing transformation</span>
+<span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="nf">tf_cloud_ptr</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="n">pcl</span><span class="o">::</span><span class="n">transformPointCloud</span> <span class="p">(</span><span class="o">*</span><span class="n">cloud_ptr</span><span class="p">,</span> <span class="o">*</span><span class="n">tf_cloud_ptr</span><span class="p">,</span> <span class="n">transform</span><span class="p">);</span>
+</code></pre></div></div>
+:ET

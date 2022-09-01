@@ -1,0 +1,34 @@
+I"U	<p><code class="language-plaintext highlighter-rouge">No rule to make target 'arch/x86/entry/syscalls/syscall_32.tbl', needed by 'arch/x86/include/generated/uapi/asm/unistd_32.h'. Stop.</code>가 뜬다면???? <br /></p>
+
+<p><br /></p>
+
+<h2 id="에러-발생">에러 발생</h2>
+
+<p>다음과 같은 에러가 발생하는 경우가 있다 <br /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make[2]: <span class="k">***</span> No rule to make target <span class="s1">'arch/x86/entry/syscalls/syscall_32.tbl'</span>, needed by <span class="s1">'arch/x86/include/generated/uapi/asm/unistd_32.h'</span><span class="nb">.</span>  Stop.
+make[1]: <span class="k">***</span> <span class="o">[</span><span class="nb">arch</span>/x86/Makefile:217: archheaders] Error 2
+make[1]: Leaving directory <span class="s1">'/usr/src/linux-headers-5.15.0-46-generic'</span>
+make: <span class="k">***</span> <span class="o">[</span>Makefile:7: default] Error 2
+
+</code></pre></div></div>
+
+<p>쉽게 해결하자. ${PWD} 경로가 꼬여서 그런거다 <br /></p>
+
+<p><br /></p>
+
+<h2 id="해결">해결!</h2>
+
+<p>첫 번째 터미널에 다음을 입력해준다 <br />
+다음과 같이 수정해주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Before</span>
+<span class="si">$(</span>MAKE<span class="si">)</span> <span class="nt">-C</span> <span class="si">$(</span>KDIR<span class="si">)</span> <span class="nv">M</span><span class="o">=</span><span class="si">$(</span>PWD<span class="si">)</span> modules
+<span class="c"># After</span>
+<span class="si">$(</span>MAKE<span class="si">)</span> <span class="nt">-C</span> <span class="si">$(</span>KDIR<span class="si">)</span> <span class="nv">M</span><span class="o">=</span><span class="si">$(</span>shell <span class="nb">pwd</span><span class="si">)</span> modules
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://itecnote.com/tecnote/no-rule-to-make-target-arch-x86-entry-syscalls-syscall_32-tbl-needed-by-arch-x86-entry-syscalls-include-generated-asm-syscalls_32-h/">No rule to make target <code class="language-plaintext highlighter-rouge">arch/x86/entry/syscalls/syscall_32.tbl’, needed by </code>arch/x86/entry/syscalls/../../include/generated/asm/</a></li>
+</ul>
+:ET

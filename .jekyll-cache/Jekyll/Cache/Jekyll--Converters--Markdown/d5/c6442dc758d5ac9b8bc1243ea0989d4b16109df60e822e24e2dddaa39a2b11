@@ -1,0 +1,2 @@
+I"�<p><code class="language-plaintext highlighter-rouge">No rule to make target 'arch/x86/entry/syscalls/syscall_32.tbl', needed by 'arch/x86/include/generated/uapi/asm/unistd_32.h'. Stop.</code>가 뜬다면???? <br /></p>
+:ET

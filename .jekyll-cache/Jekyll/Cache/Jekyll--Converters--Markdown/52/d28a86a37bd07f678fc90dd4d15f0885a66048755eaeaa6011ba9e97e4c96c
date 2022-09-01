@@ -1,0 +1,17 @@
+I"�<p>ROS_DISTRO was set to ‘foxy’ before. Please make sure that the environment does not mix paths from different distributions 라는 메세지가 뜰 때 어떻게 해야 할까 ? <br /></p>
+
+<h2 id="ros-여러가지-버전-동시에-설치-">ROS 여러가지 버전 동시에 설치 ?</h2>
+
+<p>Ubuntu 20.04같은 환경에서 ROS noetic이 설치되어 있는 경우 ROS foxy를 설치하는 과정에서 아래와 같은 에러 메세지를 볼 수 있다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ROS_DISTRO was <span class="nb">set </span>to <span class="s1">'foxy'</span> before. Please make sure that the environment does not mix paths from different distributions
+</code></pre></div></div>
+
+<p>사실 이 문제는 해결 방법이 간단하다. <br />
+ROS 1에서 ROS 2로 환경을 변경하는 과정에서의 warning 메세지일 뿐 무시하고 설치하면 된다. <br /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://get-help.robotigniteacademy.com/t/ros-distro-make-sure-environment-doesnt-mix-paths/13150">ROS_DISTRO make sure environment doesn’t mix paths</a></li>
+</ul>
+:ET
