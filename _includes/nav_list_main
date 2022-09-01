@@ -12,14 +12,14 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "cpp_useful" %}
-                        <li><a href="/categories/cpp_useful" class="">C++({{category[1].size}})</a></li>
+                        <li><a href="/categories/cpp_useful" class="">- C++({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "python_useful" %}
-                        <li><a href="/categories/python_useful" class="">Python({{category[1].size}})</a></li>
+                        <li><a href="/categories/python_useful" class="">- Python({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -27,31 +27,38 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "ros" %}
-                        <li><a href="/categories/ros" class="">ROS({{category[1].size}})</a></li>
+                        <li><a href="/categories/ros" class="">- ROS({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "ros2" %}
+                        <li><a href="/categories/ros2" class="">- ROS 2.0({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "pcl" %}
-                        <li><a href="/categories/pcl" class="">Point Cloud({{category[1].size}})</a></li>
+                        <li><a href="/categories/pcl" class="">- Point Cloud Library [PCL] ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-            <ul>
+            <!-- <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "ceres" %}
                         <li><a href="/categories/ceres" class="">Ceres({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
-            </ul>
-            <ul>
+            </ul> -->
+            <!-- <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "geographiclib" %}
                         <li><a href="/categories/geographiclib" class="">GeographicLib({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
-            </ul>
+            </ul> -->
         <!-- <span class="nav__sub-title"> 📂 ROS 프로그래밍</span> -->
         <!-- <span class="nav__sub-title"> 📂 스터디/이론</span>
             <ul>
@@ -79,7 +86,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "linux" %}
-                        <li><a href="/categories/linux" class="">정리 자료({{category[1].size}})</a></li>
+                        <li><a href="/categories/linux" class="">- 정리 자료({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -87,21 +94,21 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "error" %}
-                        <li><a href="/categories/error" class="">에러 코드 정리({{category[1].size}})</a></li>
+                        <li><a href="/categories/error" class="">- Trouble Shooting({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "install" %}
-                        <li><a href="/categories/install" class="">설치 방법 정리({{category[1].size}})</a></li>
+                        <li><a href="/categories/install" class="">- Installation({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "latex" %}
-                        <li><a href="/categories/latex" class="">Latex 문법 정리({{category[1].size}})</a></li>
+                        <li><a href="/categories/latex" class="">- Latex Syntax({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
