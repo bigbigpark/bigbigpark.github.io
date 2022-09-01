@@ -1,8 +1,6 @@
 ---
 title: "[Error] No rule to make target 'arch/x86/entry/syscalls/syscall_32.tbl', needed by 'arch/x86/include/generated/uapi/asm/unistd_32.h'. Stop."
 
-toc: true
-toc_sticky: true
 category: error
 tags: [ros, ros2, PX2, autopilot, SITL, gazebo, control, offboard]
 ---

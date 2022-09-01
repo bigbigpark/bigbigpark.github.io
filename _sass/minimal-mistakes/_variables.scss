@@ -15,7 +15,7 @@ $indent-var: 0.4em !default; // v0.4em
 /* system typefaces */
 $serif      : Georgia, Times, serif;
 $sans-serif : 'Noto Sans KR',"Nanum Gothic", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace  :  Monaco, Consolas, "Lucida Console", monospace;
+$monospace  : Consolas, Monaco, "Lucida Console", monospace;
 
 /* sans serif typefaces */
 $sans-serif-narrow: $sans-serif !default;
@@ -62,7 +62,7 @@ $lighter-gray: mix(#fff, $gray, 90%) !default;
 
 $background-color: rgb(235, 235, 235) !default;
 $code-background-color: #fafafa !default;
-$code-background-color-dark: $light-gray !default;
+$code-background-color-dark: $light-gray !default; // $light-gray
 $text-color: $dark-gray !default;
 $muted-text-color: mix(#fff, $text-color, 20%) !default;
 $border-color: $lighter-gray !default;
@@ -73,7 +73,7 @@ $primary-color: #464646 !default; //6f777d
 $success-color: #3fa63f !default;
 $warning-color: #d67f05 !default;
 $danger-color: #ee5f5b !default;
-$info-color: #092e04 !default; //3b9cba
+$info-color: #464646 !default; //3b9cba
 $focus-color: $primary-color !default;
 $active-color: mix(#fff, $primary-color, 80%) !default;
 
