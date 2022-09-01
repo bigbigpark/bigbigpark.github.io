@@ -1,8 +1,6 @@
 ---
 title: "OSQP : C, Python 버전 설치하기"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, mpc, osqp, c, python]
 ---

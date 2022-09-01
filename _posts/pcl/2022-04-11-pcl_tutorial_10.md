@@ -1,8 +1,6 @@
 ---
 title: "[#10] 평면 법선벡터 추정하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, estimate, surface, normals, 법선벡터, 평면, 추정]
 ---

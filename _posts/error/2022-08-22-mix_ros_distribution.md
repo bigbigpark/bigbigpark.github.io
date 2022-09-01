@@ -1,8 +1,6 @@
 ---
 title: "[ERROR] 한번에 두 가지 버전의 ROS를 설치하려 할 때 "
 
-toc: true
-toc_sticky: true
 category: error
 tags: [ros, ros2, distribution, foxy, melodic, kinetic, noetic, mix, version, 설치, 동시]
 ---

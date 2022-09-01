@@ -1,8 +1,6 @@
 ---
 title: Open CV 3.4.5 설치
 
-toc: true
-toc_sticky: true
 category: install
 tags: [opencv, install, ubuntu, linux, 리눅스, 우분투, 설치]
 ---

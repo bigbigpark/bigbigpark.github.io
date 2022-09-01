@@ -1,8 +1,6 @@
 ---
 title: "[Python] 한글 입력 오류"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [python, hangeul, 한글, 입력, unicode]
 ---

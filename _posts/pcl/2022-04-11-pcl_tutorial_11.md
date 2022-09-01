@@ -1,8 +1,6 @@
 ---
 title: "[#11] 3D 특징점들 동작 방법"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, estimate, 3D, features, work]
 ---

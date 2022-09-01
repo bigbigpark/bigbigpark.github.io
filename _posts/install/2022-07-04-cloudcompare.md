@@ -1,8 +1,6 @@
 ---
 title: "[Install] CloudCompare"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, cloudcompare, pointcloud, pcl]
 ---

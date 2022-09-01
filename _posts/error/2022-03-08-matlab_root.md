@@ -1,8 +1,6 @@
 ---
 title: "[Linux]Matlab /usr/local/MATLAB/R2021b 접근 불가 에러"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [matlob, error, linux, binary, previlege, access, ubuntu]
 ---

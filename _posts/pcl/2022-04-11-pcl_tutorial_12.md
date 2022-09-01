@@ -4,8 +4,6 @@ title: "[#12] Integral image를 이용한 특징점 찾기"
 
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, estimate, integral, images, estimatation]
-toc: true
-toc_sticky: true
 ---
 
 Estimation using integral images <br/>

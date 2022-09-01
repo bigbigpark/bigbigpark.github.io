@@ -1,8 +1,6 @@
 ---
 title: "[C++] geometry_msgs/Pose to Eigen::Matrix4f"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [c++, cpp, matrix, eigen, rotation, quaternion]
 ---

@@ -1,8 +1,6 @@
 ---
 title: "[C++] 쿼터니언-3x3행렬 서로 변환"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [c++, cpp, matrix, eigen, rotation, quaternion]
 ---

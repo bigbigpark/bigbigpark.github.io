@@ -1,8 +1,6 @@
 ---
 title: WPS 워드 엑셀 피피티 뷰어
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, wps, word, ppt, powerpoint, viever, execel, 리눅스, 파워포인트, 워드, 뷰어]
 ---

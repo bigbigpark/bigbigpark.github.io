@@ -1,8 +1,6 @@
 ---
 title: "[C++] 현재 시간대 출력하기"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [C++, cpp, time, current, utc]
 ---

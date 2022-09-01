@@ -4,8 +4,6 @@ title: "[#14] PointCloud 좌표 회전 하기"
 
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, rotation, coordinate]
-toc: true
-toc_sticky: true
 ---
 
 PointCloud를 각 축별로 회전 시켜보자 <br/>

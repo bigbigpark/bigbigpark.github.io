@@ -1,8 +1,6 @@
 ---
 title: "Could not get lock /var/lib/dpkg/lock-frontend - open (11 resource temporarily unavailable)"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [update, linux, update, lock, 패키지, 업데이트, 오류, sudo, linux, ubuntu]
 ---

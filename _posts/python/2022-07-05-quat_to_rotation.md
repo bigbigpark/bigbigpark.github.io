@@ -1,8 +1,6 @@
 ---
 title: "[Python] 쿼터니언 to 회전 행렬"
 
-toc: true
-toc_sticky: true
 category: python_useful
 tags: [python, robotics, quaternion, matrix, rotation, se3]
 ---

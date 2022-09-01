@@ -1,8 +1,6 @@
 ---
 title: "[Python] Quat to Euler"
 
-toc: true
-toc_sticky: true
 category: python_useful
 tags: [install, quaternion, euler, transformation, 변환]
 ---

@@ -1,8 +1,6 @@
 ---
 title: "[#07] Radius/Conditional Outlier Removal Filter 적용하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, sor, radius, outlier, conditional, removal]
 ---

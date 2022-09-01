@@ -1,8 +1,6 @@
 ---
 title: "[ROS] bag to pcd"
 
-toc: true
-toc_sticky: true
 category: ros
 tags: [ros, pcd, convert, bag, rosbag]
 ---

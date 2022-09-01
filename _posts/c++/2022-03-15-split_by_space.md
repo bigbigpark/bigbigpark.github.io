@@ -1,8 +1,6 @@
 ---
 title: "문자열: 공백을 기준으로 자르기"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [string, cpp, c++, 공백, 문자열자르기]
 ---

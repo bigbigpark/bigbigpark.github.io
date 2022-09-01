@@ -1,8 +1,6 @@
 ---
 title: "[Google Drive] 우분투(리눅스)에서 구글 드라이브 사용하기"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [google drive, drive, google, install, ubuntu]
 ---

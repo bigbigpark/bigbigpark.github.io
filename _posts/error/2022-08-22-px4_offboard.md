@@ -1,8 +1,6 @@
 ---
 title: "[PX4] offboard control이 안 될 때"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [ros, ros2, PX2, autopilot, SITL, gazebo, control, offboard]
 ---

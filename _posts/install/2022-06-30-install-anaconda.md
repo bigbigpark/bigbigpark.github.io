@@ -1,8 +1,6 @@
 ---
 title: "[Install] Anaconda on Ubuntu 18.04"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, anaconda, deeplearning, pytorch, torchvision]
 ---

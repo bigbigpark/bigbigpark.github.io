@@ -1,8 +1,6 @@
 ---
 title: "[Linux] 패키지 설치 경로 찾기"
 
-toc: true
-toc_sticky: true
 category: linux
 tags: [linux, ubuntu, package, path, 패키지, 설치 ,경로]
 ---

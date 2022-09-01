@@ -4,8 +4,6 @@ title: "[#16] PCL 기존 버전 완전 삭제"
 
 category: pcl
 tags: [pcl, remove, purge, uninstall, upgrade, change, version]
-toc: true
-toc_sticky: true
 ---
 
 PCL 기존에 설치되어 있는 것들을 완전히 제거해보자! <br/>

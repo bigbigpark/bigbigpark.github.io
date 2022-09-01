@@ -1,8 +1,6 @@
 ---
 title: "[C++] 터미널에 컬러로 출력해보자"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [c++, print, color]
 ---

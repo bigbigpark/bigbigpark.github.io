@@ -1,8 +1,6 @@
 ---
 title: Gazebo, libcurl:(51) 'api.ignitionfuel.org'
 
-toc: true
-toc_sticky: true
 category: error
 tags: [gazebo, ros, error, ignitionfuel]
 ---

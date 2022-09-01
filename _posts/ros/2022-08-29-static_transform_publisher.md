@@ -1,8 +1,6 @@
 ---
 title: "[ROS] TF 만들기(Static Transform Publisher)"
 
-toc: true
-toc_sticky: true
 category: ros
 tags: [ros, tf, transform, publisher, static]
 ---

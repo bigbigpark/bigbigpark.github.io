@@ -1,8 +1,6 @@
 ---
 title: "[C++] vector 2차원을 1차원으로"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [c++, cpp, vector, flatten, 차원, dimension, algorithm]
 ---

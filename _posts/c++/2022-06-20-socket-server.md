@@ -1,8 +1,6 @@
 ---
 title: "[C++] Socket server"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [ros, socket, server, client, communication, linux, ubuntu]
 ---

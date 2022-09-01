@@ -1,8 +1,6 @@
 ---
 title: Axis-angle to Quaternion 변환
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [transform, axis-angle, quaternion, cpp, c++]
 ---

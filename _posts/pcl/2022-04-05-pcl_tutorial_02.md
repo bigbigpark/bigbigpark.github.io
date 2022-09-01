@@ -1,8 +1,6 @@
 ---
 title: "[#02] PCD 파일 읽기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, PCL, 포인트 클라우드, PCD, read, 읽기]
 ---

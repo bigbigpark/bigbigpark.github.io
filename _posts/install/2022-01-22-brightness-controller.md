@@ -1,8 +1,6 @@
 ---
 title: "[Ubuntu] 리눅스(우분투) 화면밝기 간단하게 해결!"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, brightness, controll, 리눅스, 화면밝기, linux]
 ---

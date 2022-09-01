@@ -1,8 +1,6 @@
 ---
 title: "[pip] egg_info failed with error code 1"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [python, pip, install, error]
 ---

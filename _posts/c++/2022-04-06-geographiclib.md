@@ -1,8 +1,6 @@
 ---
 title: "wgs84 to utm 변환"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [UTM, NMEA, LLA, 위도, 경도, 변환, converter, cpp, c++]
 ---

@@ -1,8 +1,6 @@
 ---
 title: "[ROS/PCL] PointCloud2 샘플데이터 재생 rosbag"
 
-toc: true
-toc_sticky: true
 category: ros
 tags: [ros, pointcloud2, rosbag, play, rviz, sample]
 ---

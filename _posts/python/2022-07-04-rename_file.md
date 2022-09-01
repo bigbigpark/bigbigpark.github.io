@@ -1,8 +1,6 @@
 ---
 title: "[Python] 폴더 이름 한번에 변경하기"
 
-toc: true
-toc_sticky: true
 category: python_useful
 tags: [python, file, directory, rename, change, title]
 ---

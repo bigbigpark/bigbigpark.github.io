@@ -1,8 +1,6 @@
 ---
 title: "[리눅스] 우분투 화면녹화 simplescreen recorder로 해결!"
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, simplescreenrecorder, capture]
 ---

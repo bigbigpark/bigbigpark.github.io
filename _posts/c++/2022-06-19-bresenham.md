@@ -1,8 +1,6 @@
 ---
 title: "[C++] Bresenham Algorithm"
 
-toc: true
-toc_sticky: true
 category: cpp_useful
 tags: [ros, line, bresenham, algorithm]
 ---

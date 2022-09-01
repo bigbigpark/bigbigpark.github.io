@@ -1,8 +1,6 @@
 ---
 title: vscode 디버그 모드 설정
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, vscode, debug, mode, 리눅스, 디버깅모드, breakpoint]
 ---

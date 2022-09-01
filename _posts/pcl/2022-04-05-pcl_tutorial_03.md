@@ -1,8 +1,6 @@
 ---
 title: "[#03] PCD 파일 쓰기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, PCL, 포인트 클라우드, PCD, wrtie, 쓰기]
 ---

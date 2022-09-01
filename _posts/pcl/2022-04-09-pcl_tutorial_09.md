@@ -1,8 +1,6 @@
 ---
 title: "[#09] 파라미터 모델로 포인트 프로젝션 하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, projection, parametric, model]
 ---

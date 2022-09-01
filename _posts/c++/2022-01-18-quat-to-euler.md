@@ -1,8 +1,6 @@
 ---
 title: "[C++] Quaternion to Euler 변환"
 
-toc: true
-toc_sticky: true
 categories: cpp_useful
 tags: [c++, euler, quaternion, transformation, robotics]
 ---

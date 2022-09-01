@@ -1,8 +1,6 @@
 ---
 title: "[ROS] PointCloud2 to LaserScan"
 
-toc: true
-toc_sticky: true
 category: ros
 tags: [ros, pointcloud, convert, laser, scan]
 ---

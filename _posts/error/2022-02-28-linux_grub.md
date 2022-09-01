@@ -1,8 +1,6 @@
 ---
 title: "[듀얼부팅]부팅시 바로 윈도우로 부팅된다면?"
 
-toc: true
-toc_sticky: true
 category: error
 tags: [듀얼부팅, 리눅스, 리눅스 부팅, 윈도우 부팅, 그럽 복구, boot-repair, bootloader, repair, grub]
 ---

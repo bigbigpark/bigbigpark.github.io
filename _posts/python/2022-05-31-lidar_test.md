@@ -1,8 +1,6 @@
 ---
 title: "[Python] LiDAR test code"
 
-toc: true
-toc_sticky: true
 category: python_useful
 tags: [lidar, LIDAR, ros, python, py, test]
 ---

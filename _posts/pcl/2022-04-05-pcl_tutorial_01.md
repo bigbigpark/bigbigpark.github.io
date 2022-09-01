@@ -1,8 +1,6 @@
 ---
 title: "[#01] PCD 파일 포맷 이해하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, PCL, 포인트 클라우드, PCD, 개념, 정의]
 ---

@@ -1,8 +1,6 @@
 ---
 title: "[#04] Voxel Grid Filter 적용하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, PCL, 포인트 클라우드, Voxel, Filter]
 ---

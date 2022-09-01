@@ -1,8 +1,6 @@
 ---
 title: ROS Melodic 설치 (Ubuntu 18.04)
 
-toc: true
-toc_sticky: true
 category: install
 tags: [ros, melodic, ubuntu 18.04, 설치, 멜로딕, 우분투, 로스]
 ---

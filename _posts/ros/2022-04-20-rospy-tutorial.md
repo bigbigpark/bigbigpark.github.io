@@ -1,8 +1,6 @@
 ---
 title: "[ROS/Python] 간단한 Publisher"
 
-toc: true
-toc_sticky: true
 category: ros
 tags: [ros, python, rospy, publisher, subscriber]
 ---

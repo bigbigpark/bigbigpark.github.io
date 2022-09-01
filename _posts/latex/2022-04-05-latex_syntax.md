@@ -1,8 +1,6 @@
 ---
 title: Latex 문법 정리
 
-toc: true
-toc_sticky: true
 category: latex
 tags: [latex, 레이텍, syntax, 문법, 정리]
 ---

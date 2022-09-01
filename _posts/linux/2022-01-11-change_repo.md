@@ -1,8 +1,6 @@
 ---
 title: "[Ubuntu] 우분투 저장소 변경, 한국서버로 속도 up!"
 
-toc: true
-toc_sticky: true
 category: linux
 tags: [우분투 저장소, repository, change, kakao, mirror, 저장소, linux, ubuntu]
 ---

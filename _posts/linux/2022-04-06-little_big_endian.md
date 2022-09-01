@@ -1,8 +1,6 @@
 ---
 title: "[Linux] Little Endian, Big Endian 확인"
 
-toc: true
-toc_sticky: true
 category: linux
 tags: [linux, byte order, little, big, endian, 확인]
 ---

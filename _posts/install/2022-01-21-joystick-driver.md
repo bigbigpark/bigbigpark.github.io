@@ -1,8 +1,6 @@
 ---
 title: 조이스틱 드라이버 설치
 
-toc: true
-toc_sticky: true
 category: install
 tags: [install, joystick, driver, 조이스틱, 드라이버, 리눅스, 설치]
 ---

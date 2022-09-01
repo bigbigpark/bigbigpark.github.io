@@ -1,8 +1,6 @@
 ---
 title: "[#08] 세그먼테이션으로부터 인덱스 추출하기"
 
-toc: true
-toc_sticky: true
 category: pcl
 tags: [pcl, point cloud, 포인트 클라우드, segmentation, indices, extract, 추출]
 ---
