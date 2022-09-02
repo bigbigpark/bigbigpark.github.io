@@ -125,7 +125,6 @@ target_link_libraries(pub
 )
 ~~~
 
-
 ## 실행하기
 
 ~~~bash
@@ -135,8 +134,6 @@ $ roscore
 $ source ~/ros_ws/devel/setup.bash
 $ rosrun ros_simple_tutorial pub 
 ~~~
-
-위의 명령어가 동작하지 않으면 `$ source ~/ros_ws/devel/setup.bash`를 해준다 <br/>
 
 ## 토픽 출력하기
 
