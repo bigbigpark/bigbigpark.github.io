@@ -1,0 +1,34 @@
+I"	<p>ROS 2를 공부하면서 나중에 안 까먹기 위해 블로그에 기록한다 <br /></p>
+
+<h2 id="패키지-생성-문법">패키지 생성 문법</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ros2 pkg create <span class="nt">--build-type</span> ament_cmake &lt;package_name&gt;
+</code></pre></div></div>
+
+<p>빌드 타입이 지금 <strong>ament_cmake</strong>로 되어 있는데 표윤석 박사님 책에 보면 <strong>colcon</strong>도 사용한다는데 정확하게 어떤 차이인 지는 모르겠다. 나는 그래서 아래 명령어로 패키지를 생성한다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ros2 pkg create my_ros2
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 치고 나면 아래와 같이 뜬다</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>going to create a new package
+package name: my_ros2
+destination directory: /home/scpark/ros2_ws/src
+package format: 3
+version: 0.0.0
+description: TODO: Package description
+maintainer: ['scpark &lt;scsc1125@gmail.com&gt;']
+licenses: ['TODO: License declaration']
+build type: ament_cmake
+dependencies: []
+creating folder ./my_ros2
+creating ./my_ros2/package.xml
+creating source and include folder
+creating folder ./my_ros2/src
+creating folder ./my_ros2/include/my_ros2
+creating ./my_ros2/CMakeLists.txt
+</code></pre></div></div>
+:ET
