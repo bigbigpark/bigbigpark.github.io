@@ -1,0 +1,181 @@
+I")D<p>ROS 2에서 C++ 기반 publisher를 만들어보자! <br /></p>
+
+<h2 id="전체-코드">전체 코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"rclcpp/rclcpp.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"std_msgs/msg/string.hpp"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono_literals</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyPublisher</span> <span class="o">:</span> <span class="k">public</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
+<span class="p">{</span>
+<span class="nl">public:</span> 
+  <span class="n">MyPublisher</span><span class="p">()</span> <span class="o">:</span> <span class="n">Node</span><span class="p">(</span><span class="s">"my_publisher"</span><span class="p">),</span> <span class="n">count_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">pub_</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"msg"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">timer_</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">create_wall_timer</span><span class="p">(</span><span class="mx">500ms</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">MyPublisher</span><span class="o">::</span><span class="n">timerCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+  <span class="p">}</span>
+
+<span class="nl">private:</span>
+  <span class="kt">void</span> <span class="n">timerCallback</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="p">();</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">"bigbigpark! "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">count_</span><span class="p">);</span>
+
+    <span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span> <span class="s">"Publish: %s"</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">TimerBase</span><span class="o">::</span><span class="n">SharedPtr</span> <span class="n">timer_</span><span class="p">;</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;::</span><span class="n">SharedPtr</span> <span class="n">pub_</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">count_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">spin</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyPublisher</span><span class="o">&gt;</span><span class="p">());</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>코드가 좀 ROS 1과는 비슷한 듯 다르다 ?</p>
+
+<h2 id="코드-분석">코드 분석</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"rclcpp/rclcpp.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"std_msgs/msg/string.hpp"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono_literals</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>시간 관련 함수 라이브러리인 <strong>chrono</strong> <br />
+메모리 동적 배열 할당 관련 <strong>memory</strong> <br />
+함수를 객체처럼! <strong>functional</strong> <br /></p>
+
+<p>앞으로 코드를 작성할 때도 뭔가 필수인 것 같아서.. 일단 습관적으로 작성하기로 한다</p>
+
+<p><br /></p>
+
+<p>이제는 <strong>ros/ros.h</strong>가 아닌 <strong>rclcpp/rclcpp.hpp</strong>로 바뀐듯 하다 <br />
+또한 메세지 패키지를 읽어올 때도 <strong>std_msgs/String.h</strong>에서 <strong>std_msgs/msg/string.hpp</strong>로 변경되었다 <br /></p>
+
+<p>근데.. ROS 2 표박사님 책보면 헤더파일의 네이밍 규칙에 어긋나는 것이 아닌가..??</p>
+
+<p><br /></p>
+
+<p>그리고 std::chrono_literals는 시간을 쉽게 나타내기 위한 네임스페이스다 <br />
+네임스페이스는 권장하지 않는데..ㅠ</p>
+
+<p><br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyPublisher</span> <span class="o">:</span> <span class="k">public</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
+<span class="p">{</span>
+<span class="nl">public:</span> 
+  <span class="n">MyPublisher</span><span class="p">()</span> <span class="o">:</span> <span class="n">Node</span><span class="p">(</span><span class="s">"my_publisher"</span><span class="p">),</span> <span class="n">count_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">pub_</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"msg"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">timer_</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">create_wall_timer</span><span class="p">(</span><span class="mx">500ms</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">MyPublisher</span><span class="o">::</span><span class="n">timerCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+  <span class="p">}</span>
+
+<span class="nl">private:</span>
+  <span class="kt">void</span> <span class="n">timerCallback</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="p">();</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">"bigbigpark! "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">count_</span><span class="p">);</span>
+
+    <span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span> <span class="s">"Publish: %s"</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">TimerBase</span><span class="o">::</span><span class="n">SharedPtr</span> <span class="n">timer_</span><span class="p">;</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;::</span><span class="n">SharedPtr</span> <span class="n">pub_</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">count_</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>ROS 1 강의에는 바로 클래스를 이용해서 설명하지 않았는데, 이 ROS 2는 아무래도 C++에 대한 전반적인 지식이 있는 사람을 타겟으로 만들어졌다 <br />
+그리고 <strong>rclcpp::Node</strong> 라는 클래스를 상속하는 것을 알 수 있다 <br /></p>
+
+<p><br /></p>
+
+<p>특히 클래스 생성자에서 노드 이름을 인자로 받아서 바로 선언하는 부분을 기억해주자 <br />
+또한 ROS 1에 있었던 <strong>ros::NodeHandle</strong>이 없어지고 <strong>this-&gt;create_publisher</strong>로 변경이 되었다 <br /></p>
+
+<p><br /></p>
+
+<p>ROS 1에서는 main 문 안에서 while 문을 돌리면서 publish를 했다면, ROS 2에서는 timer라는 것을 이용하여 publish 코드를 짤 때 callback 함수를 돌린다 <br />
+즉, 더욱 정확한 시간에 publish하겠다는 의미다. 따라서 저 코드는 500ms 마다 타이머를 수신하는데, 그 때마다 count를 증가시키면서 메세지를 publish한다는 뜻이 된다</p>
+
+<p><br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">private:</span>
+  <span class="kt">void</span> <span class="nf">timerCallback</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="p">();</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">"bigbigpark! "</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">count_</span><span class="p">);</span>
+
+    <span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span> <span class="s">"Publish: %s"</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">TimerBase</span><span class="o">::</span><span class="n">SharedPtr</span> <span class="n">timer_</span><span class="p">;</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Publisher</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;::</span><span class="n">SharedPtr</span> <span class="n">pub_</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">count_</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이 부분은 callback 함수이긴 한데, <strong>ROS_INFO</strong> 에서 <strong>RCLCPP_INFO</strong>로 변경되었다 <br />
+또한 this-&gt;get_logger()를 제공하면서, 로깅에 대해서도 개선이 이루어진 것을 볼 수 있다</p>
+
+<p><br /></p>
+
+<p>그리고 타이머 변수와 퍼블리셔 변수가 모두 sharedPtr인 스마트포인터로 선언이 되어있다</p>
+
+<p><br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// ROS 2를 initialize 하겠다</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+  <span class="c1">// 타이머 콜백을 이용하여 노드로부터 데이터를 처리하겠다</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">spin</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyPublisher</span><span class="o">&gt;</span><span class="p">());</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>나는 main문을 처음에 보고 publisher인데 왜 spin이 있지 궁금증을 가졌다 <br />
+사실 없어도 되지만 정확한 시간으로 publish 하기 위해서는 자체 timer를 이용하는 것이 좋으며, 저렇게 클래스를 선언할 때도 스마트포인터로 선언하는 것을 알 수 있다</p>
+
+<p><br /></p>
+
+<h2 id="packagexml-수정">package.xml 수정</h2>
+
+<p>파일을 열어서 <strong>buildtool_depend</strong>에 <strong>ament_cmake</strong>라고 적혀 있는 줄 바로 밑에다가 다음을 추가해준다 <br /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;depend&gt;</span>rclcpp<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;depend&gt;</span>std_msgs<span class="nt">&lt;/depend&gt;</span>
+</code></pre></div></div>
+<p>이제 이 의존성을 CMakeLists.txt에 반영하면 된다</p>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<p>파일을 열어서 find_package(ament_cmake REQUIRED) 다음 줄에 이렇게 추가해준다</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>rclcpp REQUIRED<span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span>std_msgs REQUIRED<span class="p">)</span>
+</code></pre></div></div>
+
+:ET

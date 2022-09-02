@@ -1,0 +1,10 @@
+I"�<p>PC 환경을 ROS2에 맞게 변경해보자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MY_ROS2_WS</span><span class="o">=</span><span class="s1">'ros2_ws'</span>
+<span class="nb">source</span> ~/ros2_ws/install/local_setup.bash<span class="p">;</span>
+<span class="nb">alias </span><span class="nv">cw</span><span class="o">=</span><span class="s2">"cd ~/</span><span class="k">${</span><span class="nv">MY_ROS2_WS</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="nb">alias </span><span class="nv">cs</span><span class="o">=</span><span class="s2">"cd ~/</span><span class="k">${</span><span class="nv">MY_ROS2_WS</span><span class="k">}</span><span class="s2">/src"</span><span class="p">;</span>
+<span class="nb">alias </span><span class="nv">cb</span><span class="o">=</span><span class="s2">"cw &amp;&amp; colcon build --symlink-install"</span><span class="p">;</span>
+<span class="nb">alias </span><span class="nv">cbp</span><span class="o">=</span><span class="s2">"cw &amp;&amp; colcon build --symlink-install --packages-select"</span>
+</code></pre></div></div>
+:ET
