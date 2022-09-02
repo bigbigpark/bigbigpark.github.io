@@ -1,0 +1,82 @@
+I"�<p>ROS 환경에서 C++ 기반 Publisher를 작성해보자 <br /></p>
+
+<h2 id="작업-경로-생성">작업 경로 생성</h2>
+
+<p>작업 경로는 본인이 원하는 곳에 만들면 된다 <br />
+나는 ~경로에 만들 것이다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -p 옵션을 붙이면 뒤에 src 폴더까지 동시에 만들 수 있음</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> ~/ros_ws/src
+<span class="nv">$ </span><span class="nb">cd</span> ~/ros_ws/src
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="패키지-생성">패키지 생성</h2>
+
+<p>패키지를 생성해주자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># catkin_create_pkg {패키지명} {의존성패키지1} {의존성패키지2}</span>
+<span class="nv">$ </span>catkin_create_pkg ros_simple_tutorial roscpp std_msgs
+<span class="nv">$ </span><span class="nb">cd </span>ros_simple_tutorial
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>해당 디렉토리 안에 아래와 같이 구성이 되어있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>📂 ros_simple_tutorial
+┣ 📂 include / 📂 ros_simple_tutorial
+┣ 📂 src
+┣ 📜 CMakeLists.txt
+┗ 📜 package.xml
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="publisher-코드-작성">Publisher 코드 작성</h2>
+
+<p><strong>src</strong> 폴더 안에서 <strong>pub.cpp</strong> 파일을 만들어주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>src
+<span class="nv">$ </span>gedit pub.cpp <span class="c"># pub.cpp를 gedit 말고 vscode 등 본인이 편한 툴로 수정하자</span>
+</code></pre></div></div>
+
+<h3 id="전체-코드">전체 코드</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;std_msgs/String.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"pub_node"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">pub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span> <span class="n">msg</span><span class="p">;</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="s">"bigbigpark"</span><span class="p">;</span>
+
+    <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>코드가 이해되지 않으면 질문 남겨주시면 감사하겠습니다 :)</p>
+
+<p><br /></p>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<p>아까 <strong>ros_simple_tutorial</strong> 패키지 경로에 가서 <strong>CMakeLists.txt</strong>를 수정해주자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit CMakeLists.txt
+</code></pre></div></div>
+
+:ET

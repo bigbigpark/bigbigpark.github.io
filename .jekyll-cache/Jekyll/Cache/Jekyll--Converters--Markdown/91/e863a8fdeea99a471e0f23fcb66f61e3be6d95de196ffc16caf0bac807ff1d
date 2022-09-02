@@ -1,0 +1,22 @@
+I"<p>ROS 환경에서 C++ 기반 Publisher를 작성해보자 <br /></p>
+
+<h2 id="작업-경로-생성">작업 경로 생성</h2>
+
+<p>작업 경로는 본인이 원하는 곳에 만들면 된다 <br />
+나는 ~경로에 만들 것이다 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -p 옵션을 붙이면 뒤에 src 폴더까지 동시에 만들 수 있음</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> ~/ros_ws/src
+<span class="nv">$ </span><span class="nb">cd</span> ~/ros_ws/src
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="패키지-생성">패키지 생성</h2>
+
+<p>패키지를 생성해주자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># catkin_create_pkg {패키지명} {의존성패키지1} {의존성패키지2}</span>
+<span class="nv">$ </span>catkin_create_pkg ros_simple_tutorial roscpp std_msgs
+</code></pre></div></div>
+:ET
