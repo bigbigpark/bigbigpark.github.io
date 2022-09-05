@@ -1,0 +1,106 @@
+I"t<p>ROS 환경에서 C++ 기반 Subscriber를 작성해보자 <br /></p>
+
+<h2 id="작업-경로-및-패키지-생성">작업 경로 및 패키지 생성</h2>
+
+<p>이전 publisher 만드는 패키지와 이어지는 것이므로 작업 경로 및 패키지 생성은 아래 경로를 참고하자 <br /></p>
+
+<p><a href="https://bigbigpark.github.io/ros/roscpp-publisher/">“[ROS] C++ publisher 작성하기”</a></p>
+
+<p><br /></p>
+
+<h2 id="subscriber-코드-작성">Subscriber 코드 작성</h2>
+
+<p><strong>src</strong> 폴더 안에서 <strong>sub.cpp</strong> 파일을 만들어주자 <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>src
+<span class="nv">$ </span>gedit sub.cpp
+</code></pre></div></div>
+
+<h3 id="전체-코드">전체 코드</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;std_msgs/String.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">stringCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">"I got a message: %s"</span><span class="p">,</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"sub_node"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">stringCallback</span><span class="p">);</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>코드가 이해되지 않으면 질문 남겨주시면 감사하겠습니다 :)</p>
+
+<p><br /></p>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<p>아까 <strong>ros_simple_tutorial</strong> 패키지 경로에 가서 <strong>CMakeLists.txt</strong>를 수정해주자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit CMakeLists.txt
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>원래 있던 것을 삭제하고 아래를 복사 붙여넣기 한다 <br />
+간혹 제일 첫 번째 줄인 <strong>cmake_minimum_required</strong> 이 에러 나는 경우가 있는데 이럴 때는 터미널 창에 <code class="language-plaintext highlighter-rouge">$ cmake --version</code>을 입력하여 자신의 cmake 버전을 입력해준다 <br /></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.9<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>ros_simple_tutorial<span class="p">)</span>
+
+<span class="c1"># add_compile_options(-std=c++11)</span>
+
+<span class="nb">find_package</span><span class="p">(</span>catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+<span class="p">)</span>
+
+<span class="nf">catkin_package</span><span class="p">(</span>
+<span class="c1">#  INCLUDE_DIRS include</span>
+<span class="c1">#  LIBRARIES ros_simple_tutorial</span>
+<span class="c1">#  CATKIN_DEPENDS roscpp std_msgs</span>
+<span class="c1">#  DEPENDS system_lib</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+<span class="c1"># include</span>
+  <span class="si">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="si">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>pub src/pub.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>pub
+  <span class="si">${</span><span class="nv">catkin_LIBRARIES</span><span class="si">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="실행하기">실행하기</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roscore
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/ros_ws/devel/setup.bash
+<span class="nv">$ </span>rosrun ros_simple_tutorial pub 
+</code></pre></div></div>
+
+<h2 id="토픽-출력하기">토픽 출력하기</h2>
+
+<p>토픽이 정상적으로 출력되는지 확인하자</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> ~/ros_ws/devel/setup.bash
+<span class="nv">$ </span>rostopic <span class="nb">echo</span> /message
+</code></pre></div></div>
+
+<p>여기서 어떤 토픽이 지금 ROS 통신 상에 publish되고 있는 지는 아래 명령어로 확인 가능하다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rostopic list
+</code></pre></div></div>
+:ET
