@@ -12,7 +12,7 @@ tags: [c++, cpp, vector, flatten, 차원, dimension, algorithm]
 아래의 flatten 함수를 정의하고 사용하자 <br/>
 
 ~~~c++
-std::vector<int8_t> flatten(const std::vector<std::vector<double>> &array)
+std::vector<int8_t> flatten(const std::vector<std::vector<int8_t>> &array)
 {
   std::vector<int8_t> flattened_v;
 
