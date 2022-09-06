@@ -20,7 +20,7 @@ C++에서 std::vector 자료형을 cv::Mat 자료형으로 변환해보자! <br/
 
 이 부분은 [이전 포스팅](https://bigbigpark.github.io/cpp_useful/vector_flatten/)에서 한번 다룬 적이 있지만 다시 적는다. <br/>
 
-flatten이라는 `납작하게 하다`라는 뜻을 가진 함수를 하나 만들어 준다. <br/>
+flatten이라는 **납작하게 하다**라는 뜻을 가진 함수를 하나 만들어 준다. <br/>
 이 함수의 기능은 이름에서 알다시피 2차원을 1차원으로 만들어주는 녀석일 것이다. <br/>
 
 ### Sample Code
