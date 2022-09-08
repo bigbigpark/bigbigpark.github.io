@@ -1,0 +1,121 @@
+I"�<p>메세지(.msg)파일만 모아둔 패키지를 따로 만들고 이를 이용해보자 &lt;/br&gt;</p>
+
+<h2 id="개요">개요</h2>
+
+<p>ROS를 사용하다보면 .msg파일만 따로 모아서 이용하는 경우가 있다. <br /></p>
+
+<p>하나의 패키지 안에 <strong>msg</strong>라는 파일을 만들어서 이용하게 되는 경우, 다른 패키지에서 이 메세지를 이용하려 할 때 문제가 생긴다. <br /></p>
+
+<p>그래서 오늘은 메세지 파일만 모아둔 패키지를 만들어서 이용해보자! <br /></p>
+
+<h2 id="메세지-패키지-만들기">메세지 패키지 만들기</h2>
+
+<p>우선 기본적인 ROS 특성을 아는 유저 대상으로 글을 적는다. <br /></p>
+
+<p><strong>robot_msgs</strong>라는 이름의 패키지를 만들어보자. <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>catkin_create_pkg robot_msgs std_msgs message_runtime message_generation
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이후 메세지 파일이 담길 <strong>msg</strong>라는 폴더를 만들자. <br />
+최종 파일 구조는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>📦src
+ ┗ 📂robot_msgs
+ ┃ ┣ 📂msg
+ ┃ ┣ 📜CMakeLists.txt
+ ┃ ┗ 📜package.xml
+</code></pre></div></div>
+
+<h2 id="사용할-메세지-만들기">사용할 메세지 만들기</h2>
+
+<p>나는 <strong>RobotInfo.msg</strong>라는 메세지를 아래와 같이 만들었다. <br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>std_msgs/Header Header
+string name
+uint8 id
+float32 linear_velocity
+float32 angular_velocity
+</code></pre></div></div>
+
+<h2 id="packagexml-수정하기">package.xml 수정하기</h2>
+
+<p>아래 줄을 추가해주자. <br />
+ROS 버전에 따라 <strong>run_depend</strong>라고 적혀 있기도 한다. <br /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build_depend&gt;</span>message_runtime<span class="nt">&lt;/build_depend&gt;</span>
+<span class="nt">&lt;exec_depend&gt;</span>message_generation<span class="nt">&lt;/exec_depend&gt;</span>
+</code></pre></div></div>
+
+<h2 id="cmakeliststxt-수정하기">CMakeLists.txt 수정하기</h2>
+
+<p>있는 내용을 전부 지우고 아래 내용으로 붙여넣기 한다. <br />
+각 라인이 어떤 것을 의미하는 지는 주석을 달아놨다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 본인의 cmake 버전을 적으면 된다</span>
+cmake_minimum_required<span class="o">(</span>VERSION 3.0.2<span class="o">)</span>
+
+<span class="c"># 본인의 프로젝트명, 여기서는 robot_msgs</span>
+project<span class="o">(</span>robot_msgs<span class="o">)</span>
+
+find_package<span class="o">(</span>catkin REQUIRED COMPONENTS
+  message_generation
+  message_runtime
+  std_msgs
+<span class="o">)</span>
+
+<span class="c"># 아까 생성해둔 msg 폴더 안에 있는 .msg 파일 모두를 나열해준다</span>
+add_message_files<span class="o">(</span>
+  FILES
+  RobotInfo.msg
+<span class="o">)</span>
+
+<span class="c"># 위에서 추가한 .msg 파일에서 의존하는 다른 패키지가 있다면 기술해준다</span>
+<span class="c"># RobotInfo.msg의 경우 std_msgs/Header 를 이용하기 때문에</span>
+<span class="c"># std_msgs를 추가해준다</span>
+generate_messages<span class="o">(</span>
+  DEPENDENCIES
+  std_msgs
+<span class="o">)</span>
+
+catkin_package<span class="o">(</span>
+ CATKIN_DEPENDS message_generation message_runtime std_msgs
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>자! 여기까지만 하면 메세지만 있는 패키지가 완성되었다. <br />
+여기서 새롭게 메세지를 추가하고 싶으면 다음 두 단계만 거치면 된다. <br /></p>
+<ol>
+  <li>msg 폴더 안에 메세지 파일 추가할 것</li>
+  <li>추가한 파일을 CMakeLists.txt 안에 add_message_files 밑에 나열할 것</li>
+</ol>
+
+<p><br /></p>
+
+<p>메세지 패키지를 만들었으니 어떻게 이용하는지 알아보자. <br />
+이 패키지를 받아서 사용하는 것은 정말 간단하다. <br /></p>
+
+<h2 id="메세지-패키지-빌드-및-사용해보기">메세지 패키지 빌드 및 사용해보기</h2>
+
+<p>이 메세지를 사용하기 위해서는 사용하는 곳의 CMakeLists.txt와 package.xml에 몇 줄만 추가하면 된다. <br /></p>
+
+<h2 id="packagexml-수정">package.xml 수정</h2>
+
+<h2 id="cmakeliststxt-수정">CMakeLists.txt 수정</h2>
+
+<p>find_package()와 catkin_package() 제일 끝에 아까 만들었던 robot_msgs 패키지를 추가해준다. <br />
+추가를 하고 나면 아래와 같이 되어 있을 것이다.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">find_package</span><span class="p">(</span>catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  robot_msgs
+<span class="p">)</span>
+
+<span class="nf">catkin_package</span><span class="p">(</span>
+  CATKIN_DEPENDS  roscpp std_msgs robot_msgs
+<span class="p">)</span>
+</code></pre></div></div>
+:ET

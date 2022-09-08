@@ -1,0 +1,19 @@
+I"<p>메세지(.msg)파일만 모아둔 패키지를 따로 만들고 이를 이용해보자 &lt;/br&gt;</p>
+
+<h2 id="개요">개요</h2>
+
+<p>ROS를 사용하다보면 .msg파일만 따로 모아서 이용하는 경우가 있다. <br /></p>
+
+<p>하나의 패키지 안에 <strong>msg</strong>라는 파일을 만들어서 이용하게 되는 경우, 다른 패키지에서 이 메세지를 이용하려 할 때 문제가 생긴다. <br /></p>
+
+<p>그래서 오늘은 메세지 파일만 모아둔 패키지를 만들어서 이용해보자! <br /></p>
+
+<h2 id="메세지-패키지-만들기">메세지 패키지 만들기</h2>
+
+<p>우선 기본적인 ROS 특성을 아는 유저 대상으로 글을 적는다. <br /></p>
+
+<p><strong>robot_msgs</strong>라는 이름의 패키지를 만들어보자. <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>catkin_create_pkg robot_msgs std_msgs message_runtime message_generation
+</code></pre></div></div>
+:ET
