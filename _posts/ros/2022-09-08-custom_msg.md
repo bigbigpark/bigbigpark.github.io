@@ -4,7 +4,7 @@ category: ros
 tags: [ros, cpp, msg, package, custom, 메세지, 패키지]
 ---
 
-메세지(.msg)파일만 모아둔 패키지를 따로 만들고 이를 이용해보자 </br>
+메세지(.msg)파일만 모아둔 패키지를 따로 만들고 이를 이용해보자 <br/>
 
 ## 개요
 
