@@ -1,7 +1,7 @@
 ---
 title: "[Error] Cannot build 'cmake_modules'"
 category: error
-tags: []
+tags: [ubuntu, linux, error, cmake, modules, cmakelists.txt]
 ---
 
 catkin으로 빌드하다가 아래 메세지가 뜬다면?
