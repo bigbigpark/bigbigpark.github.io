@@ -1,0 +1,17 @@
+I"<p>Catkin으로 빌드하다가 아래 메세지가 뜬다면?</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CMake Error at /opt/ros/noetic/share/catkin/cmake/catkinConfig.cmake:83 <span class="o">(</span>find_package<span class="o">)</span>:
+  Could not find a package configuration file provided by <span class="s2">"cmake_modules"</span>
+  with any of the following names:
+
+    cmake_modulesConfig.cmake
+    cmake_modules-config.cmake
+
+  Add the installation prefix of <span class="s2">"cmake_modules"</span> to CMAKE_PREFIX_PATH or <span class="nb">set</span>
+  <span class="s2">"cmake_modules_DIR"</span> to a directory containing one of the above files.  If
+  <span class="s2">"cmake_modules"</span> provides a separate development package or SDK, be sure it
+  has been installed.
+Call Stack <span class="o">(</span>most recent call first<span class="o">)</span>:
+  CMakeLists.txt:7 <span class="o">(</span>find_package<span class="o">)</span>
+</code></pre></div></div>
+:ET
