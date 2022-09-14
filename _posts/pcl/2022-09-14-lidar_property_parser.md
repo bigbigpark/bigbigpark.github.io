@@ -26,7 +26,8 @@ ROS 숙련자임을 가정하고 글을 작성한다 <br/>
 
 ## 코드
 
-sensor_msgs::PointCloud2 메세지가 수신되었을 때 헤더를 출력하고, `data`에 담겨있는 정보들을 파싱하는 코드다
+sensor_msgs::PointCloud2 메세지가 수신되었을 때 헤더를 출력하고, `data`에 담겨있는 정보들을 파싱하는 코드다 <br/>
+ouster 회사의 라이다 기준으로 작성되었다. <br/>
 
 ~~~c++
 void printAllCloudProperties(const sensor_msgs::PointCloud2::Ptr& msg)
@@ -82,6 +83,12 @@ void printAllCloudProperties(const sensor_msgs::PointCloud2::Ptr& msg)
     new_point.y =  *(float*)(&msg->data[0] + bytes_per_point*i + offset_y);
     new_point.z =  *(float*)(&msg->data[0] + bytes_per_point*i + offset_z);
     new_point.intensity =  *(float*)(&msg->data[0] + bytes_per_point*i + offset_intensity);
+
+    uint32_t point_t = *(uint32_t*)(&msg->data[0] + bytes_per_point*i + offset_t);
+    uint16_t point_reflectivity = *(uint16_t*)(&msg->data[0] + bytes_per_point*i + offset_reflectivity);
+    uint8_t point_ring = *(uint8_t*)(&msg->data[0] + bytes_per_point*i + offset_ring);
+    uint16_t point_noise = *(uint16_t*)(&msg->data[0] + bytes_per_point*i + offset_noise);
+    uint32_t point_range = *(uint32_t*)(&msg->data[0] + bytes_per_point*i + offset_range);
     
     cloud->points.push_back(new_point);
   }
