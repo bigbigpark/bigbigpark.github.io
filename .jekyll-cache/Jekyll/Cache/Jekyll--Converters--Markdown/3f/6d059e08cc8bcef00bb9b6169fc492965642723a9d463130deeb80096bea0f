@@ -1,0 +1,88 @@
+I"�A<p>sensor_msgs::PointCloud로부터 라이다 데이터를 파싱해보자</p>
+
+<h2 id="개요">개요</h2>
+
+<p>아래 사진에서 <strong>Num of fields</strong>에 보면 9라고 적혀 있는데, 라이다 포인트 클라우드 안에 9가지 속성이 있음을 알 수 있다. <br />
+<img src="/assets/img/pcl/Selection_001.png" alt="" /></p>
+
+<ul>
+  <li>x, y, z</li>
+  <li>intensity</li>
+  <li>t</li>
+  <li>reflectivity</li>
+  <li>ring</li>
+  <li>noise</li>
+  <li>range</li>
+</ul>
+
+<p>거두절미하고 바로 파싱해보자 <br />
+ROS 숙련자임을 가정하고 글을 작성한다 <br /></p>
+
+<h2 id="코드">코드</h2>
+
+<p>sensor_msgs::PointCloud2 메세지가 수신되었을 때 헤더를 출력하고, <code class="language-plaintext highlighter-rouge">data</code>에 담겨있는 정보들을 파싱하는 코드다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">printAllCloudProperties</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">Ptr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">--- header"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  frame_id      : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  seq           : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">seq</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  stamp         : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  width         : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  height        : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  point_step    : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">point_step</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  row_step      : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">row_step</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  Size          : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">row_step</span> <span class="o">*</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  Num of fields : "</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">offset_x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_intensity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_reflectivity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_ring</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_noise</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset_range</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  [Name], [Offset]"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">field</span> <span class="o">:</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"  ["</span> <span class="o">&lt;&lt;</span> <span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">"]["</span> <span class="o">&lt;&lt;</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"x"</span><span class="p">)</span> <span class="n">offset_x</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"y"</span><span class="p">)</span> <span class="n">offset_y</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"z"</span><span class="p">)</span> <span class="n">offset_z</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"intensity"</span><span class="p">)</span> <span class="n">offset_intensity</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"t"</span><span class="p">)</span> <span class="n">offset_t</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"reflectivity"</span><span class="p">)</span> <span class="n">offset_reflectivity</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"ring"</span><span class="p">)</span> <span class="n">offset_ring</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"noise"</span><span class="p">)</span> <span class="n">offset_noise</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"range"</span><span class="p">)</span> <span class="n">offset_range</span> <span class="o">=</span> <span class="n">field</span><span class="p">.</span><span class="n">offset</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">cloud</span> <span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span><span class="o">&gt;</span><span class="p">());</span>
+
+  <span class="n">cloud</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"os1_lidar"</span><span class="p">;</span>
+  <span class="n">cloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">row_step</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">bytes_per_point</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">point_step</span><span class="p">;</span> <span class="c1">// 48</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">*</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZI</span> <span class="n">new_point</span><span class="p">;</span>
+
+    <span class="n">new_point</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bytes_per_point</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">);</span>
+    <span class="n">new_point</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span>  <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bytes_per_point</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">);</span>
+    <span class="n">new_point</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span>  <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bytes_per_point</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">offset_z</span><span class="p">);</span>
+    <span class="n">new_point</span><span class="p">.</span><span class="n">intensity</span> <span class="o">=</span>  <span class="o">*</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bytes_per_point</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">offset_intensity</span><span class="p">);</span>
+    
+    <span class="n">cloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">new_point</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://answers.ros.org/question/307881/failed-to-find-match-for-field-intensity-with-ouster-lidar/">Failed to find match for field ‘intensity’ with Ouster LIDAR</a></li>
+</ul>
+:ET

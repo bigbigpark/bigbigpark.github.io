@@ -1,7 +1,7 @@
 ---
-title: "[PCL] 라이다 데이터 파싱하기"
+title: "[PCL] LiDAR 데이터 파싱하기"
 category: pcl
-tags: [pcl, parser, useful, code, property, intensity, ring, t, timestamp, reflectivity, velodyne, ouster, robosense]
+tags: [pcl, lidar, parser, useful, code, property, intensity, ring, t, timestamp, reflectivity, velodyne, ouster, robosense]
 ---
 
 sensor_msgs::PointCloud로부터 라이다 데이터를 파싱해보자
