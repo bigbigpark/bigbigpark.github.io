@@ -1,0 +1,24 @@
+I"�	<p>Eigen::MatrixXf을 cv::Mat으로 변환해보자<br /></p>
+
+<h2 id="eigen-to-cv">Eigen to CV</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;opencv2/core/eigen.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="n">num_rows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num_cols</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXf</span> <span class="nf">mat</span><span class="p">(</span><span class="n">num_cols</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">);</span>
+
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">image</span><span class="p">(</span><span class="n">num_cols</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">,</span> <span class="n">CV_32FC1</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">eigen2cv</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="cv-to-eigen">CV to Eigen</h2>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">cv2eigen</span><span class="p">(</span><span class="k">const</span> <span class="n">Mat</span><span class="o">&amp;</span> <span class="n">src</span><span class="p">,</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="p">,</span> <span class="n">_rows</span><span class="p">,</span> <span class="n">_cols</span><span class="p">,</span> <span class="n">_options</span><span class="p">,</span> <span class="n">_maxRows</span><span class="p">,</span> <span class="n">_maxCols</span><span class="o">&gt;&amp;</span> <span class="n">dst</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://docs.opencv.org/3.4/d0/daf/group__core__eigen.html">Eigen support</a></li>
+  <li><a href="https://stackoverflow.com/questions/14783329/opencv-cvmat-and-eigenmatrix">OpenCV CV::Mat and Eigen::Matrix</a></li>
+</ul>
+:ET

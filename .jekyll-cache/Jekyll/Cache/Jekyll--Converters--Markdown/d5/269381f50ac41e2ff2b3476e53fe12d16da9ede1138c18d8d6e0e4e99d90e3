@@ -1,0 +1,31 @@
+I"�<p>오늘은 서로 다른 PC를 하나의 ROS 네트워크에 연결해서 topic을 주고 받는 설정을 해보자</p>
+
+<h2 id="how-to">How to?</h2>
+
+<p>It’s so super easy ^_^ <br />
+다음 두 단계만 거치면 된다. <br />
+우선 server 역할을 할 PC 1대와 slave 역할을 할 PC 한 대를 사전에 정의해둔다. <br /></p>
+
+<h3 id="1-server-pc-setup">1. Server PC setup</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># 환경변수 설정 파일을 열어서 서버 PC의 아이피를 입력해준다</span>
+<span class="c"># 서버 PC 아이피 확인 방법: 터미널에서 $ifconfig</span>
+<span class="nb">export </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.0.1
+<span class="nb">export </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.1:11311
+
+<span class="c"># 그리고 저장 후 적용</span>
+<span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<h3 id="2-slave-pc-setup">2. Slave PC setup</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># 환경변수 설정 파일을 열어서 서버 PC의 아이피를 입력해준다</span>
+<span class="c"># 서버 PC 아이피 확인 방법: 터미널에서 $ifconfig</span>
+<span class="nb">export </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.0.1
+<span class="nb">export </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.1:11311
+</code></pre></div></div>
+:ET
