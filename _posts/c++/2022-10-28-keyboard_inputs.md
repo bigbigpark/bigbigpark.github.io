@@ -38,11 +38,9 @@ int getch(void)
 }
 ~~~
 
-## 2. main 문에서 잘 쓰기s
+## 2. main 문에서 잘 쓰기
 
 ~~~c++
-#include <conio.h>
-
 int main()
 {
   int input;
