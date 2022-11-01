@@ -19,11 +19,8 @@ Quaternion과 Euler(roll, pitch, yaw)을 상호 변환 해보자 <br/>
 ~~~c++
 #include <tf/tf.h>
 
-// input : 쿼터니언
-tf::Quaternion q( quat.x,
-									quat.y,
-									quat.z,
-									quat.w);
+// input : 쿼터니언(quat)
+tf::Quaternion q( quat.x,	quat.y,	quat.z,	quat.w);
 tf::Matrix3x3 m(q);
 
 double roll, pitch, yaw;
@@ -39,8 +36,9 @@ std::cout << "yaw   : " << yaw << std::endl;
 ~~~c++
 #include <tf2/LinearMath/Quaternion.h>
 
+// input : 오일러 각(roll, pitch, yaw)
 tf2::Quaternion quat;
-quat.setRPY(0.0, 0.0, xpose_cur(2,0));
+quat.setRPY(roll, pitch, yaw);
 quat.normalize();
 
 std::cout << "quat.w : " << quat.getW() << std::endl;
