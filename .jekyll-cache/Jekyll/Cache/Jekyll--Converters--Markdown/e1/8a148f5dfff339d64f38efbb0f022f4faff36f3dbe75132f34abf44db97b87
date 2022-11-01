@@ -1,0 +1,18 @@
+I"T<p>Gazebo 동작 도중에 <code class="language-plaintext highlighter-rouge">gazebo-2: process has died</code> 에러가 뜬다면? <br /></p>
+
+<h2 id="에러코드">에러코드</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>gazebo-2] process has died <span class="o">[</span>pid 12345, <span class="nb">exit </span>code 223,
+</code></pre></div></div>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>killall gzserver
+<span class="nv">$ </span>killall gzclient
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li>[[error] “[gazebo-2] process has died <a href="https://jdselectron.tistory.com/110">pid xxxxx, …”</a></li>
+</ul>
+:ET

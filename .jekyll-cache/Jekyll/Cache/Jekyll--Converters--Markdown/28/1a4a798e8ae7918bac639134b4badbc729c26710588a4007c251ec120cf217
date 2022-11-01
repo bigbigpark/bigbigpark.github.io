@@ -1,0 +1,48 @@
+I"�<p>리눅스에서 키보드 입력을 즉각즉각 수신해보자 <br /></p>
+
+<p>Windows 환경에서는 <code class="language-plaintext highlighter-rouge">#include &lt;conio.h&gt;</code>를 하여 <code class="language-plaintext highlighter-rouge">_getch()</code>나 <code class="language-plaintext highlighter-rouge">_kbhit()</code>을 바로 활용할 수 있는데, <br />
+리눅스 환경에서는 불가능하다 ㅠㅠ ! 그래도 방법은 있으니 걱정 노노 <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p><code class="language-plaintext highlighter-rouge">std::cin</code>이나 <code class="language-plaintext highlighter-rouge">getline</code>을 사용할 때 엔터키를 반드시 눌러줘야 입력으로 받을 수 있다 <br />
+하지만 게임에서 캐릭터 방향키처럼 누름과 동시에 값을 받도록 할 수가 있는데 방법을 한번 알아보자 <br /></p>
+
+<h3 id="1-헤더파일-및-함수-정의">1. 헤더파일 및 함수 정의</h3>
+
+<p>리눅스 환경에서 키보드 입력을 받기 위해 아래 헤더 파일 및 함수를 하나 정의해주자 <br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;termio.h&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="nf">getch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="nc">termios</span> <span class="n">buf</span><span class="p">,</span> <span class="n">save</span><span class="p">;</span>
+  <span class="n">tcgetattr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">save</span><span class="p">);</span>
+  <span class="n">buf</span> <span class="o">=</span> <span class="n">save</span><span class="p">;</span>
+  <span class="n">buf</span><span class="p">.</span><span class="n">c_lflag</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="n">ICANON</span><span class="o">|</span><span class="n">ECHO</span><span class="p">);</span>
+  <span class="n">buf</span><span class="p">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VMIN</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">buf</span><span class="p">.</span><span class="n">c_cc</span><span class="p">[</span><span class="n">VTIME</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">tcsetattr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">TCSAFLUSH</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+  <span class="n">ch</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">tcsetattr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">TCSAFLUSH</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">save</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">ch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-main-문에서-잘-쓰기">2. main 문에서 잘 쓰기</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">input</span> <span class="o">=</span> <span class="n">getch</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">input</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

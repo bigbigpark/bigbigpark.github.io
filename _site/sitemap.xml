@@ -4,6 +4,38 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://localhost:4000/cpp_useful/keyboard_inputs/</loc>
+        
+        <lastmod>2022-10-28T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/error/gazebo_2_process_died/</loc>
+        
+        <lastmod>2022-10-26T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/ros/two_pc_connection/</loc>
         
         <lastmod>2022-10-25T00:00:00+09:00</lastmod>
