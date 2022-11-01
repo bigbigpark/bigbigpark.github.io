@@ -1,0 +1,38 @@
+I"�<p>Quaternion과 Euler(roll, pitch, yaw)을 상호 변환 해보자 <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>좌표계를 다루다 보면 해당 각도 표현을 많이 사용하게 된다. <br />
+자주 사용하는데도 헷갈려서 블로그에 기록해둔다. <br /></p>
+
+<h2 id="quaternion--euler">Quaternion –&gt; Euler</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;tf/tf.h&gt;</span><span class="cp">
+</span>
+<span class="c1">// input : 쿼터니언(quat)</span>
+<span class="n">tf</span><span class="o">::</span><span class="n">Quaternion</span> <span class="nf">q</span><span class="p">(</span> <span class="n">quat</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>	<span class="n">quat</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>	<span class="n">quat</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>	<span class="n">quat</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
+<span class="n">tf</span><span class="o">::</span><span class="n">Matrix3x3</span> <span class="nf">m</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+
+<span class="kt">double</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">;</span>
+<span class="n">m</span><span class="p">.</span><span class="n">getRPY</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"roll  : "</span> <span class="o">&lt;&lt;</span> <span class="n">roll</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pitch : "</span> <span class="o">&lt;&lt;</span> <span class="n">pitch</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"yaw   : "</span> <span class="o">&lt;&lt;</span> <span class="n">yaw</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="euler--quaternion">Euler –&gt; Quaternion</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;tf2/LinearMath/Quaternion.h&gt;</span><span class="cp">
+</span>
+<span class="c1">// input : 오일러 각(roll, pitch, yaw)</span>
+<span class="n">tf2</span><span class="o">::</span><span class="n">Quaternion</span> <span class="n">quat</span><span class="p">;</span>
+<span class="n">quat</span><span class="p">.</span><span class="n">setRPY</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">);</span>
+<span class="n">quat</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"quat.w : "</span> <span class="o">&lt;&lt;</span> <span class="n">quat</span><span class="p">.</span><span class="n">getW</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"quat.x : "</span> <span class="o">&lt;&lt;</span> <span class="n">quat</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"quat.y : "</span> <span class="o">&lt;&lt;</span> <span class="n">quat</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"quat.z : "</span> <span class="o">&lt;&lt;</span> <span class="n">quat</span><span class="p">.</span><span class="n">getZ</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+:ET

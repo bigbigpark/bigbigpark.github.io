@@ -6,15 +6,12 @@ tags: [c++, cpp, quaternion, euler, angle, conversion, eigen]
 
 Quaternion과 Euler(roll, pitch, yaw)을 상호 변환 해보자 <br/>
 
-
 ## 개요
 
 좌표계를 다루다 보면 해당 각도 표현을 많이 사용하게 된다. <br/>
 자주 사용하는데도 헷갈려서 블로그에 기록해둔다. <br/>
 
 ## Quaternion --> Euler
-
-리눅스 환경에서 키보드 입력을 받기 위해 아래 헤더 파일 및 함수를 하나 정의해주자 <br/>
 
 ~~~c++
 #include <tf/tf.h>
