@@ -1,0 +1,27 @@
+I"L<p><code class="language-plaintext highlighter-rouge">pip install ${module}</code> 후에 vscode에서 <code class="language-plaintext highlighter-rouge">is not accessed by Pylance</code>일 때 어떻게 할까?</p>
+
+<h2 id="개요">개요</h2>
+
+<p><code class="language-plaintext highlighter-rouge">pip install</code>을 이용하여 module을 설치하였는데, vscode에서 다음과 같은 경고가 뜬다 <br />
+어떻게 해결해야할까? <br /></p>
+
+<p><img src="/assets/img/python/2022-11-02/Selection_001.png" alt="" /></p>
+
+<h2 id="해결">해결</h2>
+
+<p>정답은 Python interperter를 변경해주면 된다</p>
+
+<p><strong>Ctrl+Shift+P</strong>를 누르고 <strong>Python: Select Interpreter</strong>를 선택해주자 <br /></p>
+
+<p><img src="/assets/img/python/2022-11-02/Selection_002.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>여기에서 본인이 원하는 파이썬 버전을 선택하자</p>
+
+<p><img src="/assets/img/python/2022-11-02/Selection_003.png" alt="" /></p>
+
+<h2 id="결과">결과</h2>
+
+<p><img src="/assets/img/python/2022-11-02/Selection_004.png" alt="" /></p>
+:ET
