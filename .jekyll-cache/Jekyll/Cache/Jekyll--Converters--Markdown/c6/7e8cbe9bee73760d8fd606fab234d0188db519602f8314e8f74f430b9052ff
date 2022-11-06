@@ -1,0 +1,48 @@
+I"?	<p>요즘 핫한 C++ 로깅 라이브러리 spdlog를 설치해보자! (From source) <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>최근에는 <code class="language-plaintext highlighter-rouge">spdlog</code>라는 것이 나왔는데, 한번 설치해보자. <br />
+<a href="https://github.com/gabime/spdlog">spdlog</a>를 클릭하면 깃허브 주소로 들어갈 수 있다. <br /></p>
+
+<h3 id="1-설치-파일-다운로드">1. 설치 파일 다운로드</h3>
+
+<p>오른쪽에 <a href="https://github.com/gabime/spdlog/releases">Release</a>를 눌러서 원하는 버전의 source 파일을 다운로드한다. <br /></p>
+
+<p><img src="/assets/img/install/2022-11-06/Selection_001.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>이 글에서는 <code class="language-plaintext highlighter-rouge">1.11.0</code> 버전을 기준으로 설명한다. <br /></p>
+
+<p>위의 주소에서 조금만 스크롤을 내리다보면 <strong>Source code (tar.gz)</strong>라는 것이 보일 것이다. <br /></p>
+
+<p><img src="/assets/img/install/2022-11-06/Selection_002.png" alt="" /></p>
+
+<h3 id="2-압축-풀기">2. 압축 풀기</h3>
+
+<p>다운받은 경로에 가서</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xvf</span> glog-0.6.0.tar.gz
+</code></pre></div></div>
+
+<h3 id="3-빌드-및-설치">3. 빌드 및 설치</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>glog
+<span class="nv">$ </span><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+</code></pre></div></div>
+
+<p>여기까지 하고 binary로 설치하려면</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>바이너리를 삭제하고 싶다고 하면? 그 경로에서</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>make uninstall
+</code></pre></div></div>
+:ET

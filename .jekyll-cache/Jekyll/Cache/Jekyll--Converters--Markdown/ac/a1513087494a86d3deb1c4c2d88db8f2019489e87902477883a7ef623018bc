@@ -1,0 +1,13 @@
+I"�<p>파이썬 안에서 한글 작성시 encoding 에러를 막기 위해서는 ?</p>
+
+<h2 id="해결">해결</h2>
+
+<p>코드 상단에 다음과 같이 입력해주자</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#-*-coding:utf-8 -*-
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 하면 한글 인코딩이 가능해진다</p>
+:ET
