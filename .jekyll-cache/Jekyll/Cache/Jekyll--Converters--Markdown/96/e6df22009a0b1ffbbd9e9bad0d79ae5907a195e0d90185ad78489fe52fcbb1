@@ -1,0 +1,52 @@
+I"�
+<p>오늘은 서로 다른 PC를 하나의 ROS 네트워크에 연결해서 topic을 주고 받는 설정을 해보자</p>
+
+<h2 id="how-to">How to?</h2>
+
+<p>It’s so super easy ^_^ <br />
+다음 두 단계만 거치면 된다. <br />
+우선 server 역할을 할 PC 1대와 slave 역할을 할 PC 한 대를 사전에 정의해둔다. <br /></p>
+
+<h3 id="1-server-pc-setup">1. Server PC setup</h3>
+
+<p>터미널에서 <code class="language-plaintext highlighter-rouge">ifconfig</code>를 입력하고 ip를 기억해두자 <br />
+예시: <code class="language-plaintext highlighter-rouge">192.168.0.1</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># ROS_HOSTNAME는 현재 사용 중인 PC의 ip를 입력해준다</span>
+<span class="nb">export </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.0.1
+<span class="c"># ROS_MASTER_URI는 서버의 ip로 설정해준다</span>
+<span class="nb">export </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.1:11311
+
+<span class="c"># 그리고 저장 후 적용</span>
+<span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<h3 id="2-slave-pc-setup">2. Slave PC setup</h3>
+
+<p>터미널에서 <code class="language-plaintext highlighter-rouge">ifconfig</code>를 입력하고 ip를 기억해두자 <br />
+예시: <code class="language-plaintext highlighter-rouge">192.168.0.7</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gedit ~/.bashrc
+
+<span class="c"># ROS_HOSTNAME는 현재 사용 중인 PC의 ip를 입력해준다</span>
+<span class="nb">export </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.0.7
+<span class="c"># ROS_MASTER_URI는 서버의 ip로 설정해준다</span>
+<span class="nb">export </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.1:11311
+
+<span class="c"># 그리고 저장 후 적용</span>
+<span class="nv">$ </span><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<h2 id="주의사항">주의사항</h2>
+<ul>
+  <li>서버 ip(=ROS_MASTER_URI)로 설정된 컴퓨터에서 <code class="language-plaintext highlighter-rouge">roscore</code>를 먼저 실행하고, 나머지 코드를 실행하자! <br /></li>
+  <li>이렇게 설정해놓으면 일대다 통신이 가능하다 ^^</li>
+</ul>
+
+<h2 id="refence">Refence</h2>
+<ul>
+  <li><a href="https://codingcoding.tistory.com/376">ROS 자료형-ROS C++ 파이썬 비교 (c++ vs python)</a></li>
+</ul>
+:ET
