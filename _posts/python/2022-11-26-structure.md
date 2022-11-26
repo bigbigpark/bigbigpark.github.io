@@ -9,7 +9,7 @@ tags: [install, python, class, struct, structure, dataclass]
 생각보다 쉽다... ! <br/>
 
 
-## 코드
+## 헤더 선언
 
 파이썬 3.7 기준으로 작성한다 <br/>
 
@@ -20,6 +20,8 @@ from dataclasses import dataclass
 헤더 파일로 위와 같이 선언해주자
 
 <br/>
+
+## 메인 코드
 
 ~~~python
 @dataclass
