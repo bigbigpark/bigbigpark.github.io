@@ -1,0 +1,17 @@
+I"V<p>파이썬에서 아주 간단하게 알고리즘 측정 시간을 구해보자</p>
+
+<h2 id="코드">코드</h2>
+
+<p>코드 상단에 다음과 같이 입력해주자</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">t_algorithm</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># 측정하고자 하는 알고리즘 코드 라인
+</span><span class="k">print</span><span class="p">(</span><span class="s">'t_algorithm: {} [sec]'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_algorithm</span><span class="p">))</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<p>위와 같이 하면 알고리즘 수행 시간을 구할 수 있다. <br />
+단위는 <strong>초[seconde]</strong>이다</p>
+:ET
