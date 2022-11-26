@@ -2,7 +2,7 @@
 title: "[Python] 파이썬 구조체"
 
 category: python_useful
-tags: [install, python, class, struct, structure, dataclass]
+tags: [python, class, struct, structure, dataclass]
 ---
 
 파이썬에서 구조체는 어떻게 정의하고 사용할까? <br/>
