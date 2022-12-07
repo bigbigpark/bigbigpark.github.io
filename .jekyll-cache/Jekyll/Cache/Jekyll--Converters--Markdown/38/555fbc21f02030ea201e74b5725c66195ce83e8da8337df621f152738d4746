@@ -1,8 +1,0 @@
-I":<h2 id="리눅스-그림판-설치">리눅스 그림판 설치</h2>
-
-<p>간단</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>kolourpaoint4
-</code></pre></div></div>
-
-:ET

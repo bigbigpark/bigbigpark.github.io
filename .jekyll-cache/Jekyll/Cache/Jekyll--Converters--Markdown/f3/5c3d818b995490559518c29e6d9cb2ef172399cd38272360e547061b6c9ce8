@@ -1,0 +1,62 @@
+I"<p>기회는 준비된 자에게 온다 !! <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>무작정 자료구조를 <strong>암기</strong>하는 것이 아니라 제대로 <strong>이해</strong>하는 데에 초점이 있다.</p>
+
+<p>코드를 처음 작성하는 사람들은 자료구조나 알고리즘에 대한 이해가 ‘필요없다’.</p>
+
+<p>단지 코드가 굴러가게 만드는 것이 급선무이기 때문!</p>
+
+<p><br /></p>
+
+<p>하지만 그 단계를 넘어서게 되면 1) 관리하기 편하고 2) 다른 사람들과 일하기 편하게 다듬는 과정이 필수적이다. 또 코드 실행시간을 단축시키고 메모리 공간을 효율적으로 사용하기 위해서 <strong>자료 구조 및 알고리즘</strong>은 반드시 알아야한다. <br /></p>
+
+<h2 id="알고리즘이란">알고리즘이란?</h2>
+
+<p>알고리즘(algorithm)이란 여러 개의 지시 사항을 말한다.</p>
+
+<p>즉, 어떠한 액션을 수행하기 위해 컴퓨터가 수행해야하는 것들이다.</p>
+
+<p>예를 들어 매우 효율적인 알고리즘을 찾으면 우리는 그것을 반복적으로 사용할 수 있다.</p>
+
+<p><br /></p>
+
+<p>실생활을 예로 들면, 지도 앱을 열어서 목적지까지 가는 <strong>path finder</strong> <strong>알고리즘</strong>, 이미지 손상을 최소화하면서 파일 크기를 감소시키는 <strong>압축 알고리즘</strong>, 암호화 하는 <strong>암호알고리즘</strong> 등이 존재한다.</p>
+
+<h2 id="자료구조란">자료구조란?</h2>
+
+<p>자료구조(data structure)는 데이터를 정리하는 방법.</p>
+
+<p>프로그램의 스피드에 크게 연관이 되어있다.</p>
+
+<p>예를 들어 어떤 자료 구조는 정렬(<strong>sorting</strong>)하는 것에 최적화 되어 있고 <strong>검색</strong>, <strong>추가</strong>, <strong>편집</strong>에 최적화된 알고리즘들이 있다.</p>
+
+<p><br /></p>
+
+<h2 id="앞으로-공부할-내용-정리">앞으로 공부할 내용 정리</h2>
+
+<ol>
+  <li>자료구조와 알고리즘의 정의</li>
+  <li>배열</li>
+  <li>큐</li>
+  <li>스택</li>
+  <li>링크드리스트</li>
+  <li>알고리즘 복잡도 표현 기법</li>
+  <li>해쉬</li>
+  <li>트리</li>
+  <li>힙</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="참고">참고</h2>
+<ul>
+  <li>
+    <p><a href="https://fastcampus.co.kr/dev_online_devjob/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=hq%5E220425%5E210773&amp;utm_content=%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EA%B3%B5%EB%B6%80&amp;utm_term=&amp;gclid=Cj0KCQiA7bucBhCeARIsAIOwr-9PbCDE7ElyFFQcNrb4BHeeZrnVbZCcouKlmkN7dYF7d_mB3CO6pu4aAgI2EALw_wcB">자료구조 이론</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=9TyyMtlk5i4&amp;list=PL7jH19IHhOLMdHvl3KBfFI70r9P0lkJwL">노마드코더</a></p>
+  </li>
+</ul>
+:ET
