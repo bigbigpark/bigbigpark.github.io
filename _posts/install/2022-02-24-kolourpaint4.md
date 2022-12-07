@@ -10,6 +10,6 @@ tags: [install, 그림판, 리눅스, 설치, 우분투]
 간단
 
 ~~~bash
- $ sudo apt install kolourpaoint4
+ $ sudo apt install kolourpaint4
 ~~~ 
 
