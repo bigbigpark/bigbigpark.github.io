@@ -23,6 +23,29 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+
+        <span class="nav__sub-title">📂 Software Study </span>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "data_structure" %}
+                    <li><a href="/categories/data_structure" class="">- 자료구조 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "algorithm" %}
+                    <li><a href="/categories/algorithm" class="">- 알고리즘 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "code_test" %}
+                    <li><a href="/categories/code_test" class="">- 코딩테스트 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
         <span class="nav__sub-title"> 📂 LIBRARY / FRAMEWORK</span>
             <ul>
                 {% for category in site.categories %}
