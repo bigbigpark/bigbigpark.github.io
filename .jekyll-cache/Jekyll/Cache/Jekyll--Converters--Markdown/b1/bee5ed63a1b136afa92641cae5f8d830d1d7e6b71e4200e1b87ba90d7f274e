@@ -1,0 +1,175 @@
+I"k<p>비동기화된 odom 데이터와 gt 데이터를 어떤 식으로 비교할까 ? ? <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>비동기화된 odom 데이터와 gt 데이터가 있다. <br />
+각 메세지 헤더에 저장된 timestamp 정보로 유사하게 동기화 시켜서 에러를 비교할 순 있다. <br />
+완전 정확한 동기화는 아직까지는 내 수준에서는 잘 모르겠다. <br /></p>
+
+<p>따라서 위 방법을 간략히 요약하고자 한다. <br />
+모든 방법은 ros기반 파이썬 3에서 코딩되었다. <br /></p>
+
+<h2 id="메인-코드">메인 코드</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/env/bin python3
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">math</span>
+ 
+<span class="k">def</span> <span class="nf">euler_from_quaternion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+  <span class="n">t0</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span>
+  <span class="n">t1</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">roll_x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+
+  <span class="n">t2</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+  <span class="n">t2</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">t2</span> <span class="o">&gt;</span> <span class="o">+</span><span class="mf">1.0</span> <span class="k">else</span> <span class="n">t2</span>
+  <span class="n">t2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">t2</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1.0</span> <span class="k">else</span> <span class="n">t2</span>
+  <span class="n">pitch_y</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">asin</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+
+  <span class="n">t3</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">z</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">t4</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span>
+  <span class="n">yaw_z</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span> <span class="n">t4</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">roll_x</span><span class="p">,</span> <span class="n">pitch_y</span><span class="p">,</span> <span class="n">yaw_z</span> <span class="c1"># in radians
+</span>
+<span class="o">@</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">pose</span><span class="p">:</span>
+  <span class="n">seq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">timestamp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="n">odom_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
+<span class="n">gt_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
+
+<span class="n">odom_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">gt_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">odom_pose_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">gt_pose_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">gtCallback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+  <span class="n">gt_queue</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">odomCallback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+  <span class="n">odom_queue</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="n">odom_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/odom'</span><span class="p">,</span> <span class="n">Odometry</span><span class="p">,</span> <span class="n">odomCallback</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">gt_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/gt'</span><span class="p">,</span> <span class="n">Odometry</span><span class="p">,</span> <span class="n">gtCallback</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">odom_seq</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">gt_seq</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">print_pose</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">' seq : '</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">seq</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'time : '</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'  y  : '</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'  z  : '</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'theta: '</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">theta</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">():</span>
+  <span class="k">global</span> <span class="n">odom_seq</span><span class="p">,</span> <span class="n">gt_seq</span>
+  <span class="c1"># print('\n\n============')
+</span>  <span class="n">is_end</span> <span class="o">=</span> <span class="bp">False</span>
+  
+  <span class="k">if</span> <span class="n">gt_queue</span><span class="p">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">gt_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">gt_queue</span><span class="p">.</span><span class="n">get</span><span class="p">())</span>
+    
+  <span class="k">if</span> <span class="n">odom_queue</span><span class="p">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">odom_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">odom_queue</span><span class="p">.</span><span class="n">get</span><span class="p">())</span>
+  
+  <span class="s">'''
+  For odom
+  '''</span>
+  <span class="n">odom_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">odom_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">odom_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">pose_msg</span> <span class="o">=</span> <span class="n">pose</span><span class="p">()</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">odom_seq</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">secs</span><span class="p">)</span> \
+                       <span class="o">+</span> <span class="nb">float</span><span class="p">(</span> <span class="mf">1e-3</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">nsecs</span><span class="o">/</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)))</span> <span class="p">)</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>\
+                                    <span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>\
+                                    <span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>\
+                                    <span class="n">odom_list</span><span class="p">[</span><span class="n">odom_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">,)</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">y</span>
+    
+    <span class="n">odom_seq</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">odom_pose_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">odom_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+  <span class="s">'''
+  For Ground Truth Pose
+  '''</span>
+  <span class="n">gt_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">pose_msg</span> <span class="o">=</span> <span class="n">pose</span><span class="p">()</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">gt_seq</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">secs</span><span class="p">)</span> \
+                       <span class="o">+</span> <span class="nb">float</span><span class="p">(</span> <span class="mf">1e-3</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">nsecs</span><span class="o">/</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)))</span> <span class="p">)</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>\
+                                    <span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>\
+                                    <span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>\
+                                    <span class="n">gt_list</span><span class="p">[</span><span class="n">gt_idx</span><span class="p">].</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">,)</span>
+    <span class="n">pose_msg</span><span class="p">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">y</span>
+    
+    <span class="n">gt_seq</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">gt_pose_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">gt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">print_pose</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">timestamp</span> <span class="o">&gt;</span> <span class="mi">621</span><span class="p">):</span> <span class="n">is_end</span> <span class="o">=</span> <span class="bp">True</span>
+
+  <span class="k">if</span> <span class="n">is_end</span><span class="p">:</span> <span class="k">return</span> <span class="n">is_end</span>
+  
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+  <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'odom_gt_write_node'</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+  <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="n">end_condition</span> <span class="o">=</span> <span class="n">process</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">end_condition</span><span class="p">:</span> <span class="k">break</span> 
+  
+  <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n\n</span><span class="s">=================================================='</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'=========              END            ============'</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">'==================================================</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
+  
+  <span class="k">print</span><span class="p">(</span><span class="s">'gt_pose.size: '</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt_pose_list</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">gt_pose</span> <span class="ow">in</span> <span class="n">gt_pose_list</span><span class="p">:</span>
+    <span class="k">pass</span>
+    
+  <span class="k">print</span><span class="p">(</span><span class="s">'odom.size: '</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">odom_pose_list</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">odom_pose</span> <span class="ow">in</span> <span class="n">odom_pose_list</span><span class="p">:</span>
+    <span class="k">pass</span>
+    
+  <span class="c1"># Write text file
+</span>  <span class="n">f_gt</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"gt.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">gt_pose</span> <span class="ow">in</span> <span class="n">gt_pose_list</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">gt_pose</span><span class="p">.</span><span class="n">seq</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gt_pose</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gt_pose</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gt_pose</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gt_pose</span><span class="p">.</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+    <span class="n">f_gt</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+  
+  <span class="n">f_gt</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+  
+  <span class="n">f_odom</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"odom.txt"</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">odom_pose</span> <span class="ow">in</span> <span class="n">odom_pose_list</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">odom_pose</span><span class="p">.</span><span class="n">seq</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">odom_pose</span><span class="p">.</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">odom_pose</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">odom_pose</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">odom_pose</span><span class="p">.</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+    <span class="n">f_odom</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+  
+  <span class="n">f_odom</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="설명">설명</h2>
+
+<ol>
+  <li>odom, gt 데이터를 각각 queue에 밀어넣는다. 참고로 파이썬에는 알아서 공유 자원에 대한 lock, unlock을 해주나 보다?</li>
+  <li>pose라는 구조체를 정의해 내가 원하는 데이터만 ros 메세지에서 저장한다</li>
+  <li>메세지 header에 저장된 시간이 621초가 지나면 데이터 수신 단계를 종료한다.</li>
+  <li>지금껏 저장된 pose를 이용하여 각각 <code class="language-plaintext highlighter-rouge">gt.txt</code>, <code class="language-plaintext highlighter-rouge">odom.txt</code>에 저장한다.</li>
+  <li>매트랩으로 비교할것이다 !</li>
+</ol>
+:ET
