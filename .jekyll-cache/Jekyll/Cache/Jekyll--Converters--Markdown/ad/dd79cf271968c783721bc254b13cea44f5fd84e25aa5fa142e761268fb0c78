@@ -1,14 +1,14 @@
-I"�<p>기회는 준비된 자에게 온다 !</p>
+I"<p>기회는 준비된 자에게 온다 !</p>
 
-<h2 id="큐의-정의">큐의 정의</h2>
+<h2 id="스택의-정의">스택의 정의</h2>
 
-<p>큐(queue)는 무엇일까?</p>
+<p>스택(stack)은 무엇일까? 일반적으로 <a href="https://bigbigpark.github.io/data_structure/queue/">큐(queue)</a></p>
 
-<p>게임 좋아하는 사람이면 큐 잡는데 시간이 오래 걸린다라는 말을 한번쯤은 해보았을 것이다.</p>
+<p>내가 생각할 때 <strong>프링글스 통</strong>이다.</p>
 
-<p>이 때 말하는 큐도 지금 말하는 큐와 같다.</p>
+<p>먼저 집어 넣은 과자가 나중에 꺼내지게 된다.</p>
 
-<p>영어로는 <strong>대기열</strong>이라는 뜻이다.</p>
+<p>따라서 늦게 들어간 자료가 먼저 출력되는 LIFO(Last In First Out) 형식의 자료구조다.</p>
 
 <h2 id="큐의-개념">큐의 개념</h2>
 
@@ -45,8 +45,6 @@
 
 <p>이렇게 되면 큐에 [3 6 9] 순서대로 입력이 된다.</p>
 
-<p>따라서 큐에 제일 먼저 들어간 순서대로 반환이 되는데,</p>
-
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="n">num_queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
 <span class="n">num_queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
@@ -54,9 +52,26 @@
 
 <p><br /></p>
 
+<p>따라서 큐에 제일 먼저 들어간 순서대로 반환이 되는데,</p>
+
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">num</span> <span class="o">=</span> <span class="n">num_queue</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
 <span class="n">num_queue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"num: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>큐에서 <strong>단지</strong> 제일 앞에 저장된 데이터가 보고 싶을 때는 <code class="language-plaintext highlighter-rouge">front()</code>를 사용하지만, 그 데이터를 대기열에서 없애고 싶을 때는 <code class="language-plaintext highlighter-rouge">pop()</code> 해주는 것을 잊지 말자.</p>
+
+<p><br /></p>
+
+<p>큐는 <code class="language-plaintext highlighter-rouge">clear()</code> 기능이 없다.</p>
+
+<p>그래서 일일히 없애줘야 한다.</p>
+
+<h3 id="큐-clear-구현">큐 clear() 구현</h3>
+
+<p>간단하다. 비어 있지 않으면? pop()을 계속 하자!</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">num_queue</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">num_queue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </code></pre></div></div>
 
 <h2 id="큐의-사용-사례">큐의 사용 사례</h2>
