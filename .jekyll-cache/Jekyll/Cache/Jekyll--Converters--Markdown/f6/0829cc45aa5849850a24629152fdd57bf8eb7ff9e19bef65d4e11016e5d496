@@ -1,0 +1,126 @@
+I"�<p>기회는 준비된 자에게 온다 !</p>
+
+<h2 id="연결-리스트의-정의">연결 리스트의 정의</h2>
+
+<p>연결 리스트(Linked List)란 말 그대로 리스트가 연결되어 있는 것을 뜻한다.</p>
+
+<p>그림으로 표현하면 아래와 같으며, 여러 개의 Node가 서로 연결되어 있는 형태이다.</p>
+
+<h3 id="단순-연결-리스트-예시">단순 연결 리스트 예시</h3>
+
+<p>여기서 리스트의 가장 첫 번째에 위치한 노드를 <strong>Head</strong>, 끝에 위치한 노드를 <strong>Tail</strong>이라고 부른다.</p>
+
+<p>각 노드는 데이터(data)와 링크(link)라는 2가지 속성을 가진다.</p>
+
+<ul>
+  <li>data: 노드에 저장된 데이터 값 (ex. 아래 그림에서 9, 17, 11)</li>
+  <li>link: 연결된 다음 노드 주소 (ex. 아래 그림에서 화살표)</li>
+</ul>
+
+<p>여기서 Tail 노드의 다음 노드는 Nullptr을 가리키고 있다.</p>
+
+<p><img src="/assets/img/data_structure/2022-12-08/Selection_001.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>단순 연결리스트 말고 아래의 두 가지 연결 리스트가 존재한다.</p>
+
+<h3 id="원형-연결-리스트circular-linked-list">원형 연결 리스트(Circular Linked List)</h3>
+
+<p><img src="/assets/img/data_structure/2022-12-08/Selection_002.png" alt="" /></p>
+
+<h2 id="스택의-연산">스택의 연산</h2>
+
+<p>앞선 모든 자료 구조에서는 4가지 동작 (읽기, 검색, 삽입, 삭제)의 기본 연산을 지원한다.</p>
+
+<p>스택에서 많이 사용되는 메소드는 다음과 같다.</p>
+
+<p>큐와 비슷하지만 세 번째 불릿만 다르다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">push()</code> : 스택에 원소를 삽입, 이 때 크기가 1 증가</li>
+  <li><code class="language-plaintext highlighter-rouge">pop()</code> : 스택에서 가장 상단에 위치한 원소를 뺀다. 이 때 크기가 1 감소</li>
+  <li><code class="language-plaintext highlighter-rouge">top()</code> : 스택에서 제일 꼭대기에 저장된 원소를 반환한다. pop()은 원소 반환을 하지 않음</li>
+  <li><code class="language-plaintext highlighter-rouge">empty()</code> : 스택이 비었는 지 검사하여 bool 값을 반환</li>
+  <li><code class="language-plaintext highlighter-rouge">size()</code> : 현재 스택에 저장된 데이터의 개수를 반환</li>
+</ul>
+
+<h2 id="스택-사용법-c">스택 사용법 (C++)</h2>
+
+<p>기본적인 선언은 아래와 같이 한다.</p>
+
+<p>큐와 똑같이 해주면 된다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp">
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num_stack</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이렇게 되면 큐에 [3 6 9] 순서대로 쌓인다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">num_stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">num_stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>따라서 스택에 제일 늦게 들어간 순서대로 반환이 되는데,</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">num</span> <span class="o">=</span> <span class="n">num_stack</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+<span class="n">num_stack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"num: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>스택에서 <strong>단지</strong> 제일 꼭대기에에 저장된 데이터가 보고 싶을 때는 <code class="language-plaintext highlighter-rouge">top()</code>를 사용하지만, 그 데이터를 프링글스 통에서 없애고 싶을 때는 <code class="language-plaintext highlighter-rouge">pop()</code> 해주는 것을 잊지 말자.</p>
+
+<p><br /></p>
+
+<p>스택도 <code class="language-plaintext highlighter-rouge">clear()</code> 기능이 없다.</p>
+
+<p>그래서 일일히 없애줘야 한다.</p>
+
+<h3 id="스택-clear-구현">스택 clear() 구현</h3>
+
+<p>간단하다. 비어 있지 않으면? pop()을 계속 하자!</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">num_stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">num_stack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="스택의-사용-사례">스택의 사용 사례</h2>
+
+<p>배열(array)와 비슷한 느낌이긴 한데, 어떤 문제를 푸냐에 따라 배열보다 스택이 효율적일 수 있다.</p>
+
+<p>왜냐하면,</p>
+
+<ul>
+  <li>배열과 달리 스택은 중간에 저장된 데이터에 바로 접근할 수 없다.</li>
+  <li>배열처럼 삽입 operation 시 원소들을 하나씩 옆으로 밀어 줄 필요가 없다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><strong>재귀 알고리즘(recursive algorithm)</strong> 사용 시 스택이 유용하다.</p>
+
+<p>다음은 스택의 사용 예시들이다.</p>
+
+<ul>
+  <li>웹 브라우저 방문기록 혹은 뒤로가기</li>
+  <li>실행 취소</li>
+  <li>재귀 알고리즘
+    <ul>
+      <li>재귀적으로 함수를 호출해야 하는 경우 임시 데이터를 스택에 넣어줌</li>
+      <li>재귀 함수를 빠져 나와 퇴각 검색(backtracking)을 할 때는 스택에 넣어둔 임시 데이터를 빼줘야함</li>
+      <li>스택은 이런 행위를 직관적으로 가능하게 해줌</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li><a href="https://gmlwjd9405.github.io/2018/08/03/data-structure-stack.html">[자료구조] 스택(stack)이란</a></li>
+</ul>
+:ET
