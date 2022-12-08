@@ -5,7 +5,7 @@ category: data_structure
 tags: [data_structure, 자료 구조, 코딩테스트, 연결리스트, 링크드리스트, linkedlist]
 ---
 
-기회는 준비된 자에게 온다 ! 
+기회는 준비된 자에게 온다 !   
 
  
 
