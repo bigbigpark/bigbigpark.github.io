@@ -114,8 +114,7 @@ Chaining 방법은 hash 함수의 결과 값인 동일한 bucket에 저장하되
 
 <br/>
 
-이 때 충돌이 일어나는 hash 기준 양옆 한칸씩 보며 빈 공간을 찾아가는 기법을 **linear probing**이라고 하는데, 이 기법은 특정 위치에만 밀집하는 clustering 문제가 발생할 수 있다.
-
+이 때 충돌이 일어나는 hash 기준 양옆 한칸씩 보며 빈 공간을 찾아가는 기법을 **linear probing**이라고 하는데, 이 기법은 특정 위치에만 밀집하는 clustering 문제가 발생할 수 있다. <br/>
 따라서 **n^2**으로 이동하며 빈 공간을 찾아가는 **quadratic probing** 기법도 존재한다.
 
 
