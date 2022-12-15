@@ -1,0 +1,51 @@
+I"�<p>기회는 준비된 자에게 온다 !</p>
+
+<h2 id="힙의-개념">힙의 개념</h2>
+
+<p>힙(heap)은 <strong>완전 이진 트리</strong>의 한 종류다.</p>
+
+<p>노드에 저장된 데이터 중 최대값과 최소값을 빨리 탐색하기 위한 자료구조이며 <strong>반정렬 상태</strong>다.</p>
+
+<p>또한 힙 트리는 중복된 값을 허용한다.</p>
+
+<p>추가로 힙은 <strong>우선순위 큐</strong>를 위해 만들어진 자료구조이다.</p>
+
+<p>우선 순위 큐(Priority Queue)란?</p>
+
+<p><strong>우선 순위</strong>의 개념을 큐에 대입한 자료구조로써 우선 순위가 높은 데이터가 먼저 나간다.</p>
+
+<h2 id="힙의-종류">힙의 종류</h2>
+
+<p>힙에는 두 가지 종류가 있다</p>
+
+<ul>
+  <li>최소 힙(Min Heap)</li>
+</ul>
+
+<p>부모 노드의 키 값이 자식 노드의 키 값보다 작거나 같은 완전 이진 트리</p>
+
+<p><img src="/assets/img/data_structure/2022-12-13/Selection_001.png" alt="" /></p>
+
+<ul>
+  <li>최대 힙</li>
+</ul>
+
+<p>부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리</p>
+
+<p><img src="/assets/img/data_structure/2022-12-13/Selection_002.png" alt="" /></p>
+
+<h2 id="힙-사용-예시">힙 사용 예시</h2>
+
+<p>최댓값이나 최솟값을 빠르게 탐색해야 하는 경우 사용됨!</p>
+
+<ul>
+  <li>우선순위 큐</li>
+  <li>최단 경로 알고리즘</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+  <li><a href="https://velog.io/@yanghl98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Heap%ED%9E%99-%EA%B0%9C%EB%85%90-%EC%A2%85%EB%A5%98-%ED%99%9C%EC%9A%A9-%EC%98%88%EC%8B%9C-%EA%B5%AC%ED%98%84">[자료구조] Heap(힙) - 개념, 종류, 활용 예시, 구현</a></li>
+</ul>
+:ET
