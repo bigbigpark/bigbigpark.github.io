@@ -1,0 +1,46 @@
+I"�<h2 id="문제-설명">문제 설명</h2>
+
+<p>첫 번째 분수의 분자와 분모를 뜻하는 denum1, num1, 두 번째 분수의 분자와 분모를 뜻하는 denum2, num2가 매개변수로 주어집니다. 두 분수를 더한 값을 기약 분수로 나타냈을 때 분자와 분모를 순서대로 담은 배열을 return 하도록 solution 함수를 완성해보세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<p>0 &lt; denum1, num1, denum2, num2 &lt; 1,000</p>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>denum1</th>
+      <th>num1</th>
+      <th>denum2</th>
+      <th>num2</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>[5, 4]</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>[29, 6]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120808">분수의 덧셈</a></li>
+</ul>
+:ET
