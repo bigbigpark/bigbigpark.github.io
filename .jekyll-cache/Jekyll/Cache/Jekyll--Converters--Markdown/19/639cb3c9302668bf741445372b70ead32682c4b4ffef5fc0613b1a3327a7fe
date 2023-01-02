@@ -1,0 +1,128 @@
+I""<h2 id="문제-설명">문제 설명</h2>
+
+<p>최빈값은 주어진 값 중에서 가장 자주 나오는 값을 의미합니다. 정수 배열 <code class="language-plaintext highlighter-rouge">array</code>가 매개변수로 주어질 때, 최빈값을 return 하도록 solution 함수를 완성해보세요. 최빈값이 여러 개면 -1을 return 합니다.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>0 &lt; <code class="language-plaintext highlighter-rouge">array</code>의 길이 &lt; 100</li>
+  <li>0 ≤ <code class="language-plaintext highlighter-rouge">array</code>의 원소 &lt; 1000</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>array</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[1, 2, 3, 3, 3, 4]</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>[1, 1, 2, 2]</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <td>[1]</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<p>이 문제는 다 풀어놓고 삽질했던 문제다…</p>
+
+<p>문제를 <strong>정확하게</strong> 읽자 !!</p>
+
+<h3 id="기존-코드">기존 코드</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">array</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num_list</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">n</span><span class="o">:</span> <span class="n">array</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">num_list</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">auto</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_element</span><span class="p">(</span><span class="n">num_list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num_list</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="k">auto</span> <span class="n">max_iter2</span> <span class="o">=</span> <span class="n">max_element</span><span class="p">(</span><span class="n">max_iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_list</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    <span class="k">return</span> <span class="o">*</span><span class="n">max_iter</span> <span class="o">==</span> <span class="o">*</span><span class="n">max_iter2</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="o">*</span><span class="n">max_iter</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>1000개의 빈도를 나타내는 배열 <code class="language-plaintext highlighter-rouge">num_list</code>를 작성해놓고 <code class="language-plaintext highlighter-rouge">array</code>에서 해당 숫자 인덱스에 맞게 <code class="language-plaintext highlighter-rouge">++</code> 해주었다.</p>
+
+<p>근데 아무리아무리 아무……….리 제출해도 틀렸다고 뜬다…</p>
+
+<p>과연 무엇이 문제일까?!</p>
+
+<p>답은.. 빈도를 출력하는 것이 아니라 빈도가 가장 높은 <strong>숫자</strong>를 출력하는 것이었다. ㅠㅠ</p>
+
+<h3 id="정답-코드">정답 코드</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">array</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num_list</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">n</span><span class="o">:</span> <span class="n">array</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">num_list</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">auto</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_element</span><span class="p">(</span><span class="n">num_list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num_list</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="k">auto</span> <span class="n">max_iter2</span> <span class="o">=</span> <span class="n">max_element</span><span class="p">(</span><span class="n">max_iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_list</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">max_iter</span> <span class="o">==</span> <span class="o">*</span><span class="n">max_iter2</span><span class="p">)</span>  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">num_list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">max_iter</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="문제-핵심-포인트">문제 핵심 포인트</h2>
+
+<ul>
+  <li>
+    <p>문제 똑바로 읽기</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">find</code> 메소드에 대한 이해
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> 헤더에 포함</li>
+      <li>std::find( v.begin(), v.end(), 찾을 숫자 )  로 사용,, 못 찾으면 v.end() 반환.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">distance</code>메소드에 대한 이해
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code> 헤더에 포함</li>
+      <li>std::distance( v.begin(), iter 대입 ) 로 사용,, iter의 인덱스 값을 반환.</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120812#qna">최반값 구하기</a></li>
+</ul>
+:ET

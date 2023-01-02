@@ -1,0 +1,101 @@
+I"f<h2 id="문제-설명">문제 설명</h2>
+
+<p>정수가 담긴 배열 <code class="language-plaintext highlighter-rouge">numbers</code>와 문자열 <code class="language-plaintext highlighter-rouge">direction</code>가 매개변수로 주어집니다. 배열 <code class="language-plaintext highlighter-rouge">numbers</code>의 원소를 <code class="language-plaintext highlighter-rouge">direction</code>방향으로 한 칸씩 회전시킨 배열을 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>3 ≤ <code class="language-plaintext highlighter-rouge">numbers</code>의 길이 ≤ 20</li>
+  <li><code class="language-plaintext highlighter-rouge">direction</code>은 “left” 와 “right” 둘 중 하나입니다.</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>numbers</th>
+      <th>direction</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[1, 2, 3]</td>
+      <td>“right”</td>
+      <td>[3, 1, 2]</td>
+    </tr>
+    <tr>
+      <td>[4, 455, 6, 4, -1, 45, 6]</td>
+      <td>“left”</td>
+      <td>[455, 6, 4, -1, 45, 6, 4]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">enum</span>
+<span class="p">{</span>
+  <span class="n">LEFT</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="n">RIGHT</span>
+<span class="p">};</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">string</span> <span class="n">direction</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">direction</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    
+    <span class="kt">int</span> <span class="n">num_last</span><span class="p">,</span> <span class="n">num_first</span><span class="p">;</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">case</span> <span class="n">RIGHT</span><span class="p">:</span>
+            <span class="n">num_last</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+            <span class="n">numbers</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">numbers</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num_last</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+            
+        <span class="k">case</span> <span class="n">LEFT</span><span class="p">:</span>
+            <span class="n">num_first</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">numbers</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+            <span class="n">numbers</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">num_first</span><span class="p">);</span>
+            
+            <span class="k">break</span><span class="p">;</span>
+            
+        <span class="nl">default:</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">numbers</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제 핵심 포인트</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vector</code> 메소드에 대한 이해
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">erase</code>
+        <ul>
+          <li>첫 번째 원소 삭제: erase( v.begin() )</li>
+          <li>마지막 원소 삭제: erase( <strong>v.end() -1</strong> )</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">insert</code>
+        <ul>
+          <li>첫 번째 원소 삽입: insert( v.begin(), 5 ) // 5를 처음에 추가</li>
+          <li>마지막에 원소 삽입: insert( v.end(), 3 ) // 3을 마지막에 추가</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120844">배열 회전시키기</a></li>
+</ul>
+:ET

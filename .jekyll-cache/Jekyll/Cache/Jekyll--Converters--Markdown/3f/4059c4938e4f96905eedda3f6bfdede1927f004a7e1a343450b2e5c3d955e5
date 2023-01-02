@@ -1,0 +1,106 @@
+I"]<h2 id="문제-설명">문제 설명</h2>
+
+<p>문자열 <code class="language-plaintext highlighter-rouge">my_string</code>과 문자 <code class="language-plaintext highlighter-rouge">letter</code>이 매개변수로 주어집니다. <code class="language-plaintext highlighter-rouge">my_string</code>에서 <code class="language-plaintext highlighter-rouge">letter</code>를 제거한 문자열을 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">my_string</code>의 길이 ≤ 100</li>
+  <li><code class="language-plaintext highlighter-rouge">letter</code>은 길이가 1인 영문자입니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">my_string</code>과 <code class="language-plaintext highlighter-rouge">letter</code>은 알파벳 대소문자로 이루어져 있습니다.</li>
+  <li>대문자와 소문자를 구분합니다.</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>my_string</th>
+      <th>letter</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“abcdef”</td>
+      <td>“f”</td>
+      <td>“abcde”</td>
+    </tr>
+    <tr>
+      <td>“BCBdbe”</td>
+      <td>“B”</td>
+      <td>“Cdbe”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">string</span> <span class="nf">solution</span><span class="p">(</span><span class="n">string</span> <span class="n">my_string</span><span class="p">,</span> <span class="n">string</span> <span class="n">letter</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">cur_str</span><span class="o">:</span> <span class="n">my_string</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">temp_str</span><span class="p">;</span>
+        <span class="n">temp_str</span> <span class="o">+=</span> <span class="n">cur_str</span><span class="p">;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">temp_str</span> <span class="o">!=</span> <span class="n">letter</span><span class="p">)</span> <span class="n">answer</span> <span class="o">+=</span> <span class="n">cur_str</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">answer</span><span class="p">;</span>
+    
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제 핵심 포인트</p>
+
+<ul>
+  <li>문자열 다루기
+    <ul>
+      <li>string에서 인덱싱을 하면 <code class="language-plaintext highlighter-rouge">char</code>로 형변환이 됨.</li>
+    </ul>
+  </li>
+  <li>string에 관련된 알고리즘 라이브러리 이용</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;string&gt;</code>에 정의된 <code class="language-plaintext highlighter-rouge">erase</code>함수를 사용해보자</p>
+
+<h3 id="사용하는-방법-3가지">사용하는 방법 3가지</h3>
+
+<ul>
+  <li>string&amp; <strong>erase</strong>(size_t pos 0, size_t len = npos);</li>
+  <li>iterator <strong>erase</strong>(const_iterator p);</li>
+  <li>iterator <strong>erase</strong>(const_iterator first, const_iterator last;</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">test</span> <span class="o">=</span> <span class="s">"Hello world!"</span><span class="p">;</span>
+
+<span class="c1">// Example #1</span>
+<span class="n">test</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// pos 길이부터 len길이만큼의 문자를 지운다.</span>
+
+<span class="c1">// Example #2</span>
+<span class="n">test</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">test</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// p에 위치하는 문자 제거</span>
+
+<span class="c1">// Example #3</span>
+<span class="n">test</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">test</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="n">test</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// first부터 last 직전 범위 문자열 삭제</span>
+</code></pre></div></div>
+
+<h3 id="특정-문자만-제거하기">특정 문자만 제거하기</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="n">test</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">test</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="sc">'A'</span><span class="p">),</span> <span class="n">test</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120826">특정 문자 제거하기</a></li>
+</ul>
+:ET

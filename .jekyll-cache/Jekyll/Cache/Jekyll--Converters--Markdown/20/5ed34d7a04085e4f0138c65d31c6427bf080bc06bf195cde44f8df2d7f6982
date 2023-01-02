@@ -1,0 +1,102 @@
+I"� <h2 id="문제-설명">문제 설명</h2>
+
+<p>이진수를 의미하는 두 개의 문자열 <code class="language-plaintext highlighter-rouge">bin1</code>과 <code class="language-plaintext highlighter-rouge">bin2</code>가 매개변수로 주어질 때, 두 이진수의 합을 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>return 값은 이진수를 의미하는 문자열입니다.</li>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">bin1</code>, <code class="language-plaintext highlighter-rouge">bin2</code>의 길이 ≤ 10</li>
+  <li><code class="language-plaintext highlighter-rouge">bin1</code>과 <code class="language-plaintext highlighter-rouge">bin2</code>는 0과 1로만 이루어져 있습니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">bin1</code>과 <code class="language-plaintext highlighter-rouge">bin2</code>는 “0”을 제외하고 0으로 시작하지 않습니다.</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>bin1</th>
+      <th>bin2</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“10”</td>
+      <td>“11”</td>
+      <td>“101”</td>
+    </tr>
+    <tr>
+      <td>“1001”</td>
+      <td>“1111”</td>
+      <td>“11000”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">string</span> <span class="nf">solution</span><span class="p">(</span><span class="n">string</span> <span class="n">bin1</span><span class="p">,</span> <span class="n">string</span> <span class="n">bin2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">bin1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">bin1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
+        
+        <span class="n">idx1</span> <span class="o">=</span> <span class="n">bin1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">num1</span> <span class="o">+=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">idx1</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx2</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">bin2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">bin2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span>
+        
+        <span class="n">idx2</span> <span class="o">=</span> <span class="n">bin2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">num2</span> <span class="o">+=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="s">"0"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">remain</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">n</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">remain</span><span class="p">);</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+        
+        <span class="n">num</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">answer</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"1"</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="다른-사람-코드">다른 사람 코드</h2>
+
+<p>한창균씨 코드를 참고하였다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="문제-핵심-포인트">문제 핵심 포인트</h2>
+
+<p>C++의 <code class="language-plaintext highlighter-rouge">&lt;bitset&gt;</code>을 사용할 줄 아는가?</p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120885">이진수 더하기</a></li>
+</ul>
+:ET

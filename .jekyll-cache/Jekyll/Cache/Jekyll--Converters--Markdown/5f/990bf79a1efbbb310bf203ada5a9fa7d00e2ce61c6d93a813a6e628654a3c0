@@ -1,0 +1,62 @@
+I"�<h2 id="문제-설명">문제 설명</h2>
+
+<p>정수 배열 <code class="language-plaintext highlighter-rouge">numbers</code>가 매개변수로 주어집니다. <code class="language-plaintext highlighter-rouge">numbers</code>의 원소의 평균값을 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>0 ≤ <code class="language-plaintext highlighter-rouge">numbers</code>의 원소 ≤ 1,000</li>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">numbers</code>의 길이 ≤ 100</li>
+  <li>정답의 소수 부분이 .0 또는 .5인 경우만 입력으로 주어집니다.</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>numbers</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <td>[89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]</td>
+      <td>94.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">numbers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제 핵심 포인트</p>
+
+<ul>
+  <li>평균을 구하는 방법
+    <ul>
+      <li>반복문 돌면서 총합을 구하고 사이즈로 나눠도 된다.</li>
+      <li>하지만 <code class="language-plaintext highlighter-rouge">&lt;numeric&gt;</code>에 있는 <code class="language-plaintext highlighter-rouge">std::accumulate(v.begin(), v.end(), 초기값)</code>을 이용하자 ^^</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120817">배열의 평균값</a></li>
+</ul>
+:ET

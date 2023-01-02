@@ -1,0 +1,84 @@
+I"�<h2 id="문제-설명">문제 설명</h2>
+
+<p>머쓱이는 학교에서 키 순으로 줄을 설 때 몇 번째로 서야 하는지 궁금해졌습니다. 머쓱이네 반 친구들의 키가 담긴 정수 배열 <code class="language-plaintext highlighter-rouge">array</code>와 머쓱이의 키 <code class="language-plaintext highlighter-rouge">height</code>가 매개변수로 주어질 때, 머쓱이보다 키 큰 사람 수를 return 하도록 solution 함수를 완성해보세요..</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">array</code>의 길이 ≤ 100</li>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">height</code> ≤ 200</li>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">array</code>의 원소 ≤ 200</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>array</th>
+      <th>height</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[149, 180, 192, 170]</td>
+      <td>167</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>[180, 120, 140]</td>
+      <td>190</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 1. 배열에 머쓱이 키 추가</span>
+    <span class="n">array</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">height</span><span class="p">);</span>
+    
+    <span class="c1">// 2. sort 오름차순</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">array</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    <span class="c1">// 3. 머쓱이 키 인덱스 찾기</span>
+    <span class="k">auto</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">array</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="n">array</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    
+    <span class="c1">// 4. 머쓱이랑 키 같은 녀석 찾기</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">idx</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">height</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">iter</span> <span class="o">==</span> <span class="n">array</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">idx</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 5. 배열 사이즈 - 인덱스 반환    </span>
+    <span class="k">return</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">idx</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제 핵심 포인트</p>
+
+<ul>
+  <li>C++ vector 정렬(sort)에 관한 내용 알고 있는가</li>
+  <li>index 찾는법 –&gt; 마지막에 array.begin() 빼주기
+    <ul>
+      <li>빼는 과정 생략하면 iter 값이 반환됨, 값 보려면 *iter</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120585">머쓱이보다 키 큰 사람</a></li>
+</ul>
+:ET

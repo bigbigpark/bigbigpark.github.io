@@ -1,0 +1,89 @@
+I"<h2 id="문제-설명">문제 설명</h2>
+
+<p>문자열 <code class="language-plaintext highlighter-rouge">str1</code>, <code class="language-plaintext highlighter-rouge">str2</code>가 매개변수로 주어집니다. <code class="language-plaintext highlighter-rouge">str1</code> 안에 <code class="language-plaintext highlighter-rouge">str2</code>가 있다면 1을 없다면 2를 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">str1</code>의 길이 ≤ 100</li>
+  <li>1 ≤ <code class="language-plaintext highlighter-rouge">str2</code>의 길이 ≤ 100</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>str1</th>
+      <th>str2</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“ab6CDE443fgh22iJKlmn1o”</td>
+      <td>“6CD”</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>“ppprrrogrammers”</td>
+      <td>“pppp”</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solution</span><span class="p">(</span><span class="n">string</span> <span class="n">str1</span><span class="p">,</span> <span class="n">string</span> <span class="n">str2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span> <span class="o">==</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제 핵심 포인트</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">find</code>함수에 대한 이해</li>
+</ul>
+
+<p>size_t find(const string&amp; str, size_T pos = 0) const;</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">sentence</span> <span class="o">=</span> <span class="s">"apple"</span><span class="p">;</span>
+
+<span class="c1">// find() 함수는 찾지 못하면 std::string::npos 를 반환함</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sentence</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"pl"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"찾음"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// 찾으면 인덱스를 반환!!!</span>
+<span class="k">auto</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">sentence</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"pl"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>추가로 있는 중복되는 문자 찾기는 아래와 같다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"bigbigpark"</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"big"</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pos</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">target</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">length</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="c1">// name.erase(pos, length);</span>
+    <span class="n">name</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="sc">'*'</span><span class="p">));</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120908">문자열안에 문자열</a></li>
+</ul>
+:ET
