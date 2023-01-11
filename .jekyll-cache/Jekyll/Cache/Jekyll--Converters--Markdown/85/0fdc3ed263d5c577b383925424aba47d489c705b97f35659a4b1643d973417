@@ -1,0 +1,89 @@
+I"H<h2 id="문제-설명">문제 설명</h2>
+
+<p>소인수분해란 어떤 수를 소수들의 곱으로 표현하는 것입니다. 예를 들어 12를 소인수 분해하면 2 * 2 * 3 으로 나타낼 수 있습니다. 따라서 12의 소인수는 2와 3입니다. 자연수 <code class="language-plaintext highlighter-rouge">n</code>이 매개변수로 주어질 때 <code class="language-plaintext highlighter-rouge">n</code>의 소인수를 오름차순으로 담은 배열을 return하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="제한-사항">제한 사항</h2>
+<ul>
+  <li>2 ≤ <code class="language-plaintext highlighter-rouge">n</code> ≤ 10,000</li>
+</ul>
+
+<h2 id="입출력-예">입출력 예</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>n</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12</td>
+      <td>[2, 3]</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>[17]</td>
+    </tr>
+    <tr>
+      <td>420</td>
+      <td>[2, 3, 5, 7]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">answer</span><span class="p">;</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">um</span><span class="p">;</span>
+ 
+    <span class="kt">int</span> <span class="n">div</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">div</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// cout &lt;&lt; div &lt;&lt; endl;</span>
+            <span class="n">um</span><span class="p">[</span><span class="n">div</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            
+            <span class="n">n</span> <span class="o">/=</span> <span class="n">div</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="n">div</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">v</span> <span class="o">:</span> <span class="n">um</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">first</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="n">sort</span><span class="p">(</span><span class="n">answer</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">answer</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    
+    
+    <span class="k">return</span> <span class="n">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="문제-핵심-포인트">문제 핵심 포인트</h2>
+
+<ol>
+  <li>소인수분해의 정의를 알고있는가?
+    <ul>
+      <li>하나의 숫자를 소수의 곱으로 표현하는 것</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://school.programmers.co.kr/learn/courses/30/lessons/120852">소인수분해</a></li>
+</ul>
+:ET
