@@ -1,0 +1,35 @@
+I"�<p><code class="language-plaintext highlighter-rouge">librealsense_gazebo_plugin.so</code>가 없다는 에러 경고 창이 뜬다면! <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>Intel RealSense Gazebo ROS plugin 을 설치해보자.</p>
+
+<p>설치 경로: https://github.com/pal-robotics/realsense_gazebo_plugin</p>
+
+<h2 id="설치">설치</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/pal-robotics/realsense_gazebo_plugin.git
+<span class="nv">$ </span>catkin build <span class="c"># 또는 catkin_make</span>
+</code></pre></div></div>
+
+<h2 id="확인">확인</h2>
+
+<p>워크스페이스 들어가보면 아래처럼 디렉토리가 구성이 되어 있을 건데 <code class="language-plaintext highlighter-rouge">devel</code>에 <code class="language-plaintext highlighter-rouge">librealsense_gazebo_plugin.so</code>가 있을 것이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">my_workspace</code></p>
+
+<ul>
+  <li>
+    <p><strong>build</strong></p>
+  </li>
+  <li>
+    <p><strong>devel</strong> : here!!</p>
+  </li>
+  <li>
+    <p><strong>logs</strong></p>
+  </li>
+  <li>
+    <p><strong>src</strong></p>
+  </li>
+</ul>
+:ET
