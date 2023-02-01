@@ -1,0 +1,26 @@
+I"�<p>파이썬에서 열거형(enum)은 어떻게 작성하고 사용할까?</p>
+
+<h2 id="헤더-선언">헤더 선언</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>enum을 사용할 클래스 정의</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RobotID</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+  <span class="n">ROBOT1</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">ROBOT2</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="n">ROBOT3</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="n">ROBOT4</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="n">ROBOT5</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<h2 id="사용하는-곳">사용하는 곳</h2>
+
+<p>key-value 형식으로 사용된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">RobotID</span><span class="p">.</span><span class="n">ROBOT1</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+:ET

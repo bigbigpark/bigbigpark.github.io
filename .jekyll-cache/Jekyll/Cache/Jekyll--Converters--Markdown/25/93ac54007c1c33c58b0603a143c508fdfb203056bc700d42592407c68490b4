@@ -1,0 +1,21 @@
+I"T<p>launch파일에서 param으로 넘겨준 것을 읽어보자! <br /></p>
+
+<h2 id="개요">개요</h2>
+
+<p>아래 사진에서 10번째 줄에 있는 파라미터를 코드 단위에서 읽어보자</p>
+
+<p><img src="/assets/img/ros/2023-01-30/Selection_001.png" alt="" /></p>
+
+<h2 id="코드">코드</h2>
+
+<p>간단하죵~</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">param</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">search_param</span><span class="p">(</span><span class="s">'robot_name'</span><span class="p">)</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">robot_name</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="http://wiki.ros.org/rospy/Overview/Parameter%20Server">rospyOverviewParameter Server</a></li>
+</ul>
+:ET
