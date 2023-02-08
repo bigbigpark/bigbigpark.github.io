@@ -1,0 +1,59 @@
+I"�<p>파이썬에서 데이터에 가우시안 노이즈를 추가해보자. <br /></p>
+
+<h2 id="가우시안-함수-공식">가우시안 함수 공식</h2>
+
+<p>다들 잘 알고 있는 공식 그대로다. <br /></p>
+
+<p>더 궁금하다면 확률 및 통계쪽이나 랜덤데이터를 참고하자. <br /></p>
+
+\[f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{ - \frac{1}{2}(\frac{x-\mu}{\sigma})^2  }\]
+
+<p>나는 임의의 센서 데이터값에 가우시안 노이즈를 섞으려고 한다. <br /></p>
+
+<p>보통 평균(mean)이 <strong>0</strong>이고 표준편차(standard deviation)를 조절하면서 섞는다. <br /></p>
+
+<p>이를 다른 말로 Zero-mean Gaussian 이라고 부르기도 한다. <br /></p>
+
+<h2 id="사용법">사용법</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>위의 코드에서 p1은 평균이 0, 표준편차가 2인 샘플 하나를 얻은 것이다. <br /></p>
+
+<p>마찬가지로 p2는 평균이 0, 표준편차가 2인 샘플 20000개를 얻은 것이다. <br /></p>
+
+<p>따라서 이를 센서 데이터에 적절하게 섞어주면 된다. <br /></p>
+
+<h2 id="만약-가우시안-분포가-진짜-맞는지-확인하고-싶을때">만약 가우시안 분포가 진짜 맞는지 확인하고 싶을때</h2>
+
+<p>아래 패키지를 먼저 다운로드 한다. <br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip3 <span class="nb">install </span>seaborn
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>아래 코드로 생성한 분포를 그래프로 바로 그려볼 수 있다. <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">displot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">"kde"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="결과">결과</h2>
+
+<p><img src="/assets/img/python/2023-02-08/gaussian.png" alt="" /></p>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://scribblinganything.tistory.com/456">[Python]정규분포(가우시안분포)란?</a></li>
+</ul>
+:ET
