@@ -1,7 +1,9 @@
 # main links
 main:
   - title: "CV"
-    url: /CV-seongchang park.pdf
+    url: /ParkSeongChangCV.pdf
+    #/CV-seongchang park.pdf
+    #
   # - title: "윤동주"
   #   url: /categories/윤동주/
 
