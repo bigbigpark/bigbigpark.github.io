@@ -46,6 +46,20 @@
                 {% endif %}
             {% endfor %}
         </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "MFC" %}
+                    <li><a href="/categories/mfc" class="">- 코딩테스트 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "SW" %}
+                    <li><a href="/categories/sw" class="">- 코딩테스트 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
         <span class="nav__sub-title"> 📂 LIBRARY / FRAMEWORK</span>
             <ul>
                 {% for category in site.categories %}
