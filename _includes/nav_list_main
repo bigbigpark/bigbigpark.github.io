@@ -24,7 +24,7 @@
                 {% endfor %}
             </ul>
 
-        <span class="nav__sub-title">📂 Software Study </span>
+        <span class="nav__sub-title">📂 Study </span>
         <ul>
             {% for category in site.categories %}
                 {% if category[0] == "data_structure" %}
@@ -48,15 +48,22 @@
         </ul>
         <ul>
             {% for category in site.categories %}
-                {% if category[0] == "MFC" %}
-                    <li><a href="/categories/mfc" class="">- 코딩테스트 ({{category[1].size}})</a></li>
+                {% if category[0] == "robotics" %}
+                    <li><a href="/categories/robotics" class="">- 로보틱스 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
         <ul>
             {% for category in site.categories %}
-                {% if category[0] == "SW" %}
-                    <li><a href="/categories/sw" class="">- 코딩테스트 ({{category[1].size}})</a></li>
+                {% if category[0] == "path_planning" %}
+                    <li><a href="/categories/path_planning" class="">- 경로계획 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "reinforcement_learning" %}
+                    <li><a href="/categories/reinforcement_learning" class="">- 강화학습 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>

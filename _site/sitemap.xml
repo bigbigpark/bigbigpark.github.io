@@ -4,9 +4,9 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>http://localhost:4000/linux/install_MFC/</loc>
+        <loc>http://localhost:4000/robotics/list_to_study/</loc>
         
-        <lastmod>2024-02-19T00:00:00+09:00</lastmod>
+        <lastmod>2024-05-07T00:00:00+09:00</lastmod>
         
 
         
@@ -2324,7 +2324,7 @@
     </url>
     
     <url>
-        <loc>http://localhost:4000/robotics/ros-tf/</loc>
+        <loc>http://localhost:4000/ros-tf/</loc>
         
         <lastmod>2022-01-21T00:00:00+09:00</lastmod>
         
