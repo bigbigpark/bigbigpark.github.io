@@ -310,10 +310,35 @@ a.store-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
 /* ── 반응형 ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; text-align: center; }
-  .hero-copy .lede { margin-inline: auto; }
-  .hero-cta, .hero-chips { justify-content: center; }
-  .hero-art { order: -1; }
+  /* 히어로: 스크린샷을 위에 쌓지 않고 배경으로 내린 뒤 카피를 겹친다.
+     세로로 길어지는 걸 막고, 글은 왼쪽 정렬로 읽는 흐름을 지킨다. */
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-copy { position: relative; z-index: 1; }
+  .lede { max-width: 32ch; }
+
+  /* absolute라 높이를 차지하지 않는다 — 히어로가 화면을 덜 잡아먹는다 */
+  .hero-art {
+    position: absolute; inset: 0; z-index: 0;
+    justify-content: flex-end; align-items: center;
+    pointer-events: none;
+  }
+  .hero-art .phone {
+    max-width: 264px;
+    translate: 26% 0;
+    rotate: -6deg;
+    opacity: .62;
+    box-shadow: 0 20px 44px rgba(14, 42, 71, .16);
+    -webkit-mask-image: linear-gradient(100deg, transparent 6%, #000 52%);
+            mask-image: linear-gradient(100deg, transparent 6%, #000 52%);
+  }
+  /* 글이 놓이는 왼쪽을 배경색으로 덮어 대비를 확보한다.
+     오른쪽 끝은 투명하게 둬서 앱 화면이 그대로 보이게 남긴다. */
+  .hero-art::after {
+    content: ""; position: absolute; inset: -400px 0; z-index: 1;
+    background: linear-gradient(100deg,
+      var(--cream) 26%, rgba(248, 241, 233, .72) 54%, rgba(248, 241, 233, 0) 84%);
+  }
+
   .shots { grid-template-columns: 1fr; justify-items: center; }
   .shot { max-width: 420px; }
   .nav-links { display: none; }
