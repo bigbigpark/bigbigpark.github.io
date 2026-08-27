@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>테니스맵 베타 테스터 안내</title>
+<meta name="description" content="테니스맵 비공개 베타 테스트에 참여해주신 분들을 위한 안내 페이지입니다. 참여 방법과 부탁드릴 점을 정리했습니다.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://bigbigpark.github.io/beta/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="테니스맵">
+<meta property="og:title" content="테니스맵 베타 테스터 안내">
+<meta property="og:description" content="참여해주셔서 감사합니다. 설치 방법과 부탁드릴 점을 정리했습니다.">
+<meta property="og:url" content="https://bigbigpark.github.io/beta/">
+<meta property="og:image" content="https://bigbigpark.github.io/assets/img/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0e2a47">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon-96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<style>
+  /* ── 이 페이지 전용 ─────────────────────────────────────── */
+  .beta-hero { position: relative; padding-block: clamp(64px, 9vw, 104px) clamp(48px, 7vw, 76px); }
+  .beta-hero .inner { position: relative; max-width: 720px; }
+  .beta-hero h1 { font-size: clamp(2rem, 4.6vw, 3rem); margin-bottom: 18px; }
+  .beta-hero .lede { font-size: clamp(1.02rem, 1.5vw, 1.14rem); color: var(--muted); }
+
+  .steps { display: grid; gap: 18px; counter-reset: step; }
+  .step-card {
+    background: var(--cream-2); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 26px 26px 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+  .step-card p { color: var(--muted); font-size: .96rem; }
+  .step-card p + p { margin-top: 10px; }
+  .step-card .btn { margin-top: 18px; }
+
+  .optin-link {
+    display: block; margin-top: 14px; padding: 13px 16px;
+    background: rgba(14, 42, 71, .05); border: 1px dashed var(--line);
+    border-radius: 12px; font-size: .9rem; color: var(--navy);
+    word-break: break-all; font-weight: 600;
+  }
+
+  .notice {
+    border-left: 4px solid var(--terra);
+    background: rgba(210, 105, 74, .07);
+    border-radius: 0 14px 14px 0;
+    padding: 20px 22px;
+  }
+  .notice h3 { font-size: 1.02rem; margin-bottom: 12px; color: var(--terra); }
+  .notice ul { display: grid; gap: 10px; }
+  .notice li { position: relative; padding-left: 18px; font-size: .95rem; color: var(--muted); line-height: 1.6; }
+  .notice li::before {
+    content: ""; position: absolute; left: 0; top: .6em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--terra);
+  }
+  .notice strong { color: var(--ink); }
+
+  .thanks { background: var(--navy); color: rgba(255, 251, 246, .8); }
+  .thanks h2 { color: var(--cream-2); }
+  .thanks .eyebrow { color: var(--ball); }
+  .thanks p { max-width: 640px; }
+  .thanks .btn-ghost { border-color: rgba(255, 251, 246, .35); color: var(--cream-2); margin-top: 26px; }
+  .thanks .btn-ghost:hover { background: rgba(255, 251, 246, .1); }
+
+  .timeline { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .timeline li {
+    padding: 9px 16px; border-radius: 999px;
+    background: rgba(14, 42, 71, .06); border: 1px solid var(--line);
+    font-size: .9rem; font-weight: 600; color: var(--navy);
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">
+      <img src="/assets/img/logo-mark.png" alt="" width="36" height="36">
+      <span class="brand-name">테니스맵</span>
+    </a>
+    <div class="nav-right">
+      <a class="btn btn-sm btn-ghost" href="/">소개 페이지</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── 인사 ────────────────────────────────────────────── -->
+  <section class="beta-hero">
+    <div class="court" aria-hidden="true"></div>
+    <div class="wrap inner">
+      <p class="eyebrow">비공개 베타 테스트</p>
+      <h1>함께해주셔서<br>고맙습니다</h1>
+      <p class="lede">
+        테니스맵은 혼자 만든 앱입니다. 정식 출시 전에 실제로 써보고 솔직하게
+        말해줄 사람이 꼭 필요했는데, 그 자리에 와주셔서 정말 감사합니다.
+        아래 순서대로 설치만 해주시면 됩니다. 5분이면 끝납니다.
+      </p>
+      <ul class="timeline">
+        <li>설치 5분</li>
+        <li>테스트 기간 14일</li>
+        <li>부담 없이, 쓰던 대로</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 앱 소개 ─────────────────────────────────────────── -->
+  <section class="section features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">어떤 앱인가요</p>
+        <h2>지도에서 찾아 바로 참여하는 테니스 모임</h2>
+        <p class="section-sub">
+          같이 칠 사람을 구하려고 단톡방을 뒤지거나 아는 사람에게 묻지 않아도 되게
+          만들었습니다. 내 주변 코트에 올라온 모임을 지도에서 보고 바로 신청하면 됩니다.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>지도에서 한눈에</h3>
+          <ul>
+            <li>내 위치 주변 코트와 모집 중인 일정이 지도에 표시됩니다</li>
+            <li>날짜로 걸러서 이번 주말에 갈 곳만 볼 수 있습니다</li>
+            <li>자리가 찬 모임은 따로 표시돼 헛걸음하지 않습니다</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>신청하면 채팅방으로</h3>
+          <ul>
+            <li>참여 신청과 동시에 참여자 채팅방이 열립니다</li>
+            <li>코트 위치, 준비물, 지각 여부를 그 안에서 정리합니다</li>
+            <li>일정이 취소되면 알림과 함께 바로 알려드립니다</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>정기 모임은 그룹으로</h3>
+          <ul>
+            <li>매주 치는 사람들끼리 그룹을 만들 수 있습니다</li>
+            <li>그룹 채팅과 일정 공유가 한 곳에서 됩니다</li>
+            <li>노쇼가 쌓이면 제재되어 약속이 지켜집니다</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 참여 방법 ───────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">이렇게 해주세요</p>
+        <h2>설치까지 네 단계</h2>
+        <p class="section-sub">
+          안드로이드 폰에서 진행해주세요. 아이폰은 아직 심사 중이라 이번 테스트에는
+          포함되지 않습니다.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step-card">
+          <span class="step">1</span>
+          <h3>참여 신청 링크 열기</h3>
+          <p>
+            아래 링크를 <strong>안드로이드 폰에서</strong> 열어주세요.
+            컴퓨터에서 열어도 되지만, 결국 폰에서 설치해야 하니 폰이 편합니다.
+          </p>
+          <a class="optin-link" href="https://play.google.com/apps/testing/com.tennismap.app">
+            https://play.google.com/apps/testing/com.tennismap.app
+          </a>
+          <a class="btn btn-primary" href="https://play.google.com/apps/testing/com.tennismap.app">
+            참여 신청하러 가기
+          </a>
+        </article>
+
+        <article class="step-card">
+          <span class="step">2</span>
+          <h3>&ldquo;테스터 되기&rdquo; 누르기</h3>
+          <p>
+            페이지에 뜨는 <strong>테스터 되기</strong> 버튼을 눌러주세요.
+            이걸 눌러야 정식으로 등록됩니다. 여기까지 안 하시면 앱이 안 보입니다.
+          </p>
+          <p>
+            누른 뒤 <strong>&ldquo;테스터입니다&rdquo;</strong> 라는 문구가 뜨면 성공입니다.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step">3</span>
+          <h3>플레이 스토어에서 설치</h3>
+          <p>
+            같은 페이지에 있는 <strong>Google Play에서 다운로드</strong> 링크로 들어가
+            설치하시면 됩니다. 일반 앱과 똑같이 설치됩니다.
+          </p>
+          <p>
+            방금 등록해서 아직 안 뜰 수 있습니다. 그럴 땐 몇 분 뒤에
+            다시 시도해주세요.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step">4</span>
+          <h3>14일 동안 지우지 말아주세요</h3>
+          <p>
+            구글 정책상 <strong>12명이 14일 연속</strong> 테스터로 남아 있어야
+            정식 출시를 신청할 수 있습니다. 중간에 테스터를 그만두시면
+            그 기간이 처음부터 다시 시작됩니다.
+          </p>
+          <p>
+            매일 쓰실 필요는 없습니다. 앱만 지우지 않고 남겨두셔도 충분히 도움이 됩니다.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 주의사항 ────────────────────────────────────────── -->
+  <section class="section features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">막히기 쉬운 곳</p>
+        <h2>이것만 확인해주세요</h2>
+      </div>
+
+      <div class="notice">
+        <h3>&ldquo;테스터가 아닙니다&rdquo; 라고 뜬다면</h3>
+        <ul>
+          <li>
+            <strong>구글 계정이 다른 경우</strong>가 대부분입니다.
+            제게 알려주신 지메일 주소와, 지금 폰에 로그인된 계정이 같아야 합니다.
+          </li>
+          <li>
+            폰에 계정이 여러 개면 <strong>플레이 스토어 우측 상단 프로필</strong>을 눌러
+            어떤 계정으로 로그인돼 있는지 확인하고 바꿔주세요.
+          </li>
+          <li>
+            계정을 바꾸기 어려우시면 사용하시는 주소를 알려주세요.
+            <strong>제가 그 주소를 등록해드리면</strong> 됩니다.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 피드백 ──────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">부탁드릴 것</p>
+        <h2>불편했던 걸 그대로 말해주세요</h2>
+        <p class="section-sub">
+          좋게 말해주실 필요 전혀 없습니다. 오히려 &ldquo;여기서 뭘 눌러야 할지 몰랐다&rdquo;
+          같은 이야기가 제일 도움이 됩니다.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>특히 궁금한 것</h3>
+          <ul>
+            <li>처음 켰을 때 뭘 하는 앱인지 바로 이해되셨나요</li>
+            <li>지도가 내 위치를 제대로 잡던가요</li>
+            <li>모임을 만들거나 신청하는 게 헷갈리진 않았나요</li>
+            <li>알림이 제때 오던가요</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>문제가 생기면</h3>
+          <ul>
+            <li>앱이 꺼지거나 화면이 이상하면 캡처해서 보내주세요</li>
+            <li>언제, 뭘 하다가 그랬는지 한 줄이면 충분합니다</li>
+            <li>앱 안 고객센터로도 문의를 보낼 수 있습니다</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>연락 주실 곳</h3>
+          <ul>
+            <li>편하신 대로 카톡이나 메일 아무거나 좋습니다</li>
+            <li>tennis.map.contact@gmail.com</li>
+            <li>사소해 보이는 것도 그냥 말씀해주세요</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 맺음 ────────────────────────────────────────────── -->
+  <section class="section thanks">
+    <div class="wrap">
+      <p class="eyebrow">고맙습니다</p>
+      <h2>덕분에 출시까지 갑니다</h2>
+      <p>
+        테스터 열두 분이 모여야 정식 출시를 신청할 수 있습니다.
+        번거로운 부탁인 걸 알면서도 드리는 이유입니다.
+        정식 출시하면 제일 먼저 알려드리겠습니다.
+      </p>
+      <a class="btn btn-ghost" href="mailto:tennis.map.contact@gmail.com">메일 보내기</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="/assets/img/logo-mark.png" alt="" width="40" height="40">
+      <div>
+        <strong>테니스맵</strong>
+        <p>내 주변 코트에서 함께 칠 파트너를 찾다</p>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="법적 고지 및 문의">
+      <a href="/">앱 소개</a>
+      <a href="https://bigbigpark.github.io/tennismap-legal/terms.html">이용약관</a>
+      <a href="https://bigbigpark.github.io/tennismap-legal/privacy.html">개인정보처리방침</a>
+      <a href="mailto:tennis.map.contact@gmail.com">문의하기</a>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>&copy; 2026 테니스맵</p>
+    <p class="footer-mail"><a href="mailto:tennis.map.contact@gmail.com">tennis.map.contact@gmail.com</a></p>
+  </div>
+</footer>
+</body>
+</html>
